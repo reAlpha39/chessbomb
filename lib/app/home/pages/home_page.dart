@@ -1,6 +1,8 @@
+import 'package:bombernyaa/app/game/pages/game_page.dart';
 import 'package:bombernyaa/app/home/bloc/cubit/player_id_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -39,7 +41,7 @@ class HomePage extends StatelessWidget {
                 vertical: 24.0,
               ),
               child: ElevatedButton(
-                onPressed: () => null,
+                onPressed: () => Get.to(() => const GamePage()),
                 child: const Text('Click Here'),
               ),
             )
