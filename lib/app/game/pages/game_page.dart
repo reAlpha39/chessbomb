@@ -25,6 +25,7 @@ class _GameLayout extends StatelessWidget {
     return Scaffold(
       body: const VStack([
         PlayerPoint(),
+        GameBoard(),
       ]).px16(),
     );
   }
