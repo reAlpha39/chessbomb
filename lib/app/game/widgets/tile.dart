@@ -1,3 +1,4 @@
+import 'package:bombernyaa/app/game/bloc/cubit/game_board_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +50,7 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
           child: VxBox(child: widget.index.text.lg.make().centered())
               .height(5)
               .width(5)
-              .color(Colors.white)
+              .color(context.read<GameBoardCubit>().boardState(widget.index))
               .border(
                 color: Colors.black,
                 width: 2,
