@@ -23,7 +23,9 @@ class _GameLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const VStack([]).px16(),
+      body: const VStack([
+        PlayerPoint(),
+      ]).px16(),
     );
   }
 }
