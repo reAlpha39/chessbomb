@@ -46,13 +46,16 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
       animation: animation!,
       builder: (context, child) {
         return InkWell(
-          // onTap: () => context.read<GameBoardCubit>().selectTile(widget.index),
+          onTap: () => context.read<GameBoardCubit>().selectTile(widget.index),
           child: VxBox(child: widget.index.text.lg.make().centered())
               .height(5)
               .width(5)
               .color(context.read<GameBoardCubit>().boardState(widget.index))
               .border(
-                color: Colors.black,
+                color:
+                    context.read<GameBoardCubit>().selectedTiles == widget.index
+                        ? Colors.green
+                        : Colors.black,
                 width: 2,
               )
               .make(),

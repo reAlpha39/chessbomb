@@ -12,6 +12,13 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   GameBoardCubit() : super(const GameBoardState.initial());
 
   List<String> initialBoardState = boardStateDummy;
+  int selectedTiles = -1;
+
+  void selectTile(int index) {
+    emit(const GameBoardState.loading());
+    selectedTiles = index;
+    emit(GameBoardState.selectedTiles(index));
+  }
 
   Color boardState(int index) {
     Color colorTile;
