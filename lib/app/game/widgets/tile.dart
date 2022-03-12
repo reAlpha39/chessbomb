@@ -59,7 +59,12 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
                 color:
                     context.read<GameBoardCubit>().selectedTiles == widget.index
                         ? Colors.green
-                        : Colors.black,
+                        : context
+                                .read<GameBoardCubit>()
+                                .movement
+                                .contains(widget.index)
+                            ? animation!.value!
+                            : Colors.black,
                 width: 2,
               )
               .make(),
