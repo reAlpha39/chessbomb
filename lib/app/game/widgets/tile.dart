@@ -1,5 +1,5 @@
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
-import 'package:bombernyaa/app/game/bloc/player/player_cubit.dart';
+import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -13,7 +13,8 @@ class Tile extends StatefulWidget {
 }
 
 class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
-  Animation<Color?>? animation;
+  Animation<Color?>? animationPlayerPion;
+  Animation<Color?>? animationSelectableMovement;
   AnimationController? controller;
 
   @override
@@ -26,9 +27,20 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
     final CurvedAnimation curve =
         CurvedAnimation(parent: controller!, curve: Curves.ease);
 
-    animation = ColorTween(begin: Colors.black, end: Colors.red).animate(curve);
+    animationPlayerPion =
+        ColorTween(begin: Colors.black, end: Colors.red).animate(curve);
+    animationSelectableMovement =
+        ColorTween(begin: Colors.black, end: Colors.blue).animate(curve);
 
-    animation!.addStatusListener((status) {
+    animationPlayerPion!.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller!.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        controller!.forward();
+      }
+      setState(() {});
+    });
+    animationSelectableMovement!.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         controller!.reverse();
       } else if (status == AnimationStatus.dismissed) {
@@ -43,14 +55,16 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: animation!,
+      animation:
+          context.read<GameBoardCubit>().playerPion.contains(widget.index)
+              ? animationPlayerPion!
+              : animationSelectableMovement!,
       builder: (context, child) {
         return InkWell(
-          onTap: () {
-            if ([0, 1].contains(context.read<PlayerCubit>().playerStateIndex)) {
-              context.read<GameBoardCubit>().selectTile(widget.index);
-            }
-          },
+          onTap: () => context.read<GameBoardCubit>().selectTile(
+                index: widget.index,
+                rolledNumber: context.read<RollDiceCubit>().roll,
+              ),
           child: VxBox(child: widget.index.text.lg.make().centered())
               .height(5)
               .width(5)
@@ -61,10 +75,15 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
                         ? Colors.green
                         : context
                                 .read<GameBoardCubit>()
-                                .movement
+                                .playerPion
                                 .contains(widget.index)
-                            ? animation!.value!
-                            : Colors.black,
+                            ? animationPlayerPion!.value!
+                            : context
+                                    .read<GameBoardCubit>()
+                                    .movement
+                                    .contains(widget.index)
+                                ? animationSelectableMovement!.value!
+                                : Colors.black,
                 width: 2,
               )
               .make(),
