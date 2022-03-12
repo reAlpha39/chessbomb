@@ -1,4 +1,5 @@
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
+import 'package:bombernyaa/app/game/bloc/player/player_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
 import 'package:bombernyaa/app/game/widgets/player_point.dart';
@@ -17,7 +18,7 @@ class GamePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<PlayerIdCubit>(),
+          create: (context) => getIt<PlayerCubit>(),
         ),
         BlocProvider(
           create: (context) => getIt<GameBoardCubit>(),
@@ -36,36 +37,53 @@ class _GameLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RollDiceCubit, RollDiceState>(
+    return BlocListener<PlayerCubit, PlayerState>(
       listener: (context, state) => state.maybeWhen(
-        rolled: (index) {
-          Dialogs().showRandomNumber(
-              title: 'Your Number', middleText: index.toString());
-          return context.read<RollDiceCubit>().reset();
+        onTurn: () {
+            
+          return null;
         },
+        diceRolled: (() {
+          return null;
+        }),
         orElse: () => null,
       ),
-      child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Align(
-          alignment: Alignment.bottomCenter,
-          child: ElevatedButton(
-            onPressed: () => context.read<RollDiceCubit>().rollDice(),
-            child: 'Roll Dice'
-                .text
-                .xl2
-                .center
-                .make()
-                .py8()
-                .box
-                .width(context.screenWidth - 150)
-                .make(),
-          ),
+      child: BlocListener<RollDiceCubit, RollDiceState>(
+        listener: (context, state) => state.maybeWhen(
+          rolled: (index) {
+            Dialogs().showRandomNumber(
+              title: 'Your Number',
+              middleText: index.toString(),
+            );
+            context.read<RollDiceCubit>().reset();
+            context.read<PlayerCubit>().changePlayerState();
+            return null;
+          },
+          orElse: () => null,
         ),
-        body: const VStack([
-          PlayerPoint(),
-          GameBoard(),
-        ]).px16(),
+        child: Scaffold(
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Align(
+            alignment: Alignment.bottomCenter,
+            child: ElevatedButton(
+              onPressed: () => context.read<RollDiceCubit>().rollDice(),
+              child: 'Roll Dice'
+                  .text
+                  .xl2
+                  .center
+                  .make()
+                  .py8()
+                  .box
+                  .width(context.screenWidth - 150)
+                  .make(),
+            ),
+          ),
+          body: const VStack([
+            PlayerPoint(),
+            GameBoard(),
+          ]).px16(),
+        ),
       ),
     );
   }

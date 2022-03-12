@@ -1,4 +1,5 @@
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
+import 'package:bombernyaa/app/game/bloc/player/player_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -45,7 +46,11 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
       animation: animation!,
       builder: (context, child) {
         return InkWell(
-          onTap: () => context.read<GameBoardCubit>().selectTile(widget.index),
+          onTap: () {
+            if ([0, 1].contains(context.read<PlayerCubit>().playerStateIndex)) {
+              context.read<GameBoardCubit>().selectTile(widget.index);
+            }
+          },
           child: VxBox(child: widget.index.text.lg.make().centered())
               .height(5)
               .width(5)
