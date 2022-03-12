@@ -13,11 +13,25 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
   List<String> initialBoardState = boardStateDummy;
   int selectedTiles = -1;
+  List<int> movement = [];
+
+  void _playerSelectableTile(String playerId) {
+    movement = [];
+    for (int i = 0; i < initialBoardState.length; i++) {
+      List<String> id = initialBoardState[i].split('.');
+      if (id[0] == playerId && id[1] != '0') {
+        movement.add(i);
+      }
+    }
+  }
 
   void selectTile(int index) {
     emit(const GameBoardState.loading());
-    selectedTiles = index;
-    emit(GameBoardState.selectedTiles(index));
+    _playerSelectableTile('1');
+    if (movement.contains(index)) {
+      selectedTiles = index;
+      emit(GameBoardState.selectedTiles(index));
+    }
   }
 
   Color boardState(int index) {
