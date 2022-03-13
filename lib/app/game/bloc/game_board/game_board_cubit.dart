@@ -11,6 +11,8 @@ part 'game_board_cubit.freezed.dart';
 class GameBoardCubit extends Cubit<GameBoardState> {
   GameBoardCubit() : super(const GameBoardState.initial());
 
+  String playerId = '1';
+
   static final List<String> alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   List<String> initialBoardState = boardStateDummy;
   int selectedTiles = -1;
@@ -30,6 +32,15 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       }
     }
     tilesIndex.addAll(temp);
+  }
+
+  void changePlayerId() {
+    if (playerId == '1') {
+      playerId = '2';
+    } else {
+      playerId = '1';
+    }
+    emit(GameBoardState.playerTurn(playerId));
   }
 
   void _resetMovement() {
@@ -55,7 +66,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     }
   }
 
-  void playerSelectableTile({required String playerId}) {
+  void playerSelectableTile() {
     playerPion = [];
     for (int i = 0; i < initialBoardState.length; i++) {
       List<String> id = initialBoardState[i].split('.');

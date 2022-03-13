@@ -4,8 +4,10 @@ import 'package:bombernyaa/app/game/widgets/game_board.dart';
 import 'package:bombernyaa/app/game/widgets/player_point.dart';
 import 'package:bombernyaa/injection.dart';
 import 'package:bombernyaa/presentation/random_number_dialog.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class GamePage extends StatelessWidget {
@@ -41,39 +43,51 @@ class _GameLayout extends StatelessWidget {
                 title: 'Your Number',
                 middleText: index.toString(),
               );
-              context
-                  .read<GameBoardCubit>()
-                  .playerSelectableTile(playerId: '1');
+              context.read<GameBoardCubit>().playerSelectableTile();
               return null;
             },
             orElse: () => null,
           ),
         ),
         BlocListener<GameBoardCubit, GameBoardState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
+          listener: (context, state) => state.maybeWhen(
+            playerTurn: (playerId) => Get.snackbar(
+              'Player Changed',
+              'Player $playerId Turn',
+              snackPosition: SnackPosition.TOP,
+              colorText: Colors.black,
+              backgroundColor: Colors.amberAccent,
+              margin: const EdgeInsets.all(10),
+            ),
+            orElse: () => null,
+          ),
         ),
       ],
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Align(
-          alignment: Alignment.bottomCenter,
-          child: ElevatedButton(
-            onPressed: () => context.read<RollDiceCubit>()
-              ..reset()
-              ..rollDice(),
-            child: 'Roll Dice'
-                .text
-                .xl2
-                .center
-                .make()
-                .py8()
-                .box
-                .width(context.screenWidth - 150)
-                .make(),
-          ),
-        ),
+            alignment: Alignment.bottomCenter,
+            child: HStack([
+              ElevatedButton(
+                onPressed: () => context.read<RollDiceCubit>()
+                  ..reset()
+                  ..rollDice(),
+                child: 'Roll Dice'
+                    .text
+                    .xl2
+                    .center
+                    .make()
+                    .py8()
+                    .box
+                    .width(context.screenWidth - 150)
+                    .make(),
+              ),
+              ElevatedButton(
+                onPressed: () =>
+                    context.read<GameBoardCubit>().changePlayerId(),
+                child: const Icon(Icons.refresh).box.height(40).make(),
+              ).pOnly(left: 8),
+            ])),
         body: const VStack([
           PlayerPoint(),
           GameBoard(),

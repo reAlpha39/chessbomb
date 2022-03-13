@@ -8,4 +8,5 @@ class GameBoardState with _$GameBoardState {
   const factory GameBoardState.selectedTiles(int index) = _SelectedTiles;
   const factory GameBoardState.selectedTileDest(int index) = _SelectedTileDest;
   const factory GameBoardState.updateBoard() = _UpdateBoard;
+  const factory GameBoardState.playerTurn(String playerId) = _PlayerTurn;
 }
