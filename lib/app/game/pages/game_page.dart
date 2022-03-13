@@ -60,7 +60,9 @@ class _GameLayout extends StatelessWidget {
         floatingActionButton: Align(
           alignment: Alignment.bottomCenter,
           child: ElevatedButton(
-            onPressed: () => context.read<RollDiceCubit>().rollDice(),
+            onPressed: () => context.read<RollDiceCubit>()
+              ..reset()
+              ..rollDice(),
             child: 'Roll Dice'
                 .text
                 .xl2

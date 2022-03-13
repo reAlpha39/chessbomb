@@ -14,9 +14,11 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   static final List<String> alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   List<String> initialBoardState = boardStateDummy;
   int selectedTiles = -1;
+  int lastIndex = -1;
   List<String> tilesIndex = [];
   List<int> movement = [];
   List<int> playerPion = [];
+  bool isMoved = false;
   static final List<int> flagsTile = [3, 66];
 
   void createBoardIndex() {
@@ -30,6 +32,14 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     tilesIndex.addAll(temp);
   }
 
+  void _resetMovement() {
+    movement = [];
+    playerPion = [];
+    selectedTiles = -1;
+    lastIndex = -1;
+    isMoved = false;
+  }
+
   void selectTile({required int index, required int rolledNumber}) {
     emit(const GameBoardState.loading());
     if (playerPion.contains(index)) {
@@ -37,7 +47,10 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       playerMovement(rolledNumber: rolledNumber);
       emit(GameBoardState.selectedTiles(index));
     } else if (movement.contains(index)) {
+      lastIndex = selectedTiles;
       selectedTiles = index;
+      _changeBoardState();
+      _resetMovement();
       emit(GameBoardState.selectedTileDest(index));
     }
   }
@@ -83,18 +96,18 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         playerPion.contains(element) || flagsTile.contains(element));
   }
 
-  // void _changeStateBoard() {
-  //   String playerPion = initialBoardState[lastIndex];
-  //   initialBoardState[selectedTiles] = playerPion;
-  //   if (lastIndex.clamp(21, 27) == lastIndex ||
-  //       lastIndex.clamp(42, 48) == lastIndex) {
-  //     initialBoardState[lastIndex] = '7.1';
-  //   } else if (lastIndex.clamp(28, 41) == lastIndex) {
-  //     initialBoardState[lastIndex] = '7.0';
-  //   } else {
-  //     initialBoardState[lastIndex] = '0.0';
-  //   }
-  // }
+  void _changeBoardState() {
+    String pion = initialBoardState[lastIndex];
+    initialBoardState[selectedTiles] = pion;
+    if (lastIndex.clamp(21, 27) == lastIndex ||
+        lastIndex.clamp(42, 48) == lastIndex) {
+      initialBoardState[lastIndex] = '7.0';
+    } else if (lastIndex.clamp(28, 41) == lastIndex) {
+      initialBoardState[lastIndex] = '7.1';
+    } else {
+      initialBoardState[lastIndex] = '0.0';
+    }
+  }
 
   _straightMove(String currentIndex, int jumpedTile) {
     String ab = '';
