@@ -43,7 +43,9 @@ class _GameLayout extends StatelessWidget {
                 title: 'Your Number',
                 middleText: index.toString(),
               );
-              context.read<GameBoardCubit>().playerSelectableTile();
+              context.read<GameBoardCubit>()
+                ..rollNumber(context.read<RollDiceCubit>().roll)
+                ..playerSelectableTile();
               return null;
             },
             orElse: () => null,
@@ -59,15 +61,14 @@ class _GameLayout extends StatelessWidget {
               backgroundColor: Colors.amberAccent,
               margin: const EdgeInsets.all(10),
             ),
-            selectedTiles: (index) => Get.defaultDialog(
+            selectedTiles: () => Get.defaultDialog(
               title: 'Pilih Strategi',
               titleStyle: const TextStyle(fontSize: 24),
               content: VStack([
                 ElevatedButton(
                   onPressed: () {
-                    context
-                        .read<GameBoardCubit>()
-                        .chooseStrategy(isMovePlayer: true);
+                    context.read<GameBoardCubit>()
+                      .chooseStrategy(isMovePlayer: true);
                     Get.back();
                   },
                   child: 'Pindah pion'.text.xl.makeCentered().py8(),

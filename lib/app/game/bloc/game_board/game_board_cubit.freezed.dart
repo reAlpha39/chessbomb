@@ -30,10 +30,12 @@ class _$GameBoardStateTearOff {
     return const _Error();
   }
 
-  _SelectedTiles selectedTiles(int index) {
-    return _SelectedTiles(
-      index,
-    );
+  _SelectedTiles selectedTiles() {
+    return const _SelectedTiles();
+  }
+
+  _PionMove pionMove() {
+    return const _PionMove();
   }
 
   _SelectedTileDest selectedTileDest(int index) {
@@ -63,7 +65,8 @@ mixin _$GameBoardState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
@@ -74,7 +77,8 @@ mixin _$GameBoardState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -85,7 +89,8 @@ mixin _$GameBoardState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -98,6 +103,7 @@ mixin _$GameBoardState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -109,6 +115,7 @@ mixin _$GameBoardState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -120,6 +127,7 @@ mixin _$GameBoardState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -186,7 +194,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
@@ -200,7 +209,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -214,7 +224,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -233,6 +244,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -247,6 +259,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -261,6 +274,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -318,7 +332,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
@@ -332,7 +347,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -346,7 +362,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -365,6 +382,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -379,6 +397,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -393,6 +412,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -450,7 +470,8 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
@@ -464,7 +485,8 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -478,7 +500,8 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -497,6 +520,7 @@ class _$_Error implements _Error {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -511,6 +535,7 @@ class _$_Error implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -525,6 +550,7 @@ class _$_Error implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -546,7 +572,6 @@ abstract class _$SelectedTilesCopyWith<$Res> {
   factory _$SelectedTilesCopyWith(
           _SelectedTiles value, $Res Function(_SelectedTiles) then) =
       __$SelectedTilesCopyWithImpl<$Res>;
-  $Res call({int index});
 }
 
 /// @nodoc
@@ -559,49 +584,26 @@ class __$SelectedTilesCopyWithImpl<$Res>
 
   @override
   _SelectedTiles get _value => super._value as _SelectedTiles;
-
-  @override
-  $Res call({
-    Object? index = freezed,
-  }) {
-    return _then(_SelectedTiles(
-      index == freezed
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_SelectedTiles implements _SelectedTiles {
-  const _$_SelectedTiles(this.index);
-
-  @override
-  final int index;
+  const _$_SelectedTiles();
 
   @override
   String toString() {
-    return 'GameBoardState.selectedTiles(index: $index)';
+    return 'GameBoardState.selectedTiles()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SelectedTiles &&
-            const DeepCollectionEquality().equals(other.index, index));
+        (other.runtimeType == runtimeType && other is _SelectedTiles);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
-
-  @JsonKey(ignore: true)
-  @override
-  _$SelectedTilesCopyWith<_SelectedTiles> get copyWith =>
-      __$SelectedTilesCopyWithImpl<_SelectedTiles>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -609,12 +611,13 @@ class _$_SelectedTiles implements _SelectedTiles {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
   }) {
-    return selectedTiles(index);
+    return selectedTiles();
   }
 
   @override
@@ -623,12 +626,13 @@ class _$_SelectedTiles implements _SelectedTiles {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
   }) {
-    return selectedTiles?.call(index);
+    return selectedTiles?.call();
   }
 
   @override
@@ -637,14 +641,15 @@ class _$_SelectedTiles implements _SelectedTiles {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     required TResult orElse(),
   }) {
     if (selectedTiles != null) {
-      return selectedTiles(index);
+      return selectedTiles();
     }
     return orElse();
   }
@@ -656,6 +661,7 @@ class _$_SelectedTiles implements _SelectedTiles {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -670,6 +676,7 @@ class _$_SelectedTiles implements _SelectedTiles {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -684,6 +691,7 @@ class _$_SelectedTiles implements _SelectedTiles {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -697,12 +705,145 @@ class _$_SelectedTiles implements _SelectedTiles {
 }
 
 abstract class _SelectedTiles implements GameBoardState {
-  const factory _SelectedTiles(int index) = _$_SelectedTiles;
+  const factory _SelectedTiles() = _$_SelectedTiles;
+}
 
-  int get index;
-  @JsonKey(ignore: true)
-  _$SelectedTilesCopyWith<_SelectedTiles> get copyWith =>
-      throw _privateConstructorUsedError;
+/// @nodoc
+abstract class _$PionMoveCopyWith<$Res> {
+  factory _$PionMoveCopyWith(_PionMove value, $Res Function(_PionMove) then) =
+      __$PionMoveCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$PionMoveCopyWithImpl<$Res> extends _$GameBoardStateCopyWithImpl<$Res>
+    implements _$PionMoveCopyWith<$Res> {
+  __$PionMoveCopyWithImpl(_PionMove _value, $Res Function(_PionMove) _then)
+      : super(_value, (v) => _then(v as _PionMove));
+
+  @override
+  _PionMove get _value => super._value as _PionMove;
+}
+
+/// @nodoc
+
+class _$_PionMove implements _PionMove {
+  const _$_PionMove();
+
+  @override
+  String toString() {
+    return 'GameBoardState.pionMove()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _PionMove);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
+    required TResult Function(int index) selectedTileDest,
+    required TResult Function() updateBoard,
+    required TResult Function(String playerId) playerTurn,
+  }) {
+    return pionMove();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
+    TResult Function(int index)? selectedTileDest,
+    TResult Function()? updateBoard,
+    TResult Function(String playerId)? playerTurn,
+  }) {
+    return pionMove?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
+    TResult Function(int index)? selectedTileDest,
+    TResult Function()? updateBoard,
+    TResult Function(String playerId)? playerTurn,
+    required TResult orElse(),
+  }) {
+    if (pionMove != null) {
+      return pionMove();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
+    required TResult Function(_SelectedTileDest value) selectedTileDest,
+    required TResult Function(_UpdateBoard value) updateBoard,
+    required TResult Function(_PlayerTurn value) playerTurn,
+  }) {
+    return pionMove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
+    TResult Function(_SelectedTileDest value)? selectedTileDest,
+    TResult Function(_UpdateBoard value)? updateBoard,
+    TResult Function(_PlayerTurn value)? playerTurn,
+  }) {
+    return pionMove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
+    TResult Function(_SelectedTileDest value)? selectedTileDest,
+    TResult Function(_UpdateBoard value)? updateBoard,
+    TResult Function(_PlayerTurn value)? playerTurn,
+    required TResult orElse(),
+  }) {
+    if (pionMove != null) {
+      return pionMove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PionMove implements GameBoardState {
+  const factory _PionMove() = _$_PionMove;
 }
 
 /// @nodoc
@@ -773,7 +914,8 @@ class _$_SelectedTileDest implements _SelectedTileDest {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
@@ -787,7 +929,8 @@ class _$_SelectedTileDest implements _SelectedTileDest {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -801,7 +944,8 @@ class _$_SelectedTileDest implements _SelectedTileDest {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -820,6 +964,7 @@ class _$_SelectedTileDest implements _SelectedTileDest {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -834,6 +979,7 @@ class _$_SelectedTileDest implements _SelectedTileDest {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -848,6 +994,7 @@ class _$_SelectedTileDest implements _SelectedTileDest {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -913,7 +1060,8 @@ class _$_UpdateBoard implements _UpdateBoard {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
@@ -927,7 +1075,8 @@ class _$_UpdateBoard implements _UpdateBoard {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -941,7 +1090,8 @@ class _$_UpdateBoard implements _UpdateBoard {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -960,6 +1110,7 @@ class _$_UpdateBoard implements _UpdateBoard {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -974,6 +1125,7 @@ class _$_UpdateBoard implements _UpdateBoard {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -988,6 +1140,7 @@ class _$_UpdateBoard implements _UpdateBoard {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -1071,7 +1224,8 @@ class _$_PlayerTurn implements _PlayerTurn {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(int index) selectedTiles,
+    required TResult Function() selectedTiles,
+    required TResult Function() pionMove,
     required TResult Function(int index) selectedTileDest,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
@@ -1085,7 +1239,8 @@ class _$_PlayerTurn implements _PlayerTurn {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -1099,7 +1254,8 @@ class _$_PlayerTurn implements _PlayerTurn {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(int index)? selectedTiles,
+    TResult Function()? selectedTiles,
+    TResult Function()? pionMove,
     TResult Function(int index)? selectedTileDest,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
@@ -1118,6 +1274,7 @@ class _$_PlayerTurn implements _PlayerTurn {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
+    required TResult Function(_PionMove value) pionMove,
     required TResult Function(_SelectedTileDest value) selectedTileDest,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
@@ -1132,6 +1289,7 @@ class _$_PlayerTurn implements _PlayerTurn {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
@@ -1146,6 +1304,7 @@ class _$_PlayerTurn implements _PlayerTurn {
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
+    TResult Function(_PionMove value)? pionMove,
     TResult Function(_SelectedTileDest value)? selectedTileDest,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,

@@ -21,7 +21,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   List<int> movement = [];
   List<int> playerPion = [];
   int rolledNumber = 0;
-  bool isMoved = false;
+  bool isPickPion = false;
   bool isBomb = false;
   int bombId = 0;
   static final List<int> flagsTile = [3, 66];
@@ -51,11 +51,28 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     playerPion = [];
     selectedTiles = -1;
     lastIndex = -1;
-    isMoved = false;
   }
 
   void rollNumber(int number) {
     rolledNumber = number;
+  }
+
+  void selectTile(int index) {
+    if (playerPion.contains(index)) {
+      lastIndex = selectedTiles;
+      selectedTiles = index;
+      isPickPion = true;
+      _playerMovement();
+      emit(const GameBoardState.selectedTiles());
+    } else if (movement.contains(index)) {
+      lastIndex = selectedTiles;
+      selectedTiles = index;
+      if (isPickPion) {
+        isPickPion = false;
+        _playerStrategy();
+        emit(const GameBoardState.updateBoard());
+      }
+    }
   }
 
   void chooseStrategy({bool isMovePlayer = false}) {
@@ -66,21 +83,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     }
   }
 
-  void selectTile({required int index}) {
-    emit(const GameBoardState.loading());
-    if (playerPion.contains(index)) {
-      selectedTiles = index;
-      _playerMovement();
-      emit(GameBoardState.selectedTiles(index));
-    } else if (movement.contains(index)) {
-      lastIndex = selectedTiles;
-      selectedTiles = index;
-      _changeBoardState();
-      _resetMovement();
-      emit(GameBoardState.selectedTileDest(index));
-    }
-  }
-
   void playerSelectableTile() {
     playerPion = [];
     for (int i = 0; i < initialBoardState.length; i++) {
@@ -88,6 +90,16 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       if (id[0] == playerId && id[1] != '0') {
         playerPion.add(i);
       }
+    }
+  }
+
+  void _playerStrategy() {
+    if (isBomb) {
+      _useBomb();
+      _resetMovement();
+    } else {
+      _movePion();
+      _resetMovement();
     }
   }
 
@@ -122,16 +134,97 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         playerPion.contains(element) || flagsTile.contains(element));
   }
 
-  void _changeBoardState() {
-    String pion = initialBoardState[lastIndex];
-    initialBoardState[selectedTiles] = pion;
-    if (lastIndex.clamp(21, 27) == lastIndex ||
-        lastIndex.clamp(42, 48) == lastIndex) {
-      initialBoardState[lastIndex] = '7.0';
-    } else if (lastIndex.clamp(28, 41) == lastIndex) {
-      initialBoardState[lastIndex] = '7.1';
+  void _movePion() {
+    if (!playerPion.contains(selectedTiles)) {
+      String pion = initialBoardState[lastIndex];
+      initialBoardState[selectedTiles] = pion;
+      if (lastIndex.clamp(21, 27) == lastIndex ||
+          lastIndex.clamp(42, 48) == lastIndex) {
+        initialBoardState[lastIndex] = '7.0';
+      } else if (lastIndex.clamp(28, 41) == lastIndex) {
+        initialBoardState[lastIndex] = '7.1';
+      } else {
+        initialBoardState[lastIndex] = '0.0';
+      }
+    }
+  }
+
+  void _useBomb() {
+    String currentIndex = tilesIndex[selectedTiles];
+    //bombId = 0 -> bomb normal
+    if (bombId == 0) {
+      if (initialBoardState[selectedTiles] == '7.0') {
+        initialBoardState[selectedTiles] = '0.0';
+      } else if (initialBoardState[selectedTiles] == '7.1') {
+        initialBoardState[selectedTiles] = '7.0';
+      }
+      //bombId = 1 -> bomb vertical
+    } else if (bombId == 1) {
+      _bombVertical(currentIndex: currentIndex);
+      //bombId = 2 -> bomb horizontal
+    } else if (bombId == 2) {
+      _bombHorizontal(currentIndex: currentIndex);
     } else {
-      initialBoardState[lastIndex] = '0.0';
+      isBomb = false;
+      bombId = 0;
+    }
+  }
+
+  void _bombHorizontal({required String currentIndex}) {
+    String ab = '';
+    int index = 0;
+    List<String> xy = currentIndex.split(' ');
+    int x = int.parse(xy[0]);
+    String y = xy[1];
+    List<int> bombIndex = [];
+    for (int i = 1; i <= 2; i++) {
+      if ((x - i) >= 1) {
+        ab = (x - i).toString() + " " + y;
+        index = tilesIndex.indexOf(ab);
+        bombIndex.add(index);
+      }
+      if ((x + i) <= 10) {
+        ab = (x + i).toString() + " " + y;
+        index = tilesIndex.indexOf(ab);
+        bombIndex.add(index);
+      }
+    }
+    for (int i = 0; i < bombIndex.length; i++) {
+      if (initialBoardState[bombIndex[i]] == '7.0') {
+        initialBoardState[bombIndex[i]] = '0.0';
+      } else if (initialBoardState[bombIndex[i]] == '7.1') {
+        initialBoardState[bombIndex[i]] = '7.0';
+      }
+    }
+  }
+
+  void _bombVertical({required String currentIndex}) {
+    String ab = '';
+    int index = 0;
+    int yIndex = 0;
+    List<String> xy = currentIndex.split(' ');
+    int x = int.parse(xy[0]);
+    String y = xy[1];
+    List<int> bombIndex = [];
+    for (int i = 1; i <= 2; i++) {
+      yIndex = alphabets.indexOf(y);
+      if ((yIndex - i) >= 0) {
+        ab = x.toString() + " " + alphabets[(yIndex - i)];
+        index = tilesIndex.indexOf(ab);
+        bombIndex.add(index);
+      }
+      if ((yIndex + i) <= 6) {
+        ab = x.toString() + " " + alphabets[(yIndex + i)];
+        index = tilesIndex.indexOf(ab);
+        bombIndex.add(index);
+      }
+    }
+    for (int i = 0; i < bombIndex.length; i++) {
+      if (initialBoardState[bombIndex[i]] == '7.0') {
+        initialBoardState[bombIndex[i]] = '0.0';
+      } else if (initialBoardState[bombIndex[i]] == '7.1') {
+        initialBoardState[bombIndex[i]] = '7.0';
+      }
     }
   }
 
