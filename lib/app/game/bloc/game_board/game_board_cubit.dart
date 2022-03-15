@@ -20,7 +20,10 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   List<String> tilesIndex = [];
   List<int> movement = [];
   List<int> playerPion = [];
+  int rolledNumber = 0;
   bool isMoved = false;
+  bool isBomb = false;
+  int bombId = 0;
   static final List<int> flagsTile = [3, 66];
 
   void createBoardIndex() {
@@ -51,11 +54,23 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     isMoved = false;
   }
 
-  void selectTile({required int index, required int rolledNumber}) {
+  void rollNumber(int number) {
+    rolledNumber = number;
+  }
+
+  void chooseStrategy({bool isMovePlayer = false}) {
+    if (isMovePlayer) {
+      isBomb = false;
+    } else {
+      isBomb = true;
+    }
+  }
+
+  void selectTile({required int index}) {
     emit(const GameBoardState.loading());
     if (playerPion.contains(index)) {
       selectedTiles = index;
-      playerMovement(rolledNumber: rolledNumber);
+      _playerMovement();
       emit(GameBoardState.selectedTiles(index));
     } else if (movement.contains(index)) {
       lastIndex = selectedTiles;
@@ -76,7 +91,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     }
   }
 
-  void playerMovement({required int rolledNumber}) {
+  void _playerMovement() {
     movement = [];
     String currentIndex = tilesIndex[selectedTiles];
     switch (rolledNumber) {

@@ -59,6 +59,39 @@ class _GameLayout extends StatelessWidget {
               backgroundColor: Colors.amberAccent,
               margin: const EdgeInsets.all(10),
             ),
+            selectedTiles: (index) => Get.defaultDialog(
+              title: 'Pilih Strategi',
+              titleStyle: const TextStyle(fontSize: 24),
+              content: VStack([
+                ElevatedButton(
+                  onPressed: () {
+                    context
+                        .read<GameBoardCubit>()
+                        .chooseStrategy(isMovePlayer: true);
+                    Get.back();
+                  },
+                  child: 'Pindah pion'.text.xl.makeCentered().py8(),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    context
+                        .read<GameBoardCubit>()
+                        .chooseStrategy(isMovePlayer: false);
+                    Get.back();
+                  },
+                  child: 'Pasang bomb'.text.xl.makeCentered().py8(),
+                ),
+              ])
+                  .centered()
+                  .px8()
+                  .box
+                  .height(100)
+                  .width(context.width - 180)
+                  .make(),
+            ),
             orElse: () => null,
           ),
         ),

@@ -61,10 +61,9 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
               : animationSelectableMovement!,
       builder: (context, child) {
         return InkWell(
-          onTap: () => context.read<GameBoardCubit>().selectTile(
-                index: widget.index,
-                rolledNumber: context.read<RollDiceCubit>().roll,
-              ),
+          onTap: () => context.read<GameBoardCubit>()
+            ..selectTile(index: widget.index)
+            ..rollNumber(context.read<RollDiceCubit>().roll),
           child: VxBox(child: widget.index.text.lg.make().centered())
               .height(5)
               .width(5)
