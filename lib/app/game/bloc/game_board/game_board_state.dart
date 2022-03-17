@@ -6,6 +6,7 @@ class GameBoardState with _$GameBoardState {
   const factory GameBoardState.loading() = _Loading;
   const factory GameBoardState.error() = _Error;
   const factory GameBoardState.selectedTiles() = _SelectedTiles;
+  const factory GameBoardState.selectedStrategy() = _SelectedStrategy;
   const factory GameBoardState.pionMove() = _PionMove;
   const factory GameBoardState.selectedTileDest(int index) = _SelectedTileDest;
   const factory GameBoardState.updateBoard() = _UpdateBoard;

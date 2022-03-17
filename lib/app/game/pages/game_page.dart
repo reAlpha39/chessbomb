@@ -53,6 +53,17 @@ class _GameLayout extends StatelessWidget {
         ),
         BlocListener<GameBoardCubit, GameBoardState>(
           listener: (context, state) => state.maybeWhen(
+            error: () {
+              Get.snackbar(
+                'Error',
+                'Destroy the wall first',
+                snackPosition: SnackPosition.TOP,
+                colorText: Colors.black,
+                backgroundColor: Colors.red,
+                margin: const EdgeInsets.all(10),
+              );
+              return context.read<GameBoardCubit>().changeStateAfterError();
+            },
             playerTurn: (playerId) => Get.snackbar(
               'Player Changed',
               'Player $playerId Turn',
@@ -67,8 +78,9 @@ class _GameLayout extends StatelessWidget {
               content: VStack([
                 ElevatedButton(
                   onPressed: () {
-                    context.read<GameBoardCubit>()
-                      .chooseStrategy(isMovePlayer: true);
+                    context
+                        .read<GameBoardCubit>()
+                        .chooseStrategy(isMovePlayer: true);
                     Get.back();
                   },
                   child: 'Pindah pion'.text.xl.makeCentered().py8(),

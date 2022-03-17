@@ -60,31 +60,29 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
               ? animationPlayerPion!
               : animationSelectableMovement!,
       builder: (context, child) {
-        return InkWell(
-          onTap: () => context.read<GameBoardCubit>()
-            ..selectTile(widget.index),
-          child: VxBox(child: widget.index.text.lg.make().centered())
-              .height(5)
-              .width(5)
-              .color(context.read<GameBoardCubit>().boardState(widget.index))
-              .border(
-                color:
-                    context.read<GameBoardCubit>().selectedTiles == widget.index
-                        ? Colors.green
-                        : context
-                                .read<GameBoardCubit>()
-                                .playerPion
-                                .contains(widget.index)
-                            ? animationPlayerPion!.value!
-                            : context
-                                    .read<GameBoardCubit>()
-                                    .movement
-                                    .contains(widget.index)
-                                ? animationSelectableMovement!.value!
-                                : Colors.black,
-                width: 2,
-              )
-              .make(),
+        return BlocBuilder<GameBoardCubit, GameBoardState>(
+          builder: (context, state) => state.maybeWhen(
+            selectedStrategy: () => InkWell(
+              onTap: () => context.read<GameBoardCubit>()
+                ..selectTile(widget.index)
+                ..pickTileDest(),
+              child: _TileLayout(
+                index: widget.index,
+                animationPlayerPion: animationPlayerPion,
+                animationSelectableMovement: animationSelectableMovement,
+              ),
+            ),
+            orElse: () => InkWell(
+              onTap: () => context.read<GameBoardCubit>()
+                ..selectTile(widget.index)
+                ..pickPion(),
+              child: _TileLayout(
+                index: widget.index,
+                animationPlayerPion: animationPlayerPion,
+                animationSelectableMovement: animationSelectableMovement,
+              ),
+            ),
+          ),
         );
       },
     );
@@ -94,5 +92,36 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
   dispose() {
     controller?.dispose();
     super.dispose();
+  }
+}
+
+class _TileLayout extends StatelessWidget {
+  final int index;
+  final Animation<Color?>? animationPlayerPion;
+  final Animation<Color?>? animationSelectableMovement;
+  const _TileLayout({
+    Key? key,
+    required this.index,
+    this.animationPlayerPion,
+    this.animationSelectableMovement,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return VxBox(child: index.text.lg.make().centered())
+        .height(5)
+        .width(5)
+        .color(context.read<GameBoardCubit>().boardState(index))
+        .border(
+          color: context.read<GameBoardCubit>().selectedTiles == index
+              ? Colors.green
+              : context.read<GameBoardCubit>().playerPion.contains(index)
+                  ? animationPlayerPion!.value!
+                  : context.read<GameBoardCubit>().movement.contains(index)
+                      ? animationSelectableMovement!.value!
+                      : Colors.black,
+          width: 2,
+        )
+        .make();
   }
 }
