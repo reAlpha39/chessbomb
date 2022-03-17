@@ -2,9 +2,9 @@ import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
 import 'package:bombernyaa/app/game/widgets/player_point.dart';
+import 'package:bombernyaa/app/home/pages/home_page.dart';
 import 'package:bombernyaa/injection.dart';
 import 'package:bombernyaa/presentation/random_number_dialog.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -104,6 +104,23 @@ class _GameLayout extends StatelessWidget {
                   .height(100)
                   .width(context.width - 180)
                   .make(),
+            ),
+            gameFinished: () => Get.defaultDialog(
+              title: 'Game Finished',
+              barrierDismissible: false,
+              titleStyle: const TextStyle(fontSize: 24),
+              middleText: 'You Win',
+              textConfirm: 'Reset Game',
+              confirmTextColor: Colors.white,
+              textCancel: 'Main Menu',
+              onConfirm: () {
+                context.read<GameBoardCubit>().createBoardIndex();
+                Get.back();
+              },
+              onCancel: () {
+                context.read<GameBoardCubit>().createBoardIndex();
+                Get.to(() => const HomePage());
+              },
             ),
             orElse: () => null,
           ),

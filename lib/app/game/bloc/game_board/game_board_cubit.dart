@@ -13,9 +13,10 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
   String playerId = '1';
   String enemyId = '2';
-  List<String> pionMapId = ['.1', '.2', '.3', '.4', '.5'];
+  static const String flagMapId = '.0';
+  static const List<String> pionMapId = ['.1', '.2', '.3', '.4', '.5'];
 
-  static final List<String> alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  static const List<String> alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   List<String> initialBoardState = boardStateDummy;
   int tempTile = -1;
   int selectedTiles = -1;
@@ -28,7 +29,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   bool isBomb = false;
   bool haveChooseStrategy = false;
   int bombId = 0;
-  static final List<int> flagsTile = [3, 66];
 
   void createBoardIndex() {
     List<String> temp = [];
@@ -127,6 +127,10 @@ class GameBoardCubit extends Cubit<GameBoardState> {
           initialBoardState[selectedTiles] == '7.1') {
         selectedTiles = lastIndex;
         emit(const GameBoardState.error());
+      } else if (initialBoardState[selectedTiles] == enemyId + flagMapId) {
+        initialBoardState[selectedTiles] = pion;
+        initialBoardState[lastIndex] = '0.0';
+        emit(const GameBoardState.gameFinished());
       } else {
         initialBoardState[selectedTiles] = pion;
         initialBoardState[lastIndex] = '0.0';
@@ -189,7 +193,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       default:
     }
     movement.removeWhere((element) =>
-        playerPion.contains(element) || flagsTile.contains(element));
+        playerPion.contains(element) ||
+        initialBoardState[selectedTiles] == playerId + flagMapId);
   }
 
   void _bombHorizontal({required String currentIndex}) {
