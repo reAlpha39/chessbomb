@@ -12,6 +12,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   GameBoardCubit() : super(const GameBoardState.initial());
 
   String playerId = '1';
+  String enemyId = '2';
+  List<String> pionMapId = ['.1', '.2', '.3', '.4', '.5'];
 
   static final List<String> alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   List<String> initialBoardState = boardStateDummy;
@@ -42,8 +44,10 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   void changePlayerId() {
     if (playerId == '1') {
       playerId = '2';
+      enemyId = '1';
     } else {
       playerId = '1';
+      enemyId = '2';
     }
     emit(GameBoardState.playerTurn(playerId));
   }
@@ -139,6 +143,11 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[selectedTiles] = '0.0';
       } else if (initialBoardState[selectedTiles] == '7.1') {
         initialBoardState[selectedTiles] = '7.0';
+      } else if (pionMapId
+          .map((e) => enemyId + e)
+          .toList()
+          .contains(initialBoardState[selectedTiles])) {
+        initialBoardState[selectedTiles] = '0.0';
       }
       //bombId = 1 -> bomb vertical
     } else if (bombId == 1) {
