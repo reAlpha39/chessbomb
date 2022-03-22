@@ -132,10 +132,37 @@ class _GameLayout extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: HStack([
               ElevatedButton(
-                onPressed: () => context.read<RollDiceCubit>()
-                  ..reset()
-                  ..rollDice(),
-                child: 'Roll Dice'
+                onPressed: () => Get.defaultDialog(
+                  title: 'Choose Strategy',
+                  content: VStack([
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<RollDiceCubit>()
+                          ..reset()
+                          ..rollDice();
+                        Get.back();
+                      },
+                      child: 'Move / Bomb'.text.xl.makeCentered().py8(),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // context.read<GameBoardCubit>().chooseStrategy(isMovePlayer: false);
+                        Get.back();
+                      },
+                      child: 'Use Skill'.text.xl.makeCentered().py8(),
+                    ),
+                  ])
+                      .centered()
+                      .px8()
+                      .box
+                      .height(100)
+                      .width(context.width - 180)
+                      .make(),
+                ),
+                child: 'Start Turn'
                     .text
                     .xl2
                     .center
