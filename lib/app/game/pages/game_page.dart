@@ -132,36 +132,29 @@ class _GameLayout extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: HStack([
               ElevatedButton(
-                onPressed: () => Get.defaultDialog(
-                  title: 'Choose Strategy',
-                  content: VStack([
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<RollDiceCubit>()
-                          ..reset()
-                          ..rollDice();
-                        Get.back();
-                      },
-                      child: 'Move / Bomb'.text.xl.makeCentered().py8(),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // context.read<GameBoardCubit>().chooseStrategy(isMovePlayer: false);
-                        Get.back();
-                      },
-                      child: 'Use Skill'.text.xl.makeCentered().py8(),
-                    ),
-                  ])
-                      .centered()
-                      .px8()
-                      .box
-                      .height(100)
-                      .width(context.width - 180)
-                      .make(),
-                ),
+                onPressed: () async {
+                  bool? result = await Get.defaultDialog(
+                    title: 'Choose Strategy',
+                    content: const ChooseStrategyDialogBody(),
+                  );
+                  if (result != null && result) {
+                    result = null;
+                    context.read<RollDiceCubit>()
+                      ..reset()
+                      ..rollDice();
+                  } else if (result != null && !result) {
+                    result = null;
+                    int? skillIndex = await Get.defaultDialog(
+                      title: 'Choose Skill',
+                      content: const ChooseSkillDialogBody(),
+                    );
+                    if (skillIndex != null) {
+                      context.read<GameBoardCubit>()
+                        ..selectSkillIndex(skillIndex)
+                        ..playerSelectableTile();
+                    }
+                  }
+                },
                 child: 'Start Turn'
                     .text
                     .xl2
@@ -184,5 +177,58 @@ class _GameLayout extends StatelessWidget {
         ]).px16(),
       ),
     );
+  }
+}
+
+class ChooseStrategyDialogBody extends StatelessWidget {
+  const ChooseStrategyDialogBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<RollDiceCubit>(),
+      child: VStack([
+        Builder(
+          builder: (context) => ElevatedButton(
+            onPressed: () => Get.back(result: true),
+            child: 'Move / Bomb'.text.xl.makeCentered().py8(),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        ElevatedButton(
+          onPressed: () => Get.back(result: false),
+          child: 'Use Skill'.text.xl.makeCentered().py8(),
+        ),
+      ]),
+    ).centered().px8().box.height(100).width(context.width - 180).make();
+  }
+}
+
+class ChooseSkillDialogBody extends StatelessWidget {
+  const ChooseSkillDialogBody({Key? key}) : super(key: key);
+
+  static final List<String> _titleButton = [
+    'Vertical Bomb',
+    'Horizontal Bomb',
+    'Free Space',
+    'Wallbang',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<GameBoardCubit>(),
+      child: ListView.builder(
+        itemCount: _titleButton.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) => ElevatedButton(
+          onPressed: () => Get.back(result: index),
+          child: _titleButton[index].text.xl.makeCentered().py8(),
+        ).pOnly(bottom: index == 4 ? 0 : 10),
+      ),
+    ).centered().px8().box.height(250).width(context.width - 180).make();
   }
 }

@@ -61,28 +61,26 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
               : animationSelectableMovement!,
       builder: (context, child) {
         return BlocBuilder<GameBoardCubit, GameBoardState>(
-          builder: (context, state) => state.maybeWhen(
-            selectedStrategy: () => InkWell(
-              onTap: () => context.read<GameBoardCubit>()
-                ..selectTile(widget.index)
-                ..pickTileDest(),
+          builder: (context, state) {
+            return InkWell(
+              onTap: () => state.maybeWhen(
+                selectedStrategy: () => context.read<GameBoardCubit>()
+                  ..selectTile(widget.index)
+                  ..pickTileDest(),
+                selectedSkill: () => context.read<GameBoardCubit>()
+                  ..selectTile(widget.index)
+                  ..activateSkill(),
+                orElse: () => context.read<GameBoardCubit>()
+                  ..selectTile(widget.index)
+                  ..pickPion(),
+              ),
               child: _TileLayout(
                 index: widget.index,
                 animationPlayerPion: animationPlayerPion,
                 animationSelectableMovement: animationSelectableMovement,
               ),
-            ),
-            orElse: () => InkWell(
-              onTap: () => context.read<GameBoardCubit>()
-                ..selectTile(widget.index)
-                ..pickPion(),
-              child: _TileLayout(
-                index: widget.index,
-                animationPlayerPion: animationPlayerPion,
-                animationSelectableMovement: animationSelectableMovement,
-              ),
-            ),
-          ),
+            );
+          },
         );
       },
     );

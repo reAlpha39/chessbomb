@@ -27,8 +27,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   int rolledNumber = 0;
   bool isPickPion = false;
   bool isBomb = false;
+  int skillIndex = -1;
   bool haveChooseStrategy = false;
-  int bombId = 0;
 
   void createBoardIndex() {
     List<String> temp = [];
@@ -53,11 +53,15 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void _resetMovement() {
+    emit(const GameBoardState.loading());
     movement = [];
     playerPion = [];
     selectedTiles = -1;
     lastIndex = -1;
     haveChooseStrategy = false;
+    rolledNumber = 0;
+    skillIndex = -1;
+    emit(const GameBoardState.initial());
   }
 
   void rollNumber(int number) {
@@ -68,11 +72,18 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     tempTile = index;
   }
 
+  void selectSkillIndex(int index) {
+    emit(const GameBoardState.loading());
+    skillIndex = index;
+    emit(const GameBoardState.selectedSkill());
+  }
+
   void changeStateAfterError() {
     emit(const GameBoardState.selectedStrategy());
   }
 
   void chooseStrategy({bool isMovePlayer = false}) {
+    emit(const GameBoardState.loading());
     haveChooseStrategy = true;
     if (isMovePlayer) {
       isBomb = false;
@@ -93,7 +104,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void pickPion() {
-    emit(const GameBoardState.initial());
+    emit(const GameBoardState.loading());
     if (playerPion.contains(tempTile)) {
       lastIndex = selectedTiles;
       selectedTiles = tempTile;
@@ -104,24 +115,35 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
   void pickTileDest() {
     if (movement.contains(tempTile)) {
+      emit(const GameBoardState.loading());
       lastIndex = selectedTiles;
       selectedTiles = tempTile;
-      _playerStrategy();
+      if (isBomb) {
+        _useBomb(bombId: 0);
+        _resetMovement();
+      } else {
+        _movePion();
+      }
       emit(const GameBoardState.updateBoard());
     }
   }
 
-  void _playerStrategy() {
-    if (isBomb) {
-      _useBomb();
-      _resetMovement();
-    } else {
-      _movePion();
+  void activateSkill() {
+    switch (skillIndex) {
+      case 0:
+        _useBomb(bombId: 1);
+        break;
+      case 1:
+        _useBomb(bombId: 2);
+        break;
+      default:
     }
+    _resetMovement();
   }
 
   void _movePion() {
     if (!playerPion.contains(selectedTiles)) {
+      emit(const GameBoardState.loading());
       String pion = initialBoardState[lastIndex];
       if (initialBoardState[selectedTiles] == '7.0' ||
           initialBoardState[selectedTiles] == '7.1') {
@@ -139,8 +161,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     }
   }
 
-  void _useBomb() {
-    String currentIndex = tilesIndex[selectedTiles];
+  void _useBomb({required int bombId}) {
+    String currentIndex = tilesIndex[tempTile];
     //bombId = 0 -> bomb normal
     if (bombId == 0) {
       if (initialBoardState[selectedTiles] == '7.0') {
@@ -197,7 +219,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[selectedTiles] == playerId + flagMapId);
   }
 
-  void _bombHorizontal({required String currentIndex}) {
+  void _bombVertical({required String currentIndex}) {
     String ab = '';
     int index = 0;
     List<String> xy = currentIndex.split(' ');
@@ -221,11 +243,16 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[bombIndex[i]] = '0.0';
       } else if (initialBoardState[bombIndex[i]] == '7.1') {
         initialBoardState[bombIndex[i]] = '7.0';
+      } else if (pionMapId
+          .map((e) => enemyId + e)
+          .toList()
+          .contains(initialBoardState[bombIndex[i]])) {
+        initialBoardState[bombIndex[i]] = '0.0';
       }
     }
   }
 
-  void _bombVertical({required String currentIndex}) {
+  void _bombHorizontal({required String currentIndex}) {
     String ab = '';
     int index = 0;
     int yIndex = 0;
@@ -251,6 +278,11 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[bombIndex[i]] = '0.0';
       } else if (initialBoardState[bombIndex[i]] == '7.1') {
         initialBoardState[bombIndex[i]] = '7.0';
+      } else if (pionMapId
+          .map((e) => enemyId + e)
+          .toList()
+          .contains(initialBoardState[bombIndex[i]])) {
+        initialBoardState[bombIndex[i]] = '0.0';
       }
     }
   }
