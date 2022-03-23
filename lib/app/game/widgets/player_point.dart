@@ -50,7 +50,6 @@ class PlayerPoint extends StatelessWidget {
           ),
         ),
       ],
-      
     );
   }
 }
