@@ -136,9 +136,11 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       case 1:
         _useBomb(bombId: 2);
         break;
+      case 2:
+        _freeSpaceMove();
+        break;
       default:
     }
-    _resetMovement();
   }
 
   void _movePion() {
@@ -185,6 +187,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       isBomb = false;
       bombId = 0;
     }
+    _resetMovement();
   }
 
   void _playerMovement() {
@@ -217,6 +220,23 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     movement.removeWhere((element) =>
         playerPion.contains(element) ||
         initialBoardState[selectedTiles] == playerId + flagMapId);
+  }
+
+  void _freeSpaceMove() {
+    if (playerPion.contains(tempTile)) {
+      emit(const GameBoardState.loading());
+      movement = [];
+      lastIndex = selectedTiles;
+      selectedTiles = tempTile;
+      String currentIndex = tilesIndex[selectedTiles];
+      _straightMove(currentIndex, 1);
+      _diagonalMove(currentIndex, 1);
+      movement.removeWhere((element) =>
+          playerPion.contains(element) ||
+          initialBoardState[selectedTiles] == playerId + flagMapId);
+
+      chooseStrategy(isMovePlayer: true);
+    }
   }
 
   void _bombVertical({required String currentIndex}) {
