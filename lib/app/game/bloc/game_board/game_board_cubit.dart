@@ -24,11 +24,18 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   List<String> tilesIndex = [];
   List<int> movement = [];
   List<int> playerPion = [];
+  List<int> selectableBuildWall = [];
   int rolledNumber = 0;
   bool isPickPion = false;
   bool isBomb = false;
+  bool buildWall = false;
   int skillIndex = -1;
   bool haveChooseStrategy = false;
+
+  List<int> upMove = [];
+  List<int> downMove = [];
+  List<int> leftMove = [];
+  List<int> rightMove = [];
 
   void createBoardIndex() {
     List<String> temp = [];
@@ -59,8 +66,13 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     selectedTiles = -1;
     lastIndex = -1;
     haveChooseStrategy = false;
+    buildWall = false;
     rolledNumber = 0;
     skillIndex = -1;
+    upMove = [];
+    downMove = [];
+    leftMove = [];
+    rightMove = [];
     emit(const GameBoardState.initial());
   }
 
@@ -118,12 +130,15 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       emit(const GameBoardState.loading());
       lastIndex = selectedTiles;
       selectedTiles = tempTile;
-      if (isBomb) {
+      if (buildWall) {
+        _createWallBang();
+      } else if (isBomb) {
         _useBomb(bombId: 0);
         _resetMovement();
-      } else {
+      } else if (!isBomb) {
         _movePion();
       }
+
       emit(const GameBoardState.updateBoard());
     }
   }
@@ -138,6 +153,9 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         break;
       case 2:
         _freeSpaceMove();
+        break;
+      case 3:
+        _buildWallBangSelectableTile();
         break;
       default:
     }
@@ -220,6 +238,61 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     movement.removeWhere((element) =>
         playerPion.contains(element) ||
         initialBoardState[selectedTiles] == playerId + flagMapId);
+  }
+
+  void _createWallBang() {
+    List<int> temp = [];
+    if (upMove.contains(selectedTiles)) {
+      temp = upMove;
+    } else if (downMove.contains(selectedTiles)) {
+      temp = downMove;
+    } else if (leftMove.contains(selectedTiles)) {
+      temp = leftMove;
+    } else if (rightMove.contains(selectedTiles)) {
+      temp = rightMove;
+    }
+
+    for (int i = 0; i < temp.length; i++) {
+      initialBoardState[temp[i]] = '7.1';
+    }
+    _resetMovement();
+  }
+
+  void _buildWallBangSelectableTile() {
+    if (playerPion.contains(tempTile)) {
+      buildWall = true;
+      selectedTiles = tempTile;
+      String currentIndex = tilesIndex[selectedTiles];
+      _straightMove(currentIndex, 3);
+
+      movement.removeWhere((element) =>
+          playerPion.contains(element) ||
+          initialBoardState[element] == playerId + flagMapId ||
+          initialBoardState[element] == enemyId + flagMapId);
+
+      _splitStraightMove();
+      emit(const GameBoardState.selectedStrategy());
+    }
+  }
+
+  _splitStraightMove() {
+    String currentIndex = tilesIndex[selectedTiles];
+    List<String> xySelectedTiles = currentIndex.split(' ');
+    for (int i = 0; i < movement.length; i++) {
+      String currentIndex = tilesIndex[movement[i]];
+      List<String> xy = currentIndex.split(' ');
+      if (int.parse(xy[0]) > int.parse(xySelectedTiles[0])) {
+        upMove.add(movement[i]);
+      } else if (int.parse(xy[0]) < int.parse(xySelectedTiles[0])) {
+        downMove.add(movement[i]);
+      } else if (alphabets.indexOf(xy[1]) >
+          alphabets.indexOf(xySelectedTiles[1])) {
+        leftMove.add(movement[i]);
+      } else if (alphabets.indexOf(xy[1]) <
+          alphabets.indexOf(xySelectedTiles[1])) {
+        rightMove.add(movement[i]);
+      }
+    }
   }
 
   void _freeSpaceMove() {
