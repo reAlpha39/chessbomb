@@ -237,7 +237,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     }
     movement.removeWhere((element) =>
         playerPion.contains(element) ||
-        initialBoardState[selectedTiles] == playerId + flagMapId);
+        initialBoardState[element] == playerId + flagMapId);
   }
 
   void _createWallBang() {
@@ -306,7 +306,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       _diagonalMove(currentIndex, 1);
       movement.removeWhere((element) =>
           playerPion.contains(element) ||
-          initialBoardState[selectedTiles] == playerId + flagMapId);
+          initialBoardState[element] == playerId + flagMapId);
 
       chooseStrategy(isMovePlayer: true);
     }
