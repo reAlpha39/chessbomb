@@ -24,6 +24,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   List<String> tilesIndex = [];
   List<int> movement = [];
   List<int> playerPion = [];
+  List<int> enemyPion = [];
   List<int> selectableBuildWall = [];
   int rolledNumber = 0;
   bool isPickPion = false;
@@ -63,6 +64,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     emit(const GameBoardState.loading());
     movement = [];
     playerPion = [];
+    enemyPion = [];
     selectedTiles = -1;
     lastIndex = -1;
     haveChooseStrategy = false;
@@ -105,12 +107,15 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     emit(const GameBoardState.selectedStrategy());
   }
 
-  void playerSelectableTile() {
+  void definePlayerIndex() {
     playerPion = [];
+    enemyPion = [];
     for (int i = 0; i < initialBoardState.length; i++) {
       List<String> id = initialBoardState[i].split('.');
       if (id[0] == playerId && id[1] != '0') {
         playerPion.add(i);
+      } else if (id[0] == enemyId && id[1] != '0') {
+        enemyPion.add(i);
       }
     }
   }
@@ -267,6 +272,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
       movement.removeWhere((element) =>
           playerPion.contains(element) ||
+          enemyPion.contains(element) ||
           initialBoardState[element] == playerId + flagMapId ||
           initialBoardState[element] == enemyId + flagMapId);
 

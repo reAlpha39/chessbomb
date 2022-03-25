@@ -45,7 +45,7 @@ class _GameLayout extends StatelessWidget {
               );
               context.read<GameBoardCubit>()
                 ..rollNumber(context.read<RollDiceCubit>().roll)
-                ..playerSelectableTile();
+                ..definePlayerIndex();
               return null;
             },
             orElse: () => null,
@@ -151,7 +151,7 @@ class _GameLayout extends StatelessWidget {
                     if (skillIndex != null) {
                       context.read<GameBoardCubit>()
                         ..selectSkillIndex(skillIndex)
-                        ..playerSelectableTile();
+                        ..definePlayerIndex();
                     }
                   }
                 },
