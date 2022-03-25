@@ -133,25 +133,27 @@ class _GameLayout extends StatelessWidget {
             child: HStack([
               ElevatedButton(
                 onPressed: () async {
-                  bool? result = await Get.defaultDialog(
-                    title: 'Choose Strategy',
-                    content: const ChooseStrategyDialogBody(),
-                  );
-                  if (result != null && result) {
-                    result = null;
-                    context.read<RollDiceCubit>()
-                      ..reset()
-                      ..rollDice();
-                  } else if (result != null && !result) {
-                    result = null;
-                    int? skillIndex = await Get.defaultDialog(
-                      title: 'Choose Skill',
-                      content: const ChooseSkillDialogBody(),
+                  if (context.read<GameBoardCubit>().rolledNumber == 0) {
+                    bool? result = await Get.defaultDialog(
+                      title: 'Choose Strategy',
+                      content: const ChooseStrategyDialogBody(),
                     );
-                    if (skillIndex != null) {
-                      context.read<GameBoardCubit>()
-                        ..selectSkillIndex(skillIndex)
-                        ..definePlayerIndex();
+                    if (result != null && result) {
+                      result = null;
+                      context.read<RollDiceCubit>()
+                        ..reset()
+                        ..rollDice();
+                    } else if (result != null && !result) {
+                      result = null;
+                      int? skillIndex = await Get.defaultDialog(
+                        title: 'Choose Skill',
+                        content: const ChooseSkillDialogBody(),
+                      );
+                      if (skillIndex != null) {
+                        context.read<GameBoardCubit>()
+                          ..selectSkillIndex(skillIndex)
+                          ..definePlayerIndex();
+                      }
                     }
                   }
                 },
