@@ -38,6 +38,12 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   List<int> leftMove = [];
   List<int> rightMove = [];
 
+  void resetAll() {
+    initialBoardState = boardStateDummy;
+    _resetMovement();
+    emit(const GameBoardState.initial());
+  }
+
   void createBoardIndex() {
     List<String> temp = [];
     for (int i = 1; i <= 10; i++) {

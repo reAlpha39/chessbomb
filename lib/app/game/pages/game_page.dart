@@ -114,12 +114,12 @@ class _GameLayout extends StatelessWidget {
               confirmTextColor: Colors.white,
               textCancel: 'Main Menu',
               onConfirm: () {
-                context.read<GameBoardCubit>().createBoardIndex();
+                context.read<GameBoardCubit>().resetAll();
                 Get.back();
               },
               onCancel: () {
-                context.read<GameBoardCubit>().createBoardIndex();
-                Get.to(() => const HomePage());
+                Get.back(closeOverlays: true);
+                Get.back();
               },
             ),
             orElse: () => null,
