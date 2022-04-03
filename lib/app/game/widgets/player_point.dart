@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PlayerPoint extends StatelessWidget {
-  const PlayerPoint({ Key? key }) : super(key: key);
+  const PlayerPoint({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +9,7 @@ class PlayerPoint extends StatelessWidget {
       children: [
         SizedBox(
           height: 100,
-          width: Get.width,
+          width: MediaQuery.of(context).size.width,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [

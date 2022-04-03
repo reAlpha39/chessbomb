@@ -1,13 +1,13 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
 import 'package:bombernyaa/app/game/widgets/player_point.dart';
-import 'package:bombernyaa/app/home/pages/home_page.dart';
 import 'package:bombernyaa/injection.dart';
-import 'package:bombernyaa/presentation/random_number_dialog.dart';
+import 'package:bombernyaa/presentation/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class GamePage extends StatelessWidget {
@@ -39,7 +39,8 @@ class _GameLayout extends StatelessWidget {
         BlocListener<RollDiceCubit, RollDiceState>(
           listener: (context, state) => state.maybeWhen(
             rolled: (index) {
-              Dialogs().showRandomNumber(
+              Dialogs.showRandomNumber(
+                context: context,
                 title: 'Your Number',
                 middleText: index.toString(),
               );
@@ -54,74 +55,21 @@ class _GameLayout extends StatelessWidget {
         BlocListener<GameBoardCubit, GameBoardState>(
           listener: (context, state) => state.maybeWhen(
             error: () {
-              Get.snackbar(
-                'Error',
-                'Destroy the wall first',
-                snackPosition: SnackPosition.TOP,
-                colorText: Colors.black,
-                backgroundColor: Colors.red,
-                margin: const EdgeInsets.all(10),
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: 'Destroy the wall first'.text.base.make(),
+                ),
               );
               return context.read<GameBoardCubit>().changeStateAfterError();
             },
-            playerTurn: (playerId) => Get.snackbar(
-              'Player Changed',
-              'Player $playerId Turn',
-              snackPosition: SnackPosition.TOP,
-              colorText: Colors.black,
-              backgroundColor: Colors.amberAccent,
-              margin: const EdgeInsets.all(10),
+            playerTurn: (playerId) =>
+                ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: 'Player $playerId\'s turn'.text.base.make(),
+              ),
             ),
-            selectedTiles: () => Get.defaultDialog(
-              title: 'Pilih Strategi',
-              titleStyle: const TextStyle(fontSize: 24),
-              content: VStack([
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<GameBoardCubit>()
-                        .chooseStrategy(isMovePlayer: true);
-                    Get.back();
-                  },
-                  child: 'Pindah pion'.text.xl.makeCentered().py8(),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<GameBoardCubit>()
-                        .chooseStrategy(isMovePlayer: false);
-                    Get.back();
-                  },
-                  child: 'Pasang bomb'.text.xl.makeCentered().py8(),
-                ),
-              ])
-                  .centered()
-                  .px8()
-                  .box
-                  .height(100)
-                  .width(context.width - 180)
-                  .make(),
-            ),
-            gameFinished: () => Get.defaultDialog(
-              title: 'Game Finished',
-              barrierDismissible: false,
-              titleStyle: const TextStyle(fontSize: 24),
-              middleText: 'You Win',
-              textConfirm: 'Reset Game',
-              confirmTextColor: Colors.white,
-              textCancel: 'Main Menu',
-              onConfirm: () {
-                context.read<GameBoardCubit>().resetAll();
-                Get.back();
-              },
-              onCancel: () {
-                Get.back(closeOverlays: true);
-                Get.back();
-              },
-            ),
+            selectedTiles: () => Dialogs.moveOrBombDialog(context),
+            gameFinished: () => Dialogs.gameFinishedDialog(context),
             orElse: () => null,
           ),
         ),
@@ -134,10 +82,7 @@ class _GameLayout extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   if (context.read<GameBoardCubit>().rolledNumber == 0) {
-                    bool? result = await Get.defaultDialog(
-                      title: 'Choose Strategy',
-                      content: const ChooseStrategyDialogBody(),
-                    );
+                    bool? result = await Dialogs.chooseStrategyDialog(context);
                     if (result != null && result) {
                       result = null;
                       context.read<RollDiceCubit>()
@@ -145,10 +90,8 @@ class _GameLayout extends StatelessWidget {
                         ..rollDice();
                     } else if (result != null && !result) {
                       result = null;
-                      int? skillIndex = await Get.defaultDialog(
-                        title: 'Choose Skill',
-                        content: const ChooseSkillDialogBody(),
-                      );
+                      int? skillIndex =
+                          await Dialogs.chooseSkillDialog(context);
                       if (skillIndex != null) {
                         context.read<GameBoardCubit>()
                           ..selectSkillIndex(skillIndex)
@@ -179,58 +122,5 @@ class _GameLayout extends StatelessWidget {
         ]).px16(),
       ),
     );
-  }
-}
-
-class ChooseStrategyDialogBody extends StatelessWidget {
-  const ChooseStrategyDialogBody({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<RollDiceCubit>(),
-      child: VStack([
-        Builder(
-          builder: (context) => ElevatedButton(
-            onPressed: () => Get.back(result: true),
-            child: 'Move / Bomb'.text.xl.makeCentered().py8(),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        ElevatedButton(
-          onPressed: () => Get.back(result: false),
-          child: 'Use Skill'.text.xl.makeCentered().py8(),
-        ),
-      ]),
-    ).centered().px8().box.height(100).width(context.width - 180).make();
-  }
-}
-
-class ChooseSkillDialogBody extends StatelessWidget {
-  const ChooseSkillDialogBody({Key? key}) : super(key: key);
-
-  static final List<String> _titleButton = [
-    'Vertical Bomb',
-    'Horizontal Bomb',
-    'Free Space',
-    'Wallbang',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<GameBoardCubit>(),
-      child: ListView.builder(
-        itemCount: _titleButton.length,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => ElevatedButton(
-          onPressed: () => Get.back(result: index),
-          child: _titleButton[index].text.xl.makeCentered().py8(),
-        ).pOnly(bottom: index == 4 ? 0 : 10),
-      ),
-    ).centered().px8().box.height(250).width(context.width - 180).make();
   }
 }
