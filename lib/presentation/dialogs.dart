@@ -155,27 +155,31 @@ class Dialogs {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth - 100,
       animType: AnimType.SCALE,
-      dialogType: DialogType.QUESTION,
+      dialogType: DialogType.NO_HEADER,
       title: 'Game Finished',
       body: VStack([
         'Game Finished'.text.medium.makeCentered(),
         'You Win'.text.xl.bold.makeCentered().py16(),
-        HStack([
-          TextButton(
-            onPressed: () {
-              context.read<GameBoardCubit>().resetAll();
-              Navigator.of(context).pop();
-            },
-            child: 'Reset Game'.text.base.make(),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              context.goNamed('home');
-            },
-            child: 'Main Menu'.text.base.make(),
-          ),
-        ]),
+        HStack(
+          [
+            TextButton(
+              onPressed: () {
+                context.read<GameBoardCubit>().resetAll();
+                Navigator.of(context).pop();
+              },
+              child: 'Reset Game'.text.base.make(),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<GameBoardCubit>().resetAll();
+                Navigator.of(context).pop();
+                context.goNamed('home');
+              },
+              child: 'Main Menu'.text.base.make(),
+            ),
+          ],
+          alignment: MainAxisAlignment.spaceAround,
+        ),
         const SizedBox(
           height: 16,
         ),
