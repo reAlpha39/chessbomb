@@ -10,11 +10,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PlayerIdCubit(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("BomberNyaa"),
-        ),
-        body: const _HomeBody(),
+      child: const Scaffold(
+        body: _HomeBody(),
       ),
     );
   }
@@ -33,6 +30,14 @@ class _HomeBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Text(
+            'Welcome to BomberNyaa',
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 50),
           Card(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -54,7 +59,10 @@ class _HomeBody extends StatelessWidget {
             ),
             child: ElevatedButton(
               onPressed: () => context.pushNamed('game_page'),
-              child: const Text('Click Here'),
+              child: const Text(
+                'Start',
+                style: TextStyle(fontSize: 18),
+              ),
             ),
           )
         ],

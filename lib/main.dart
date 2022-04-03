@@ -1,5 +1,6 @@
 import 'package:bombernyaa/infrastructure/router.dart';
 import 'package:bombernyaa/injection.dart';
+import 'package:bombernyaa/presentation/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,9 +18,7 @@ class MyApp extends StatelessWidget {
       routerDelegate: router.routerDelegate,
       debugShowCheckedModeBanner: false,
       title: 'BomberNyaa',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme(),
     );
   }
 }
