@@ -151,6 +151,7 @@ class Dialogs {
 
   static gameFinishedDialog(BuildContext context) {
     return AwesomeDialog(
+      dismissOnTouchOutside: false,
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth - 100,
