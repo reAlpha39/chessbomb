@@ -193,30 +193,32 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void _useBomb({required int bombId}) {
-    String currentIndex = tilesIndex[tempTile];
-    //bombId = 0 -> bomb normal
-    if (bombId == 0) {
-      if (initialBoardState[selectedTiles] == '7.0') {
-        initialBoardState[selectedTiles] = '0.0';
-      } else if (initialBoardState[selectedTiles] == '7.1') {
-        initialBoardState[selectedTiles] = '7.0';
-      } else if (pionMapId
-          .map((e) => enemyId + e)
-          .toList()
-          .contains(initialBoardState[selectedTiles])) {
-        initialBoardState[selectedTiles] = '0.0';
+    if (playerPion.contains(tempTile)) {
+      String currentIndex = tilesIndex[tempTile];
+      //bombId = 0 -> bomb normal
+      if (bombId == 0) {
+        if (initialBoardState[selectedTiles] == '7.0') {
+          initialBoardState[selectedTiles] = '0.0';
+        } else if (initialBoardState[selectedTiles] == '7.1') {
+          initialBoardState[selectedTiles] = '7.0';
+        } else if (pionMapId
+            .map((e) => enemyId + e)
+            .toList()
+            .contains(initialBoardState[selectedTiles])) {
+          initialBoardState[selectedTiles] = '0.0';
+        }
+        //bombId = 1 -> bomb vertical
+      } else if (bombId == 1) {
+        _bombVertical(currentIndex: currentIndex);
+        //bombId = 2 -> bomb horizontal
+      } else if (bombId == 2) {
+        _bombHorizontal(currentIndex: currentIndex);
+      } else {
+        isBomb = false;
+        bombId = 0;
       }
-      //bombId = 1 -> bomb vertical
-    } else if (bombId == 1) {
-      _bombVertical(currentIndex: currentIndex);
-      //bombId = 2 -> bomb horizontal
-    } else if (bombId == 2) {
-      _bombHorizontal(currentIndex: currentIndex);
-    } else {
-      isBomb = false;
-      bombId = 0;
+      _resetMovement();
     }
-    _resetMovement();
   }
 
   void _playerMovement() {
