@@ -77,45 +77,39 @@ class _GameLayout extends StatelessWidget {
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Align(
-            alignment: Alignment.bottomCenter,
-            child: HStack([
-              ElevatedButton(
-                onPressed: () async {
-                  if (context.read<GameBoardCubit>().rolledNumber == 0) {
-                    bool? result = await Dialogs.chooseStrategyDialog(context);
-                    if (result != null && result) {
-                      result = null;
-                      context.read<RollDiceCubit>()
-                        ..reset()
-                        ..rollDice();
-                    } else if (result != null && !result) {
-                      result = null;
-                      int? skillIndex =
-                          await Dialogs.chooseSkillDialog(context);
-                      if (skillIndex != null) {
-                        context.read<GameBoardCubit>()
-                          ..selectSkillIndex(skillIndex)
-                          ..definePlayerIndex();
-                      }
+          alignment: Alignment.bottomCenter,
+          child: HStack([
+            ElevatedButton(
+              onPressed: () async {
+                if (context.read<GameBoardCubit>().rolledNumber == 0) {
+                  bool? result = await Dialogs.chooseStrategyDialog(context);
+                  if (result != null && result) {
+                    result = null;
+                    context.read<RollDiceCubit>()
+                      ..reset()
+                      ..rollDice();
+                  } else if (result != null && !result) {
+                    result = null;
+                    int? skillIndex = await Dialogs.chooseSkillDialog(context);
+                    if (skillIndex != null) {
+                      context.read<GameBoardCubit>()
+                        ..selectSkillIndex(skillIndex)
+                        ..definePlayerIndex();
                     }
                   }
-                },
-                child: 'Start Turn'
-                    .text
-                    .xl2
-                    .center
-                    .make()
-                    .py8()
-                    .box
-                    .width(context.screenWidth - 150)
-                    .make(),
-              ),
-              ElevatedButton(
-                onPressed: () =>
-                    context.read<GameBoardCubit>().changePlayerId(),
-                child: const Icon(Icons.refresh).box.height(40).make(),
-              ).pOnly(left: 8),
-            ])),
+                }
+              },
+              child: 'Start Turn'
+                  .text
+                  .xl2
+                  .center
+                  .make()
+                  .box
+                  .width(context.screenWidth - 150)
+                  .make(),
+            ),
+          ]),
+        ),
         body: const VStack([
           PlayerPoint(),
           GameBoard(),

@@ -151,6 +151,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       }
 
       emit(const GameBoardState.updateBoard());
+      changePlayerId();
     }
   }
 
@@ -158,9 +159,11 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     switch (skillIndex) {
       case 0:
         _useBomb(bombId: 1);
+        changePlayerId();
         break;
       case 1:
         _useBomb(bombId: 2);
+        changePlayerId();
         break;
       case 2:
         _freeSpaceMove();
