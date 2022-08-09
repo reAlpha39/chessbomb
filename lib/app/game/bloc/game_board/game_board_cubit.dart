@@ -98,10 +98,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     emit(const GameBoardState.selectedSkill());
   }
 
-  void changeStateAfterError() {
-    emit(const GameBoardState.selectedStrategy());
-  }
-
   void chooseStrategy({bool isMovePlayer = false}) {
     emit(const GameBoardState.loading());
     haveChooseStrategy = true;
@@ -145,12 +141,12 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       if (isBomb) {
         _useBomb(bombId: 0);
         _resetMovement();
+        changePlayerId();
       } else if (!isBomb) {
         _movePion();
       }
 
       emit(const GameBoardState.updateBoard());
-      changePlayerId();
     }
   }
 
@@ -189,6 +185,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       } else {
         initialBoardState[selectedTiles] = pion;
         initialBoardState[lastIndex] = '0.0';
+        changePlayerId();
         _resetMovement();
       }
     }

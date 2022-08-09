@@ -60,7 +60,7 @@ class _GameLayout extends StatelessWidget {
                   content: 'Destroy the wall first'.text.base.make(),
                 ),
               );
-              return context.read<GameBoardCubit>().changeStateAfterError();
+              return Dialogs.moveOrBombDialog(context);
             },
             playerTurn: (playerId) =>
                 ScaffoldMessenger.of(context).showSnackBar(
