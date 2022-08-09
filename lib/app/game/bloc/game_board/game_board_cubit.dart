@@ -141,9 +141,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       emit(const GameBoardState.loading());
       lastIndex = selectedTiles;
       selectedTiles = tempTile;
-      if (buildWall) {
-        _createWallBang();
-      } else if (isBomb) {
+
+      if (isBomb) {
         _useBomb(bombId: 0);
         _resetMovement();
       } else if (!isBomb) {
@@ -169,7 +168,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         _freeSpaceMove();
         break;
       case 3:
-        _buildWallBangSelectableTile();
+        _createWallBang();
         break;
       default:
     }
@@ -259,59 +258,16 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void _createWallBang() {
-    List<int> temp = [];
-    if (upMove.contains(selectedTiles)) {
-      temp = upMove;
-    } else if (downMove.contains(selectedTiles)) {
-      temp = downMove;
-    } else if (leftMove.contains(selectedTiles)) {
-      temp = leftMove;
-    } else if (rightMove.contains(selectedTiles)) {
-      temp = rightMove;
-    }
-
-    for (int i = 0; i < temp.length; i++) {
-      initialBoardState[temp[i]] = '7.1';
-    }
-    _resetMovement();
-  }
-
-  void _buildWallBangSelectableTile() {
     if (playerPion.contains(tempTile)) {
-      buildWall = true;
       selectedTiles = tempTile;
       String currentIndex = tilesIndex[selectedTiles];
-      _straightMove(currentIndex, 3);
 
-      movement.removeWhere((element) =>
-          playerPion.contains(element) ||
-          enemyPion.contains(element) ||
-          initialBoardState[element] == playerId + flagMapId ||
-          initialBoardState[element] == enemyId + flagMapId);
+      _wallBang(currentIndex: currentIndex);
 
-      _splitStraightMove();
-      emit(const GameBoardState.selectedStrategy());
+      emit(const GameBoardState.updateBoard());
+      changePlayerId();
     }
-  }
-
-  _splitStraightMove() {
-    String currentIndex = tilesIndex[selectedTiles];
-    List<String> xySelectedTiles = currentIndex.split(' ');
-    for (int i = 0; i < movement.length; i++) {
-      String currentIndex = tilesIndex[movement[i]];
-      List<String> xy = currentIndex.split(' ');
-      if (int.parse(xy[0]) > int.parse(xySelectedTiles[0])) {
-        upMove.add(movement[i]);
-      } else if (int.parse(xy[0]) < int.parse(xySelectedTiles[0])) {
-        downMove.add(movement[i]);
-      } else if (alphabets.indexOf(xy[1]) >
-          alphabets.indexOf(xySelectedTiles[1])) {
-        leftMove.add(movement[i]);
-      } else if (alphabets.indexOf(xy[1]) <
-          alphabets.indexOf(xySelectedTiles[1])) {
-        rightMove.add(movement[i]);
-      }
-    }
+    _resetMovement();
   }
 
   void _freeSpaceMove() {
@@ -328,6 +284,54 @@ class GameBoardCubit extends Cubit<GameBoardState> {
           initialBoardState[element] == playerId + flagMapId);
 
       chooseStrategy(isMovePlayer: true);
+    }
+  }
+
+  void _wallBang({required String currentIndex}) {
+    String playerId = initialBoardState[selectedTiles].split('.')[0];
+    String ab = '';
+    int index = 0;
+    int yIndex = 0;
+    List<String> xy = currentIndex.split(' ');
+    int x = int.parse(xy[0]);
+    String y = xy[1];
+    List<int> wallIndex = [];
+    for (int i = 1; i <= 1; i++) {
+      yIndex = alphabets.indexOf(y);
+
+      if (playerId == '2' && (x + i) <= 10) {
+        ab = (x + i).toString() + " " + y;
+        index = tilesIndex.indexOf(ab);
+        wallIndex.add(index);
+      }
+
+      if (playerId == '1' && (x - i) >= 1) {
+        ab = (x - i).toString() + " " + y;
+        index = tilesIndex.indexOf(ab);
+        wallIndex.add(index);
+      }
+
+      xy = ab.split(' ');
+      x = int.parse(xy[0]);
+      if ((x - i) >= 1) {
+        ab = x.toString() + " " + alphabets[(yIndex + i)];
+        index = tilesIndex.indexOf(ab);
+        wallIndex.add(index);
+      }
+      if ((x + i) <= 10) {
+        ab = x.toString() + " " + alphabets[(yIndex - i)];
+        index = tilesIndex.indexOf(ab);
+        wallIndex.add(index);
+      }
+    }
+    wallIndex.removeWhere((element) =>
+        playerPion.contains(element) ||
+        enemyPion.contains(element) ||
+        initialBoardState[element] == playerId + flagMapId ||
+        initialBoardState[element] == enemyId + flagMapId);
+
+    for (int i = 0; i < wallIndex.length; i++) {
+      initialBoardState[wallIndex[i]] = '7.1';
     }
   }
 
