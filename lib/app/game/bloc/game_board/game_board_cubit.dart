@@ -106,7 +106,14 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     } else {
       isBomb = true;
     }
-    emit(const GameBoardState.selectedStrategy());
+
+    _playerMovement();
+
+    if (movement.isEmpty) {
+      emit(const GameBoardState.error());
+    } else {
+      emit(const GameBoardState.selectedStrategy());
+    }
   }
 
   void definePlayerIndex() {
@@ -127,7 +134,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     if (playerPion.contains(tempTile)) {
       lastIndex = selectedTiles;
       selectedTiles = tempTile;
-      _playerMovement();
       emit(const GameBoardState.selectedTiles());
     }
   }
@@ -270,6 +276,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   void _freeSpaceMove() {
     if (playerPion.contains(tempTile)) {
       emit(const GameBoardState.loading());
+      isBomb = false;
       movement = [];
       lastIndex = selectedTiles;
       selectedTiles = tempTile;
@@ -280,7 +287,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
           playerPion.contains(element) ||
           initialBoardState[element] == playerId + flagMapId);
 
-      chooseStrategy(isMovePlayer: true);
+      emit(const GameBoardState.selectedStrategy());
     }
   }
 
@@ -407,27 +414,69 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     List<String> xy = currentIndex.split(' ');
     int x = int.parse(xy[0]);
     String y = xy[1];
+
+    bool isALineBlocked = false;
+    bool isBLineBlocked = false;
+    bool isCLineBlocked = false;
+    bool isDLineBlocked = false;
+
     for (int i = 1; i <= jumpedTile; i++) {
       yIndex = alphabets.indexOf(y);
       if ((x - i) >= 1) {
         ab = (x - i).toString() + " " + y;
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isALineBlocked = true;
+          } else if (!isALineBlocked) {
+            movement.add(index);
+          }
+        }
       }
       if ((x + i) <= 10) {
         ab = (x + i).toString() + " " + y;
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isBLineBlocked = true;
+          } else if (!isBLineBlocked) {
+            movement.add(index);
+          }
+        }
       }
       if ((yIndex - i) >= 0) {
         ab = x.toString() + " " + alphabets[(yIndex - i)];
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isCLineBlocked = true;
+          } else if (!isCLineBlocked) {
+            movement.add(index);
+          }
+        }
       }
       if ((yIndex + i) <= 6) {
         ab = x.toString() + " " + alphabets[(yIndex + i)];
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isDLineBlocked = true;
+          } else if (!isDLineBlocked) {
+            movement.add(index);
+          }
+        }
       }
     }
   }
@@ -439,27 +488,69 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     List<String> xy = currentIndex.split(' ');
     int x = int.parse(xy[0]);
     String y = xy[1];
+
+    bool isALineBlocked = false;
+    bool isBLineBlocked = false;
+    bool isCLineBlocked = false;
+    bool isDLineBlocked = false;
+
     for (int i = 1; i <= jumpedTile; i++) {
       yIndex = alphabets.indexOf(y);
       if ((x - i) >= 1 && (yIndex - i) >= 0) {
         ab = (x - i).toString() + " " + alphabets[(yIndex - i)];
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isALineBlocked = true;
+          } else if (!isALineBlocked) {
+            movement.add(index);
+          }
+        }
       }
       if ((x - i) >= 1 && (yIndex + i) <= 6) {
         ab = (x - i).toString() + " " + alphabets[(yIndex + i)];
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isBLineBlocked = true;
+          } else if (!isBLineBlocked) {
+            movement.add(index);
+          }
+        }
       }
       if ((x + i) <= 10 && (yIndex - i) >= 0) {
         ab = (x + i).toString() + " " + alphabets[(yIndex - i)];
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isCLineBlocked = true;
+          } else if (!isCLineBlocked) {
+            movement.add(index);
+          }
+        }
       }
       if ((x + i) <= 10 && (yIndex + i) <= 6) {
         ab = (x + i).toString() + " " + alphabets[(yIndex + i)];
         index = tilesIndex.indexOf(ab);
-        movement.add(index);
+        if (isBomb) {
+          movement.add(index);
+        } else {
+          if (initialBoardState[index] == '7.0' ||
+              initialBoardState[index] == '7.1') {
+            isDLineBlocked = true;
+          } else if (!isDLineBlocked) {
+            movement.add(index);
+          }
+        }
       }
     }
   }
