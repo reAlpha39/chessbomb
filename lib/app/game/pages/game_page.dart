@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
+import 'package:bombernyaa/app/game/bloc/poin_counter/poin_counter_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
 import 'package:bombernyaa/app/game/widgets/player_point.dart';
@@ -22,6 +23,9 @@ class GamePage extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<RollDiceCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<PoinCounterCubit>(),
         ),
       ],
       child: const _GameLayout(),
@@ -55,19 +59,24 @@ class _GameLayout extends StatelessWidget {
         BlocListener<GameBoardCubit, GameBoardState>(
           listener: (context, state) => state.maybeWhen(
             error: () {
-              ScaffoldMessenger.of(context).showSnackBar(
+              return ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: 'Destroy the wall first'.text.base.make(),
                 ),
               );
-              return Dialogs.moveOrBombDialog(context);
             },
-            playerTurn: (playerId) =>
-                ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: 'Player $playerId\'s turn'.text.base.make(),
-              ),
-            ),
+            playerTurn: (playerId) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: 'Player $playerId\'s turn'.text.base.make(),
+                ),
+              );
+              context.read<PoinCounterCubit>().updatePoint(
+                    tempPoint: context.read<GameBoardCubit>().tempPoint,
+                    playerId: playerId,
+                  );
+              return context.read<GameBoardCubit>().resetTempPoint();
+            },
             selectedTiles: () => Dialogs.moveOrBombDialog(context),
             gameFinished: () => Dialogs.gameFinishedDialog(context),
             orElse: () => null,

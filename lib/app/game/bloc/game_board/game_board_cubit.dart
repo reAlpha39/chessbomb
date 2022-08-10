@@ -33,6 +33,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   int skillIndex = -1;
   bool haveChooseStrategy = false;
 
+  int tempPoint = 0;
+
   List<int> upMove = [];
   List<int> downMove = [];
   List<int> leftMove = [];
@@ -42,6 +44,10 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     initialBoardState = boardStateDummy;
     _resetMovement();
     emit(const GameBoardState.initial());
+  }
+
+  void resetTempPoint() {
+    tempPoint = 0;
   }
 
   void createBoardIndex() {
@@ -56,6 +62,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void changePlayerId() {
+    // add point +1 for every end turn
+    tempPoint += 1;
     if (playerId == '1') {
       playerId = '2';
       enemyId = '1';
@@ -146,8 +154,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
       if (isBomb) {
         _useBomb(bombId: 0);
-        _resetMovement();
         changePlayerId();
+        _resetMovement();
       } else if (!isBomb) {
         _movePion();
       }
@@ -188,6 +196,16 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[selectedTiles] = pion;
         initialBoardState[lastIndex] = '0.0';
         emit(const GameBoardState.gameFinished());
+      } else if (pionMapId
+          .map((e) => enemyId + e)
+          .toList()
+          .contains(initialBoardState[selectedTiles])) {
+        initialBoardState[selectedTiles] = pion;
+        initialBoardState[lastIndex] = '0.0';
+        // add point +3 when kill enemy pion
+        tempPoint += 3;
+        changePlayerId();
+        _resetMovement();
       } else {
         initialBoardState[selectedTiles] = pion;
         initialBoardState[lastIndex] = '0.0';
@@ -203,6 +221,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     if (bombId == 0) {
       if (initialBoardState[selectedTiles] == '7.0') {
         initialBoardState[selectedTiles] = '0.0';
+        // add point +2 when wall destroyed
+        tempPoint += 2;
       } else if (initialBoardState[selectedTiles] == '7.1') {
         initialBoardState[selectedTiles] = '7.0';
       } else if (pionMapId
@@ -210,6 +230,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
           .toList()
           .contains(initialBoardState[selectedTiles])) {
         initialBoardState[selectedTiles] = '0.0';
+        // add point +3 when kill enemy pion
+        tempPoint += 3;
       }
       //bombId = 1 -> bomb vertical
     } else if (bombId == 1) {
@@ -225,7 +247,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       isBomb = false;
       bombId = 0;
     }
-    _resetMovement();
   }
 
   void _playerMovement() {
@@ -361,6 +382,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     for (int i = 0; i < bombIndex.length; i++) {
       if (initialBoardState[bombIndex[i]] == '7.0') {
         initialBoardState[bombIndex[i]] = '0.0';
+        // add point +2 when wall destroyed
+        tempPoint += 2;
       } else if (initialBoardState[bombIndex[i]] == '7.1') {
         initialBoardState[bombIndex[i]] = '7.0';
       } else if (pionMapId
@@ -368,6 +391,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
           .toList()
           .contains(initialBoardState[bombIndex[i]])) {
         initialBoardState[bombIndex[i]] = '0.0';
+        // add point +3 when kill enemy pion
+        tempPoint += 3;
       }
     }
   }
@@ -396,6 +421,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     for (int i = 0; i < bombIndex.length; i++) {
       if (initialBoardState[bombIndex[i]] == '7.0') {
         initialBoardState[bombIndex[i]] = '0.0';
+        // add point +2 when wall destroyed
+        tempPoint += 2;
       } else if (initialBoardState[bombIndex[i]] == '7.1') {
         initialBoardState[bombIndex[i]] = '7.0';
       } else if (pionMapId
@@ -403,6 +430,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
           .toList()
           .contains(initialBoardState[bombIndex[i]])) {
         initialBoardState[bombIndex[i]] = '0.0';
+        // add point +3 when kill enemy pion
+        tempPoint += 3;
       }
     }
   }
