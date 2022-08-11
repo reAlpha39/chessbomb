@@ -11,46 +11,42 @@ class PlayerPoint extends StatelessWidget {
       children: [
         BlocBuilder<PoinCounterCubit, PoinCounterState>(
           builder: (context, state) {
-            return SizedBox(
-              height: 100,
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Player 1"),
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text("Player 1"),
+                ),
+                Text(
+                  context.read<PoinCounterCubit>().playerAPoint.toString(),
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text(
-                    context.read<PoinCounterCubit>().playerAPoint.toString(),
-                    style: const TextStyle(
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.0),
+                  child: Text(
+                    ":",
+                    style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: Text(
-                      ":",
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                ),
+                Text(
+                  context.read<PoinCounterCubit>().playerBPoint.toString(),
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text(
-                    context.read<PoinCounterCubit>().playerBPoint.toString(),
-                    style: const TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Player 2"),
-                  ),
-                ],
-              ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text("Player 2"),
+                ),
+              ],
             );
           },
         ),

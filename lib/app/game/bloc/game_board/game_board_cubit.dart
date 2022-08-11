@@ -80,6 +80,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       playerId = '1';
       enemyId = '2';
     }
+    _resetMovement();
     emit(GameBoardState.playerTurn(playerId));
   }
 

@@ -10,6 +10,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'app/game/bloc/game_board/game_board_cubit.dart' as _i3;
 import 'app/game/bloc/poin_counter/poin_counter_cubit.dart' as _i5;
 import 'app/game/bloc/roll_dice/roll_dice_cubit.dart' as _i6;
+import 'app/game/bloc/turn_timer/turn_timer_cubit.dart' as _i7;
 import 'app/home/bloc/cubit/player_id_cubit.dart'
     as _i4; // ignore_for_file: unnecessary_lambdas
 
@@ -22,5 +23,6 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i4.PlayerIdCubit>(() => _i4.PlayerIdCubit());
   gh.factory<_i5.PoinCounterCubit>(() => _i5.PoinCounterCubit());
   gh.factory<_i6.RollDiceCubit>(() => _i6.RollDiceCubit());
+  gh.factory<_i7.TurnTimerCubit>(() => _i7.TurnTimerCubit());
   return get;
 }

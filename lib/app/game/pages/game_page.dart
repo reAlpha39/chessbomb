@@ -2,8 +2,10 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/poin_counter/poin_counter_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
+import 'package:bombernyaa/app/game/bloc/turn_timer/turn_timer_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
 import 'package:bombernyaa/app/game/widgets/player_point.dart';
+import 'package:bombernyaa/app/game/widgets/turn_timer.dart';
 import 'package:bombernyaa/injection.dart';
 import 'package:bombernyaa/presentation/dialogs.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,9 @@ class GamePage extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => getIt<PoinCounterCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<TurnTimerCubit>()..startTimer(),
         ),
       ],
       child: const _GameLayout(),
@@ -56,6 +61,12 @@ class _GameLayout extends StatelessWidget {
             orElse: () => null,
           ),
         ),
+        BlocListener<TurnTimerCubit, TurnTimerState>(
+          listener: (context, state) => state.maybeWhen(
+            timeOut: () => context.read<GameBoardCubit>().changePlayerId(),
+            orElse: () => null,
+          ),
+        ),
         BlocListener<GameBoardCubit, GameBoardState>(
           listener: (context, state) => state.maybeWhen(
             error: () {
@@ -75,6 +86,15 @@ class _GameLayout extends StatelessWidget {
                     tempPoint: context.read<GameBoardCubit>().tempPoint,
                     tempScore: context.read<GameBoardCubit>().tempScore,
                     playerId: playerId,
+                  );
+              BlocProvider.of<TurnTimerCubit>(context).state.maybeWhen(
+                    timeOut: () => context.read<TurnTimerCubit>()
+                      ..resetTimer()
+                      ..startTimer(),
+                    orElse: () => context.read<TurnTimerCubit>()
+                      ..stopTimer()
+                      ..resetTimer()
+                      ..startTimer(),
                   );
               return context.read<GameBoardCubit>().resetTempPointAndScore();
             },
@@ -127,7 +147,9 @@ class _GameLayout extends StatelessWidget {
           ]),
         ),
         body: const VStack([
+          SizedBox(height: 12),
           PlayerPoint(),
+          TurnTimer(),
           GameBoard(),
         ]).px16(),
       ),
