@@ -52,10 +52,7 @@ class _GameLayout extends StatelessWidget {
       listeners: [
         BlocListener<GameTimerCubit, GameTimerState>(
           listener: (context, state) => state.maybeWhen(
-            timeOut: () {
-              context.read<TurnTimerCubit>().stopTimer();
-              context.read<GameBoardCubit>().forceEndGame();
-            },
+            timeOut: () => context.read<GameBoardCubit>().forceEndGame(),
             orElse: () => null,
           ),
         ),
@@ -119,16 +116,20 @@ class _GameLayout extends StatelessWidget {
               return context.read<GameBoardCubit>().resetTempPointAndScore();
             },
             selectedTiles: () => Dialogs.moveOrBombDialog(context),
-            gameFinished: () => Dialogs.gameFinishedDialog(
-              context: context,
-              playerId: context.read<GameBoardCubit>().playerId,
-              playerAScore: context.read<GameTimerCubit>().isTimeOut
-                  ? context.read<PoinCounterCubit>().playerAPoint
-                  : null,
-              playerBScore: context.read<GameTimerCubit>().isTimeOut
-                  ? context.read<PoinCounterCubit>().playerBPoint
-                  : null,
-            ),
+            gameFinished: () {
+              context.read<GameTimerCubit>().stopTimer();
+              context.read<TurnTimerCubit>().stopTimer();
+              return Dialogs.gameFinishedDialog(
+                context: context,
+                playerId: context.read<GameBoardCubit>().playerId,
+                playerAScore: context.read<GameTimerCubit>().isTimeOut
+                    ? context.read<PoinCounterCubit>().playerAPoint
+                    : null,
+                playerBScore: context.read<GameTimerCubit>().isTimeOut
+                    ? context.read<PoinCounterCubit>().playerBPoint
+                    : null,
+              );
+            },
             orElse: () => null,
           ),
         ),
@@ -197,7 +198,7 @@ class _GameLayout extends StatelessWidget {
             ],
           ),
           const GameBoard(),
-        ]).px16(),
+        ]).safeArea().px16(),
       ),
     );
   }
