@@ -35,6 +35,12 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
   int tempPoint = 0;
 
+  // Skill price
+  // Vertical & horizontal bomb = 10
+  // Free move = 15
+  // Free space = 5
+  List<int> skillPrices = [10, 10, 15, 5];
+
   List<int> upMove = [];
   List<int> downMove = [];
   List<int> leftMove = [];
@@ -103,6 +109,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   void selectSkillIndex(int index) {
     emit(const GameBoardState.loading());
     skillIndex = index;
+    tempPoint -= skillPrices[index];
     emit(const GameBoardState.selectedSkill());
   }
 

@@ -80,7 +80,10 @@ class Dialogs {
     ).show();
   }
 
-  static chooseSkillDialog(BuildContext context) {
+  static chooseSkillDialog(
+      {required BuildContext context,
+      required int point,
+      required List<int> skillPrice}) {
     return AwesomeDialog(
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -99,8 +102,17 @@ class Dialogs {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => ElevatedButton(
-                onPressed: () => Navigator.of(context).pop(index),
-                child: _titleButton[index].text.xl.makeCentered().py8(),
+                onPressed: point > skillPrice[index]
+                    ? () => Navigator.of(context).pop(index)
+                    : null,
+                child: (_titleButton[index] +
+                        ' (' +
+                        skillPrice[index].toString() +
+                        'P)')
+                    .text
+                    .xl
+                    .makeCentered()
+                    .py8(),
               ).pOnly(bottom: index == 4 ? 0 : 10),
             ),
             const SizedBox(

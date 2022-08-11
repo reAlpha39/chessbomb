@@ -99,7 +99,13 @@ class _GameLayout extends StatelessWidget {
                       ..rollDice();
                   } else if (result != null && !result) {
                     result = null;
-                    int? skillIndex = await Dialogs.chooseSkillDialog(context);
+                    int? skillIndex = await Dialogs.chooseSkillDialog(
+                      context: context,
+                      skillPrice: context.read<GameBoardCubit>().skillPrices,
+                      point: context.read<GameBoardCubit>().playerId == '1'
+                          ? context.read<PoinCounterCubit>().playerAPoint
+                          : context.read<PoinCounterCubit>().playerBPoint,
+                    );
                     if (skillIndex != null) {
                       context.read<GameBoardCubit>()
                         ..selectSkillIndex(skillIndex)
