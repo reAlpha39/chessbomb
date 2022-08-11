@@ -34,6 +34,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   bool haveChooseStrategy = false;
 
   int tempPoint = 0;
+  int tempScore = 0;
 
   // Skill price
   // Vertical & horizontal bomb = 10
@@ -52,8 +53,9 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     emit(const GameBoardState.initial());
   }
 
-  void resetTempPoint() {
+  void resetTempPointAndScore() {
     tempPoint = 0;
+    tempScore = 0;
   }
 
   void createBoardIndex() {
@@ -70,6 +72,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   void changePlayerId() {
     // add point +1 for every end turn
     tempPoint += 1;
+    tempScore += 1;
     if (playerId == '1') {
       playerId = '2';
       enemyId = '1';
@@ -211,6 +214,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[lastIndex] = '0.0';
         // add point +3 when kill enemy pion
         tempPoint += 3;
+        tempScore += 3;
         changePlayerId();
         _resetMovement();
       } else {
@@ -230,6 +234,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[selectedTiles] = '0.0';
         // add point +2 when wall destroyed
         tempPoint += 2;
+        tempScore += 2;
       } else if (initialBoardState[selectedTiles] == '7.1') {
         initialBoardState[selectedTiles] = '7.0';
       } else if (pionMapId
@@ -239,6 +244,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[selectedTiles] = '0.0';
         // add point +3 when kill enemy pion
         tempPoint += 3;
+        tempScore += 3;
       }
       //bombId = 1 -> bomb vertical
     } else if (bombId == 1) {
@@ -391,6 +397,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[bombIndex[i]] = '0.0';
         // add point +2 when wall destroyed
         tempPoint += 2;
+        tempScore += 2;
       } else if (initialBoardState[bombIndex[i]] == '7.1') {
         initialBoardState[bombIndex[i]] = '7.0';
       } else if (pionMapId
@@ -400,6 +407,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[bombIndex[i]] = '0.0';
         // add point +3 when kill enemy pion
         tempPoint += 3;
+        tempScore += 3;
       }
     }
   }
@@ -430,6 +438,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[bombIndex[i]] = '0.0';
         // add point +2 when wall destroyed
         tempPoint += 2;
+        tempScore += 2;
       } else if (initialBoardState[bombIndex[i]] == '7.1') {
         initialBoardState[bombIndex[i]] = '7.0';
       } else if (pionMapId
@@ -439,6 +448,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
         initialBoardState[bombIndex[i]] = '0.0';
         // add point +3 when kill enemy pion
         tempPoint += 3;
+        tempScore += 3;
       }
     }
   }

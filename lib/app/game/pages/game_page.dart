@@ -73,9 +73,10 @@ class _GameLayout extends StatelessWidget {
               );
               context.read<PoinCounterCubit>().updatePoint(
                     tempPoint: context.read<GameBoardCubit>().tempPoint,
+                    tempScore: context.read<GameBoardCubit>().tempScore,
                     playerId: playerId,
                   );
-              return context.read<GameBoardCubit>().resetTempPoint();
+              return context.read<GameBoardCubit>().resetTempPointAndScore();
             },
             selectedTiles: () => Dialogs.moveOrBombDialog(context),
             gameFinished: () => Dialogs.gameFinishedDialog(context),
