@@ -58,6 +58,12 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     tempScore = 0;
   }
 
+  void forceEndGame() {
+    emit(const GameBoardState.loading());
+    _resetMovement();
+    emit(const GameBoardState.gameFinished());
+  }
+
   void createBoardIndex() {
     List<String> temp = [];
     for (int i = 1; i <= 10; i++) {

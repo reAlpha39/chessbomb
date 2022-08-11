@@ -1,9 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
+import 'package:bombernyaa/app/game/bloc/game_timer/game_timer_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/poin_counter/poin_counter_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/turn_timer/turn_timer_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
+import 'package:bombernyaa/app/game/widgets/game_timer.dart';
 import 'package:bombernyaa/app/game/widgets/player_point.dart';
 import 'package:bombernyaa/app/game/widgets/turn_timer.dart';
 import 'package:bombernyaa/injection.dart';
@@ -30,6 +32,9 @@ class GamePage extends StatelessWidget {
           create: (context) => getIt<PoinCounterCubit>(),
         ),
         BlocProvider(
+          create: (context) => getIt<GameTimerCubit>()..startTimer(),
+        ),
+        BlocProvider(
           create: (context) => getIt<TurnTimerCubit>()..startTimer(),
         ),
       ],
@@ -45,6 +50,15 @@ class _GameLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
+        BlocListener<GameTimerCubit, GameTimerState>(
+          listener: (context, state) => state.maybeWhen(
+            timeOut: () {
+              context.read<TurnTimerCubit>().stopTimer();
+              context.read<GameBoardCubit>().forceEndGame();
+            },
+            orElse: () => null,
+          ),
+        ),
         BlocListener<RollDiceCubit, RollDiceState>(
           listener: (context, state) => state.maybeWhen(
             rolled: (index) {
@@ -105,7 +119,16 @@ class _GameLayout extends StatelessWidget {
               return context.read<GameBoardCubit>().resetTempPointAndScore();
             },
             selectedTiles: () => Dialogs.moveOrBombDialog(context),
-            gameFinished: () => Dialogs.gameFinishedDialog(context),
+            gameFinished: () => Dialogs.gameFinishedDialog(
+              context: context,
+              playerId: context.read<GameBoardCubit>().playerId,
+              playerAScore: context.read<GameTimerCubit>().isTimeOut
+                  ? context.read<PoinCounterCubit>().playerAPoint
+                  : null,
+              playerBScore: context.read<GameTimerCubit>().isTimeOut
+                  ? context.read<PoinCounterCubit>().playerBPoint
+                  : null,
+            ),
             orElse: () => null,
           ),
         ),
@@ -152,11 +175,28 @@ class _GameLayout extends StatelessWidget {
             ),
           ]),
         ),
-        body: const VStack([
-          SizedBox(height: 12),
-          PlayerPoint(),
-          TurnTimer(),
-          GameBoard(),
+        body: VStack([
+          const SizedBox(height: 12),
+          const PlayerPoint(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  'Total Time Limit'.text.base.make(),
+                  const GameTimer(),
+                ],
+              ).px12(),
+              Column(
+                children: [
+                  'Turn Time'.text.base.make(),
+                  const TurnTimer(),
+                ],
+              ).px12(),
+            ],
+          ),
+          const GameBoard(),
         ]).px16(),
       ),
     );

@@ -161,7 +161,12 @@ class Dialogs {
     ).show();
   }
 
-  static gameFinishedDialog(BuildContext context) {
+  static gameFinishedDialog({
+    required BuildContext context,
+    required String playerId,
+    int? playerAScore,
+    int? playerBScore,
+  }) {
     return AwesomeDialog(
       dismissOnTouchOutside: false,
       context: context,
@@ -172,7 +177,18 @@ class Dialogs {
       title: 'Game Finished',
       body: VStack([
         'Game Finished'.text.medium.makeCentered(),
-        'You Win'.text.xl.bold.makeCentered().py16(),
+        ('Player ' +
+                (playerAScore == null
+                    ? playerId
+                    : playerAScore > playerBScore!
+                        ? '1'
+                        : '2') +
+                ' Win')
+            .text
+            .xl
+            .bold
+            .makeCentered()
+            .py16(),
         HStack(
           [
             TextButton(
