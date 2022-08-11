@@ -63,7 +63,13 @@ class _GameLayout extends StatelessWidget {
         ),
         BlocListener<TurnTimerCubit, TurnTimerState>(
           listener: (context, state) => state.maybeWhen(
-            timeOut: () => context.read<GameBoardCubit>().changePlayerId(),
+            timeOut: () {
+              // Close dialog if there's any open
+              !ModalRoute.of(context)!.isCurrent
+                  ? Navigator.pop(context)
+                  : null;
+              return context.read<GameBoardCubit>().changePlayerId();
+            },
             orElse: () => null,
           ),
         ),
