@@ -9,7 +9,7 @@ part 'turn_timer_cubit.freezed.dart';
 class TurnTimerCubit extends Cubit<TurnTimerState> {
   TurnTimerCubit() : super(const TurnTimerState.initial());
 
-  int time = 15;
+  int time = 30;
   bool _stopRunningTimer = false;
 
   void startTimer() async {
@@ -38,7 +38,7 @@ class TurnTimerCubit extends Cubit<TurnTimerState> {
   }
 
   void resetTimer() {
-    time = 15;
+    time = 30;
   }
 
   void stopTimer() {
