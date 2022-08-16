@@ -189,14 +189,14 @@ class Dialogs {
             .bold
             .makeCentered()
             .py16(),
-        TextButton(
+        ElevatedButton(
           onPressed: () {
             context.read<GameBoardCubit>().resetAll();
             Navigator.of(context).pop();
             context.goNamed('home');
           },
-          child: 'Main Menu'.text.base.make(),
-        ),
+          child: 'Main Menu'.text.base.makeCentered(),
+        ).centered(),
         const SizedBox(
           height: 16,
         ),
