@@ -102,7 +102,7 @@ class Dialogs {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => ElevatedButton(
-                onPressed: point > skillPrice[index]
+                onPressed: point >= skillPrice[index]
                     ? () => Navigator.of(context).pop(index)
                     : null,
                 child: (_titleButton[index] +
