@@ -619,6 +619,9 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       }
     }
 
+    // reset dummy movement
+    movement = [];
+
     for (int i = 0; i <= 3; i++) {
       if (listIndex[i] > 0) {
         int index = 0;
@@ -662,91 +665,115 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       }
     }
 
-    List<int> tempMovement = movement;
+    List<int> placeHolderMovement = movement;
     movement = [];
 
     _straightMove(currentIndex, 1);
     _diagonalMove(currentIndex, 1);
 
+    List<int> tempMovement = movement;
+    movement = [];
+
     // validate movement (2/2)
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x - 1).toString() + " " + alphabets[(yIndex)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 1)])) &&
         yIndex >= 2) {
-      tempMovement.add(tilesIndex
-          .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 2)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 2)]),
+        isLineBlocked: false,
+      );
     }
 
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x - 1).toString() + " " + alphabets[(yIndex)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 1)])) &&
         yIndex <= 3) {
-      tempMovement.add(tilesIndex
-          .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 2)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 2)]),
+        isLineBlocked: false,
+      );
     }
 
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x + 1).toString() + " " + alphabets[(yIndex)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 1)])) &&
         yIndex >= 2) {
-      tempMovement.add(tilesIndex
-          .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 2)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 2)]),
+        isLineBlocked: false,
+      );
     }
 
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x + 1).toString() + " " + alphabets[(yIndex)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 1)])) &&
         yIndex <= 3) {
-      tempMovement.add(tilesIndex
-          .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 2)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 2)]),
+        isLineBlocked: false,
+      );
     }
 
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x).toString() + " " + alphabets[(yIndex - 1)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 1)])) &&
         x >= 3) {
-      tempMovement.add(tilesIndex
-          .indexOf((x - 2).toString() + " " + alphabets[(yIndex - 1)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x - 2).toString() + " " + alphabets[(yIndex - 1)]),
+        isLineBlocked: false,
+      );
     }
 
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x).toString() + " " + alphabets[(yIndex - 1)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 1)])) &&
         x <= 8) {
-      tempMovement.add(tilesIndex
-          .indexOf((x + 2).toString() + " " + alphabets[(yIndex - 1)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x + 2).toString() + " " + alphabets[(yIndex - 1)]),
+        isLineBlocked: false,
+      );
     }
 
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x).toString() + " " + alphabets[(yIndex + 1)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 1)])) &&
         x >= 3) {
-      tempMovement.add(tilesIndex
-          .indexOf((x - 2).toString() + " " + alphabets[(yIndex + 1)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x - 2).toString() + " " + alphabets[(yIndex + 1)]),
+        isLineBlocked: false,
+      );
     }
 
-    if (movement.contains(tilesIndex
+    if (tempMovement.contains(tilesIndex
             .indexOf((x).toString() + " " + alphabets[(yIndex + 1)])) &&
-        movement.contains(tilesIndex
+        tempMovement.contains(tilesIndex
             .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 1)])) &&
         x <= 8) {
-      tempMovement.add(tilesIndex
-          .indexOf((x + 2).toString() + " " + alphabets[(yIndex + 1)]));
+      _removeMovement(
+        index: tilesIndex
+            .indexOf((x + 2).toString() + " " + alphabets[(yIndex + 1)]),
+        isLineBlocked: false,
+      );
     }
-    // remove movement if it a wall
-    tempMovement.removeWhere((element) =>
-        initialBoardState[element] == '7.0' ||
-        initialBoardState[element] == '7.1');
 
     // remove duplicate
-    movement = tempMovement.toSet().toList();
+    movement.addAll(placeHolderMovement);
+    movement = movement.toSet().toList();
   }
 
   /// Remove selectable tile if it blocked by wall
