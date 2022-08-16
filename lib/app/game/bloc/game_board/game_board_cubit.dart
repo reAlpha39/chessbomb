@@ -675,100 +675,116 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     movement = [];
 
     // validate movement (2/2)
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 1)])) &&
-        yIndex >= 2) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 2)]),
-        isLineBlocked: false,
-      );
+    if (x > 1 && yIndex > 0) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 1)])) &&
+          yIndex >= 2) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 2)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 1)])) &&
-        yIndex <= 3) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 2)]),
-        isLineBlocked: false,
-      );
+    if (x > 1 && yIndex < 6) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 1)])) &&
+          yIndex <= 3) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 2)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 1)])) &&
-        yIndex >= 2) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 2)]),
-        isLineBlocked: false,
-      );
+    if (x < 10 && yIndex > 0) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 1)])) &&
+          yIndex >= 2) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 2)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 1)])) &&
-        yIndex <= 3) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 2)]),
-        isLineBlocked: false,
-      );
+    if (x < 10 && yIndex < 6) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 1)])) &&
+          yIndex <= 3) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 2)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x).toString() + " " + alphabets[(yIndex - 1)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 1)])) &&
-        x >= 3) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x - 2).toString() + " " + alphabets[(yIndex - 1)]),
-        isLineBlocked: false,
-      );
+    if (x > 1 && yIndex > 0) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x).toString() + " " + alphabets[(yIndex - 1)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex - 1)])) &&
+          x >= 3) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x - 2).toString() + " " + alphabets[(yIndex - 1)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x).toString() + " " + alphabets[(yIndex - 1)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 1)])) &&
-        x <= 8) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x + 2).toString() + " " + alphabets[(yIndex - 1)]),
-        isLineBlocked: false,
-      );
+    if (x < 10 && yIndex > 0) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x).toString() + " " + alphabets[(yIndex - 1)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex - 1)])) &&
+          x <= 8) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x + 2).toString() + " " + alphabets[(yIndex - 1)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x).toString() + " " + alphabets[(yIndex + 1)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 1)])) &&
-        x >= 3) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x - 2).toString() + " " + alphabets[(yIndex + 1)]),
-        isLineBlocked: false,
-      );
+    if (x > 1 && yIndex < 6) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x).toString() + " " + alphabets[(yIndex + 1)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x - 1).toString() + " " + alphabets[(yIndex + 1)])) &&
+          x >= 3) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x - 2).toString() + " " + alphabets[(yIndex + 1)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
-    if (tempMovement.contains(tilesIndex
-            .indexOf((x).toString() + " " + alphabets[(yIndex + 1)])) &&
-        tempMovement.contains(tilesIndex
-            .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 1)])) &&
-        x <= 8) {
-      _removeMovement(
-        index: tilesIndex
-            .indexOf((x + 2).toString() + " " + alphabets[(yIndex + 1)]),
-        isLineBlocked: false,
-      );
+    if (x < 10 && yIndex < 6) {
+      if (tempMovement.contains(tilesIndex
+              .indexOf((x).toString() + " " + alphabets[(yIndex + 1)])) &&
+          tempMovement.contains(tilesIndex
+              .indexOf((x + 1).toString() + " " + alphabets[(yIndex + 1)])) &&
+          x <= 8) {
+        _removeMovement(
+          index: tilesIndex
+              .indexOf((x + 2).toString() + " " + alphabets[(yIndex + 1)]),
+          isLineBlocked: false,
+        );
+      }
     }
 
     // remove duplicate
