@@ -310,8 +310,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
       emit(const GameBoardState.updateBoard());
       changePlayerId();
+      _resetMovement();
     }
-    _resetMovement();
   }
 
   void _freeSpaceMove() {
