@@ -89,7 +89,7 @@ class _GameLayout extends StatelessWidget {
             error: () {
               return ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: 'Destroy the wall first'.text.base.make(),
+                  content: 'Please choose another pion'.text.base.make(),
                 ),
               );
             },
