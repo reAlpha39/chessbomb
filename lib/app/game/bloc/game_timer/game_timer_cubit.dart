@@ -9,7 +9,7 @@ part 'game_timer_cubit.freezed.dart';
 class GameTimerCubit extends Cubit<GameTimerState> {
   GameTimerCubit() : super(const GameTimerState.initial());
 
-  int time = 10;
+  int time = 900;
   bool _stopRunningTimer = false;
   bool isTimeOut = false;
 
