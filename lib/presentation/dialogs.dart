@@ -189,25 +189,13 @@ class Dialogs {
             .bold
             .makeCentered()
             .py16(),
-        HStack(
-          [
-            TextButton(
-              onPressed: () {
-                context.read<GameBoardCubit>().resetAll();
-                Navigator.of(context).pop();
-              },
-              child: 'Reset Game'.text.base.make(),
-            ),
-            TextButton(
-              onPressed: () {
-                context.read<GameBoardCubit>().resetAll();
-                Navigator.of(context).pop();
-                context.goNamed('home');
-              },
-              child: 'Main Menu'.text.base.make(),
-            ),
-          ],
-          alignment: MainAxisAlignment.spaceAround,
+        TextButton(
+          onPressed: () {
+            context.read<GameBoardCubit>().resetAll();
+            Navigator.of(context).pop();
+            context.goNamed('home');
+          },
+          child: 'Main Menu'.text.base.make(),
         ),
         const SizedBox(
           height: 16,
