@@ -1,3 +1,4 @@
+import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/poin_counter/poin_counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,9 +15,29 @@ class PlayerPoint extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text("Player 1"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: BlocBuilder<GameBoardCubit, GameBoardState>(
+                    builder: (context, state) {
+                      return Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:
+                                  context.read<GameBoardCubit>().playerId == '1'
+                                      ? Colors.green
+                                      : Colors.red,
+                            ),
+                            height: 15,
+                            width: 15,
+                          ),
+                          const SizedBox(width: 8),
+                          const Text("Player 1"),
+                        ],
+                      );
+                    },
+                  ),
                 ),
                 Text(
                   context.read<PoinCounterCubit>().playerAPoint.toString(),
@@ -42,9 +63,29 @@ class PlayerPoint extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text("Player 2"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: BlocBuilder<GameBoardCubit, GameBoardState>(
+                    builder: (context, state) {
+                      return Row(
+                        children: [
+                          const Text("Player 2"),
+                          const SizedBox(width: 8),
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:
+                                  context.read<GameBoardCubit>().playerId == '2'
+                                      ? Colors.green
+                                      : Colors.red,
+                            ),
+                            height: 15,
+                            width: 15,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ],
             );
