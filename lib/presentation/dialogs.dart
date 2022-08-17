@@ -191,8 +191,6 @@ class Dialogs {
             .py16(),
         ElevatedButton(
           onPressed: () {
-            context.read<GameBoardCubit>().resetAll();
-            Navigator.of(context).pop();
             context.goNamed('home');
           },
           child: 'Main Menu'.text.base.makeCentered(),

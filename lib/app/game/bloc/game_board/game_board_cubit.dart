@@ -17,7 +17,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   static const List<String> pionMapId = ['.1', '.2', '.3', '.4', '.5'];
 
   static const List<String> alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-  List<String> initialBoardState = boardStateDummy;
+  List<String> initialBoardState = [];
   int tempTile = -1;
   int selectedTiles = -1;
   int lastIndex = -1;
@@ -47,12 +47,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   List<int> leftMove = [];
   List<int> rightMove = [];
 
-  void resetAll() {
-    initialBoardState = boardStateDummy;
-    _resetMovement();
-    emit(const GameBoardState.initial());
-  }
-
   void resetTempPointAndScore() {
     tempPoint = 0;
     tempScore = 0;
@@ -65,6 +59,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void createBoardIndex() {
+    initialBoardState.addAll(boardStateDummy);
     List<String> temp = [];
     for (int i = 1; i <= 10; i++) {
       for (int j = 0; j <= 6; j++) {
