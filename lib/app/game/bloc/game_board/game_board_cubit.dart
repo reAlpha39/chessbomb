@@ -179,12 +179,17 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   void activateSkill() {
     switch (skillIndex) {
       case 0:
-        _useBomb(bombId: 1);
-        changePlayerId();
+        if (playerPion.contains(tempTile)) {
+          _useBomb(bombId: 1);
+          changePlayerId();
+        }
+
         break;
       case 1:
-        _useBomb(bombId: 2);
-        changePlayerId();
+        if (playerPion.contains(tempTile)) {
+          _useBomb(bombId: 2);
+          changePlayerId();
+        }
         break;
       case 2:
         _freeSpaceMove();
@@ -250,14 +255,11 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       }
       //bombId = 1 -> bomb vertical
     } else if (bombId == 1) {
-      if (playerPion.contains(tempTile)) {
-        _bombVertical(currentIndex: currentIndex);
-      }
+      _bombVertical(currentIndex: currentIndex);
+
       //bombId = 2 -> bomb horizontal
     } else if (bombId == 2) {
-      if (playerPion.contains(tempTile)) {
-        _bombHorizontal(currentIndex: currentIndex);
-      }
+      _bombHorizontal(currentIndex: currentIndex);
     } else {
       isBomb = false;
       bombId = 0;
