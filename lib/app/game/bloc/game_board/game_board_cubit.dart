@@ -71,6 +71,11 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void changePlayerId() {
+    if (_isEnemiesNotExist()) {
+      // finished the game if no enemy exist
+      emit(const GameBoardState.gameFinished());
+      return;
+    }
     // add point +1 for every end turn
     tempPoint += 1;
     tempScore += 1;
@@ -83,6 +88,19 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     }
     _resetMovement();
     emit(GameBoardState.playerTurn(playerId));
+  }
+
+  // check if no enemy exist
+  bool _isEnemiesNotExist() {
+    var isEnemyNotExist = true;
+    for (var i = 0; i < initialBoardState.length; i++) {
+      if (initialBoardState[i]
+          .contains(RegExp(r'^(' + enemyId + r'*\.[1-5]+)?$'))) {
+        isEnemyNotExist = false;
+        break;
+      }
+    }
+    return isEnemyNotExist;
   }
 
   void _resetMovement() {
