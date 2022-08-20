@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/game_timer/game_timer_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/poin_counter/poin_counter_cubit.dart';
@@ -12,7 +11,6 @@ import 'package:bombernyaa/injection.dart';
 import 'package:bombernyaa/presentation/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class GamePage extends StatelessWidget {

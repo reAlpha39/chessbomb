@@ -15,7 +15,10 @@ class PoinCounterCubit extends Cubit<PoinCounterState> {
   int playerAScore = 5;
   int playerBScore = 5;
 
-  void updatePoint({required int tempPoint, required int tempScore, required String playerId}) {
+  void updatePoint(
+      {required int tempPoint,
+      required int tempScore,
+      required String playerId}) {
     emit(const PoinCounterState.loading());
     // reverse playerId
     if (playerId == '2') {
