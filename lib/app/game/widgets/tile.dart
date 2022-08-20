@@ -112,11 +112,18 @@ class _TileLayout extends StatelessWidget {
         .border(
           color: context.read<GameBoardCubit>().selectedTiles == index
               ? Colors.green
-              : context.read<GameBoardCubit>().playerPion.contains(index)
-                  ? animationPlayerPion!.value!
-                  : context.read<GameBoardCubit>().movement.contains(index)
-                      ? animationSelectableMovement!.value!
-                      : Colors.black,
+              : BlocProvider.of<GameBoardCubit>(context).state.maybeWhen(
+                    selectedStrategy: () =>
+                        context.read<GameBoardCubit>().movement.contains(index)
+                            ? animationSelectableMovement!.value!
+                            : Colors.black,
+                    orElse: () => context
+                            .read<GameBoardCubit>()
+                            .playerPion
+                            .contains(index)
+                        ? animationPlayerPion!.value!
+                        : Colors.black,
+                  ),
           width: 2,
         )
         .make();
