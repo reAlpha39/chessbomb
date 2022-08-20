@@ -121,10 +121,10 @@ class _GameLayout extends StatelessWidget {
                 context: context,
                 playerId: context.read<GameBoardCubit>().playerId,
                 playerAScore: context.read<GameTimerCubit>().isTimeOut
-                    ? context.read<PoinCounterCubit>().playerAPoint
+                    ? context.read<PoinCounterCubit>().playerAScore
                     : null,
                 playerBScore: context.read<GameTimerCubit>().isTimeOut
-                    ? context.read<PoinCounterCubit>().playerBPoint
+                    ? context.read<PoinCounterCubit>().playerBScore
                     : null,
               );
             },
