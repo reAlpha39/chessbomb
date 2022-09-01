@@ -42,4 +42,9 @@ class GameTimerCubit extends Cubit<GameTimerState> {
   void stopTimer() {
     _stopRunningTimer = true;
   }
+
+  // set timer to 10s for debug mode
+  void setDebugTimer() {
+    time = 10;
+  }
 }

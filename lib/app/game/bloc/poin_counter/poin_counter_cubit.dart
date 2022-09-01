@@ -30,4 +30,12 @@ class PoinCounterCubit extends Cubit<PoinCounterState> {
     }
     emit(const PoinCounterState.success());
   }
+
+  // add point +100 for debug mode
+  void addPoint() {
+    emit(const PoinCounterState.loading());
+    playerAPoint += 95;
+    playerBPoint += 95;
+    emit(const PoinCounterState.success());
+  }
 }

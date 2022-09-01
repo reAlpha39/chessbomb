@@ -14,23 +14,52 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class GamePage extends StatelessWidget {
-  const GamePage({Key? key}) : super(key: key);
+  const GamePage({
+    Key? key,
+    this.debugModeAddPoint = false,
+    this.debugModeWinConditionA = false,
+    this.debugModeWinConditionB = false,
+    this.debugModeWinConditionC = false,
+  }) : super(key: key);
+
+  final bool debugModeAddPoint;
+  final bool debugModeWinConditionA;
+  final bool debugModeWinConditionB;
+  final bool debugModeWinConditionC;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<GameBoardCubit>()..createBoardIndex(),
+          create: (context) => getIt<GameBoardCubit>()
+            ..createBoardIndex(
+              debugModelA: debugModeWinConditionA,
+              debugModelB: debugModeWinConditionB,
+            ),
         ),
         BlocProvider(
           create: (context) => getIt<RollDiceCubit>(),
         ),
         BlocProvider(
-          create: (context) => getIt<PoinCounterCubit>(),
+          create: (context) {
+            if (debugModeAddPoint) {
+              return getIt<PoinCounterCubit>()..addPoint();
+            } else {
+              return getIt<PoinCounterCubit>();
+            }
+          },
         ),
         BlocProvider(
-          create: (context) => getIt<GameTimerCubit>()..startTimer(),
+          create: (context) {
+            if (debugModeWinConditionC) {
+              return getIt<GameTimerCubit>()
+                ..setDebugTimer()
+                ..startTimer();
+            } else {
+              return getIt<GameTimerCubit>()..startTimer();
+            }
+          },
         ),
         BlocProvider(
           create: (context) => getIt<TurnTimerCubit>()..startTimer(),

@@ -58,8 +58,16 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     emit(const GameBoardState.gameFinished());
   }
 
-  void createBoardIndex() {
-    initialBoardState.addAll(boardStateDummy);
+  void createBoardIndex({bool debugModelA = false, bool debugModelB = false}) {
+    // Initial Board State
+    if (debugModelA) {
+      initialBoardState.addAll(boardStateDebugModelA);
+    } else if (debugModelB) {
+      initialBoardState.addAll(boardStateDebugModelB);
+    } else {
+      initialBoardState.addAll(boardStateDummy);
+    }
+
     List<String> temp = [];
     for (int i = 1; i <= 10; i++) {
       for (int j = 0; j <= 6; j++) {

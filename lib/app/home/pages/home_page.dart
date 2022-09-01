@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../game/pages/game_page.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -75,7 +77,13 @@ class _HomeBody extends StatelessWidget {
                     'Debug Mode'.text.size(32).bold.makeCentered(),
                     const SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: () => context.pushNamed('game_page'),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const GamePage(debugModeAddPoint: true),
+                        ),
+                      ),
                       child: const Text(
                         'Player pion +100',
                         style: TextStyle(fontSize: 18),
@@ -83,7 +91,13 @@ class _HomeBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: () => context.pushNamed('game_page'),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const GamePage(debugModeWinConditionA: true),
+                        ),
+                      ),
                       child: const Text(
                         'Player win condition A',
                         style: TextStyle(fontSize: 18),
@@ -91,7 +105,13 @@ class _HomeBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: () => context.pushNamed('game_page'),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const GamePage(debugModeWinConditionB: true),
+                        ),
+                      ),
                       child: const Text(
                         'Player win condition B',
                         style: TextStyle(fontSize: 18),
@@ -99,7 +119,13 @@ class _HomeBody extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: () => context.pushNamed('game_page'),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const GamePage(debugModeWinConditionC: true),
+                        ),
+                      ),
                       child: const Text(
                         'Player win condition C',
                         style: TextStyle(fontSize: 18),
