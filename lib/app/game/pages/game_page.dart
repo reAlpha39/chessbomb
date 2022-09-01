@@ -36,7 +36,10 @@ class GamePage extends StatelessWidget {
           create: (context) => getIt<TurnTimerCubit>()..startTimer(),
         ),
       ],
-      child: const _GameLayout(),
+      child: WillPopScope(
+        child: const _GameLayout(),
+        onWillPop: () async => Dialogs.showGameSessionForceEndDialog(context),
+      ),
     );
   }
 }

@@ -16,6 +16,44 @@ class Dialogs {
     'Wallbang',
   ];
 
+  static bool showGameSessionForceEndDialog(BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.NO_HEADER,
+      animType: AnimType.SCALE,
+      title: 'Are you sure to end the game?',
+      btnOk: TextButton(
+        onPressed: () => context.goNamed('home'),
+        child: 'OK'
+            .text
+            .xl
+            .bold
+            .make()
+            .px16()
+            .py8()
+            .box
+            .rounded
+            .color(Colors.red)
+            .make(),
+      ),
+      btnCancel: TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: 'Cancel'
+            .text
+            .xl
+            .bold
+            .make()
+            .px16()
+            .py8()
+            .box
+            .rounded
+            .color(Colors.blue.shade100)
+            .make(),
+      ),
+    ).show();
+    return false;
+  }
+
   static void showRandomNumber({
     required BuildContext context,
     required String title,
