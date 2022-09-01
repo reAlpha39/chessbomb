@@ -1,7 +1,9 @@
 import 'package:bombernyaa/app/home/bloc/cubit/player_id_cubit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,6 +32,7 @@ class _HomeBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 32),
           const Text(
             'Welcome to BomberNyaa',
             style: TextStyle(
@@ -64,9 +67,49 @@ class _HomeBody extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
             ),
-          )
+          ),
+          kDebugMode
+              ? Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    'Debug Mode'.text.size(32).bold.makeCentered(),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: () => context.pushNamed('game_page'),
+                      child: const Text(
+                        'Player pion +100',
+                        style: TextStyle(fontSize: 18),
+                      ).px(28),
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: () => context.pushNamed('game_page'),
+                      child: const Text(
+                        'Player win condition A',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: () => context.pushNamed('game_page'),
+                      child: const Text(
+                        'Player win condition B',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: () => context.pushNamed('game_page'),
+                      child: const Text(
+                        'Player win condition C',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ],
+                )
+              : const SizedBox(),
         ],
-      ),
+      ).scrollVertical(),
     );
   }
 }

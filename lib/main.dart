@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
-      debugShowCheckedModeBanner: false,
       title: 'BomberNyaa',
       theme: theme(),
     );
