@@ -23,32 +23,16 @@ class Dialogs {
       animType: AnimType.SCALE,
       title: 'Are you sure to end the game?',
       btnOk: TextButton(
-        onPressed: () => context.goNamed('home'),
-        child: 'OK'
-            .text
-            .xl
-            .bold
-            .make()
-            .px16()
-            .py8()
-            .box
-            .rounded
-            .color(Colors.red)
-            .make(),
+        onPressed: () => Navigator.popUntil(context, (route) => route.isFirst),
+        style: TextButton.styleFrom(
+          disabledBackgroundColor: Colors.red,
+          backgroundColor: Colors.red,
+        ),
+        child: 'OK'.text.xl.white.bold.makeCentered(),
       ),
       btnCancel: TextButton(
         onPressed: () => Navigator.pop(context),
-        child: 'Cancel'
-            .text
-            .xl
-            .bold
-            .make()
-            .px16()
-            .py8()
-            .box
-            .rounded
-            .color(Colors.blue.shade100)
-            .make(),
+        child: 'Cancel'.text.xl.bold.black.makeCentered(),
       ),
     ).show();
     return false;
@@ -212,25 +196,32 @@ class Dialogs {
       width: context.screenWidth - 100,
       animType: AnimType.SCALE,
       dialogType: DialogType.NO_HEADER,
-      title: 'Game Finished',
+      title: playerAScore != null
+          ? playerAScore == playerBScore!
+              ? 'Draw'
+              : 'Game Finished'
+          : 'Game Finished',
       body: VStack([
-        'Game Finished'.text.medium.makeCentered(),
-        ('Player ' +
-                (playerAScore == null
-                    ? playerId
-                    : playerAScore > playerBScore!
-                        ? '1'
-                        : '2') +
-                ' Win')
+        playerAScore != null
+            ? playerAScore == playerBScore!
+                ? const SizedBox()
+                : 'Game Finished'.text.medium.makeCentered()
+            : 'Game Finished'.text.medium.makeCentered(),
+        (playerAScore != null
+                ? playerAScore == playerBScore!
+                    ? 'Draw'
+                    : ('Player ' +
+                        (playerAScore > playerBScore ? '1' : '2') +
+                        ' Win')
+                : ('Player ' + playerId))
             .text
             .xl
             .bold
             .makeCentered()
             .py16(),
         ElevatedButton(
-          onPressed: () {
-            context.goNamed('home');
-          },
+          onPressed: () =>
+              Navigator.popUntil(context, (route) => route.isFirst),
           child: 'Main Menu'.text.base.makeCentered(),
         ).centered(),
         const SizedBox(
