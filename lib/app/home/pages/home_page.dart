@@ -87,7 +87,7 @@ class _HomeBody extends StatelessWidget {
                       child: const Text(
                         'Player pion +100',
                         style: TextStyle(fontSize: 18),
-                      ).px(28),
+                      ).px(38),
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
@@ -99,8 +99,9 @@ class _HomeBody extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'Player win condition A',
+                        'Menang dengan kondisi\nBendera lawan diambil',
                         style: TextStyle(fontSize: 18),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -113,8 +114,9 @@ class _HomeBody extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'Player win condition B',
+                        'Menang dengan kondisi\nPion lawan habis',
                         style: TextStyle(fontSize: 18),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -127,8 +129,9 @@ class _HomeBody extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'Player win condition C',
+                        'Menang dengan kondisi\nTimeout',
                         style: TextStyle(fontSize: 18),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
