@@ -839,40 +839,40 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     String state = initialBoardState[index];
     switch (state) {
       case '1.0':
-        colorTile = Colors.red.shade900;
+        colorTile = Colors.blue.shade800;
         break;
       case '1.1':
-        colorTile = Colors.red;
+        colorTile = Colors.blue.shade400;
         break;
       case '1.2':
-        colorTile = Colors.red;
+        colorTile = Colors.blue.shade400;
         break;
       case '1.3':
-        colorTile = Colors.red;
+        colorTile = Colors.blue.shade400;
         break;
       case '1.4':
-        colorTile = Colors.red;
+        colorTile = Colors.blue.shade400;
         break;
       case '1.5':
-        colorTile = Colors.red;
+        colorTile = Colors.blue.shade400;
         break;
       case '2.0':
-        colorTile = Colors.yellow.shade900;
+        colorTile = Colors.deepOrange.shade800;
         break;
       case '2.1':
-        colorTile = Colors.yellow;
+        colorTile = Colors.deepOrange.shade400;
         break;
       case '2.2':
-        colorTile = Colors.yellow;
+        colorTile = Colors.deepOrange.shade400;
         break;
       case '2.3':
-        colorTile = Colors.yellow;
+        colorTile = Colors.deepOrange.shade400;
         break;
       case '2.4':
-        colorTile = Colors.yellow;
+        colorTile = Colors.deepOrange.shade400;
         break;
       case '2.5':
-        colorTile = Colors.yellow;
+        colorTile = Colors.deepOrange.shade400;
         break;
       case '3.0':
         colorTile = Colors.white;
