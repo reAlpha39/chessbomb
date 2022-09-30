@@ -1,4 +1,5 @@
 import 'package:bombernyaa/app/game/bloc/game_board/game_board_cubit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -105,7 +106,9 @@ class _TileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VxBox(child: index.text.lg.make().centered())
+    return VxBox(
+            child:
+                kDebugMode ? index.text.lg.make().centered() : const SizedBox())
         .height(5)
         .width(5)
         .color(context.read<GameBoardCubit>().boardState(index))
