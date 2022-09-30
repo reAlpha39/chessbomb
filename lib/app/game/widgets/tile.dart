@@ -28,9 +28,9 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
         CurvedAnimation(parent: controller!, curve: Curves.ease);
 
     animationPlayerPion =
-        ColorTween(begin: Colors.black, end: Colors.red).animate(curve);
+        ColorTween(begin: Colors.black, end: Colors.yellow).animate(curve);
     animationSelectableMovement =
-        ColorTween(begin: Colors.black, end: Colors.blue).animate(curve);
+        ColorTween(begin: Colors.black, end: Colors.yellow).animate(curve);
 
     animationPlayerPion!.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -114,7 +114,7 @@ class _TileLayout extends StatelessWidget {
         .color(context.read<GameBoardCubit>().boardState(index))
         .border(
           color: context.read<GameBoardCubit>().selectedTiles == index
-              ? Colors.green
+              ? Colors.white
               : BlocProvider.of<GameBoardCubit>(context).state.maybeWhen(
                     selectedStrategy: () =>
                         context.read<GameBoardCubit>().movement.contains(index)
