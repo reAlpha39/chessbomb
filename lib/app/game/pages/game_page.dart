@@ -66,7 +66,12 @@ class GamePage extends StatelessWidget {
         ),
       ],
       child: WillPopScope(
-        child: const _GameLayout(),
+        child: _GameLayout(
+            setCustomRoll: debugModeWinConditionA
+                ? true
+                : debugModeWinConditionB
+                    ? true
+                    : false),
         onWillPop: () async => Dialogs.showGameSessionForceEndDialog(context),
       ),
     );
@@ -74,7 +79,8 @@ class GamePage extends StatelessWidget {
 }
 
 class _GameLayout extends StatelessWidget {
-  const _GameLayout({Key? key}) : super(key: key);
+  final bool setCustomRoll;
+  const _GameLayout({Key? key, this.setCustomRoll = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +183,7 @@ class _GameLayout extends StatelessWidget {
                     result = null;
                     context.read<RollDiceCubit>()
                       ..reset()
-                      ..rollDice();
+                      ..rollDice(customRoll: setCustomRoll ? 2 : -1);
                   } else if (result != null && !result) {
                     result = null;
                     int? skillIndex = await Dialogs.chooseSkillDialog(

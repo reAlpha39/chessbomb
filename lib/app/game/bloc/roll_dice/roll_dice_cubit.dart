@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,12 +13,14 @@ class RollDiceCubit extends Cubit<RollDiceState> {
   RollDiceCubit() : super(const RollDiceState.initial());
   int roll = -1;
 
-  void rollDice() {
+  void rollDice({int customRoll = -1}) {
     emit(const RollDiceState.loading());
-    if (roll == -1) {
+    if (customRoll >= 0 && customRoll <= 7) {
+      roll = customRoll;
+    } else if (roll == -1) {
       _generateRandomNumber();
-      emit(RollDiceState.rolled(roll));
     }
+    emit(RollDiceState.rolled(roll));
   }
 
   void reset() {
