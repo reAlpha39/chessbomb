@@ -36,7 +36,7 @@ class _HomeBody extends StatelessWidget {
         children: [
           const SizedBox(height: 32),
           const Text(
-            'Welcome to BomberNyaa',
+            'Welcome to ChessBomb',
             style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
