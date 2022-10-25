@@ -20,6 +20,7 @@ class Dialogs {
     AwesomeDialog(
       context: context,
       dialogType: DialogType.NO_HEADER,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       title: 'Are you sure to end the game?',
       btnOk: TextButton(
@@ -46,7 +47,7 @@ class Dialogs {
     AwesomeDialog(
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth - 100,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       dialogType: DialogType.INFO,
       animType: AnimType.SCALE,
       title: 'Your Number',
@@ -74,7 +75,7 @@ class Dialogs {
     return AwesomeDialog(
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth - 100,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       dialogType: DialogType.QUESTION,
       title: 'Choose Strategy',
@@ -109,7 +110,7 @@ class Dialogs {
     return AwesomeDialog(
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth - 100,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       dialogType: DialogType.QUESTION,
       title: 'Choose Skill',
@@ -150,7 +151,7 @@ class Dialogs {
     return AwesomeDialog(
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth - 100,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       dialogType: DialogType.QUESTION,
       title: 'Move or Bomb',
@@ -193,7 +194,7 @@ class Dialogs {
       dismissOnTouchOutside: false,
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth - 100,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       dialogType: DialogType.NO_HEADER,
       title: playerAScore != null
