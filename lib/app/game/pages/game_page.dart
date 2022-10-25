@@ -208,33 +208,41 @@ class _GameLayout extends StatelessWidget {
                   .make()
                   .box
                   .width(context.screenWidth - 150)
+                  .withConstraints(const BoxConstraints(maxWidth: 415))
                   .make(),
             ),
           ]),
         ),
-        body: VStack([
-          const SizedBox(height: 12),
-          const PlayerPoint(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  'Total Time Limit'.text.base.make(),
-                  const GameTimer(),
-                ],
-              ).px12(),
-              Column(
-                children: [
-                  'Turn Time'.text.base.make(),
-                  const TurnTimer(),
-                ],
-              ).px12(),
-            ],
+        body: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 500,
           ),
-          const GameBoard(),
-        ]).safeArea().px16(),
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+              const PlayerPoint(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      'Total Time Limit'.text.base.make(),
+                      const GameTimer(),
+                    ],
+                  ).px12(),
+                  Column(
+                    children: [
+                      'Turn Time'.text.base.make(),
+                      const TurnTimer(),
+                    ],
+                  ).px12(),
+                ],
+              ),
+              const GameBoard(),
+            ],
+          ).safeArea().px16(),
+        ).centered(),
       ),
     );
   }
