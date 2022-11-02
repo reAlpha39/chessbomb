@@ -10,10 +10,10 @@ import '../app/game/bloc/roll_dice/roll_dice_cubit.dart';
 
 class Dialogs {
   static final List<String> _titleButton = [
-    'Vertical Bomb',
-    'Horizontal Bomb',
-    'Free Space',
-    'Wallbang',
+    'Bom Vertikal',
+    'Bom Horizontal',
+    'Gerak Segala Arah',
+    'Dinding',
   ];
 
   static bool showGameSessionForceEndDialog(BuildContext context) {
@@ -22,18 +22,18 @@ class Dialogs {
       dialogType: DialogType.NO_HEADER,
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
-      title: 'Are you sure to end the game?',
+      title: 'Apakah ingin mengakhiri permainan?',
       btnOk: TextButton(
         onPressed: () => Navigator.popUntil(context, (route) => route.isFirst),
         style: TextButton.styleFrom(
           disabledBackgroundColor: Colors.red,
           backgroundColor: Colors.red,
         ),
-        child: 'OK'.text.xl.white.bold.makeCentered(),
+        child: 'Ya'.text.xl.white.bold.makeCentered(),
       ),
       btnCancel: TextButton(
         onPressed: () => Navigator.pop(context),
-        child: 'Cancel'.text.xl.bold.black.makeCentered(),
+        child: 'Tidak'.text.xl.bold.black.makeCentered(),
       ),
     ).show();
     return false;
@@ -50,7 +50,6 @@ class Dialogs {
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       dialogType: DialogType.INFO,
       animType: AnimType.SCALE,
-      title: 'Your Number',
       customHeader: middleText.text.size(100).makeCentered(),
       btnOk: TextButton(
         onPressed: () {
@@ -78,22 +77,22 @@ class Dialogs {
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       dialogType: DialogType.QUESTION,
-      title: 'Choose Strategy',
+      title: 'Pilih Aksi',
       body: BlocProvider(
         create: (context) => getIt<RollDiceCubit>(),
         child: VStack([
-          'Choose Strategy'.text.xl.makeCentered(),
+          'Pilih Aksi'.text.xl.makeCentered(),
           const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: 'Move / Bomb'.text.xl.makeCentered().py8(),
+            child: 'Acak Arah'.text.xl.makeCentered().py8(),
           ),
           const SizedBox(
             height: 10,
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: 'Use Skill'.text.xl.makeCentered().py8(),
+            child: 'Skill'.text.xl.makeCentered().py8(),
           ),
           const SizedBox(
             height: 16,
@@ -113,12 +112,12 @@ class Dialogs {
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       dialogType: DialogType.QUESTION,
-      title: 'Choose Skill',
+      title: 'Pilih Skill',
       body: BlocProvider(
         create: (context) => getIt<GameBoardCubit>(),
         child: Column(
           children: [
-            'Choose Skill'.text.xl.makeCentered(),
+            'Pilih Skill'.text.xl.makeCentered(),
             const SizedBox(height: 10),
             ListView.builder(
               itemCount: _titleButton.length,
@@ -154,10 +153,10 @@ class Dialogs {
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.SCALE,
       dialogType: DialogType.QUESTION,
-      title: 'Move or Bomb',
+      title: 'Pilih Strategi',
       body: VStack([
         Center(
-          child: 'Move or Bomb'.text.xl.makeCentered(),
+          child: 'Pilih Strategi'.text.xl.makeCentered(),
         ),
         const SizedBox(height: 16),
         ElevatedButton(
@@ -165,7 +164,7 @@ class Dialogs {
             context.read<GameBoardCubit>().chooseStrategy(isMovePlayer: true);
             Navigator.of(context).pop();
           },
-          child: 'Pindah pion'.text.xl.makeCentered().py8(),
+          child: 'Pindah Pion'.text.xl.makeCentered().py8(),
         ),
         const SizedBox(
           height: 10,
@@ -175,7 +174,7 @@ class Dialogs {
             context.read<GameBoardCubit>().chooseStrategy(isMovePlayer: false);
             Navigator.of(context).pop();
           },
-          child: 'Pasang bomb'.text.xl.makeCentered().py8(),
+          child: 'Bom'.text.xl.makeCentered().py8(),
         ),
         const SizedBox(
           height: 16,
@@ -199,21 +198,21 @@ class Dialogs {
       dialogType: DialogType.NO_HEADER,
       title: playerAScore != null
           ? playerAScore == playerBScore!
-              ? 'Draw'
-              : 'Game Finished'
-          : 'Game Finished',
+              ? 'Seri'
+              : 'Permainan Selesai'
+          : 'Permainan Selesai',
       body: VStack([
         playerAScore != null
             ? playerAScore == playerBScore!
                 ? const SizedBox()
-                : 'Game Finished'.text.medium.makeCentered()
-            : 'Game Finished'.text.medium.makeCentered(),
+                : 'Permainan Selesai'.text.medium.makeCentered()
+            : 'Permainan Selesai'.text.medium.makeCentered(),
         (playerAScore != null
                 ? playerAScore == playerBScore!
-                    ? 'Draw'
+                    ? 'Seri'
                     : ('Player ' +
                         (playerAScore > playerBScore ? '1' : '2') +
-                        ' Win')
+                        ' Menang')
                 : ('Player ' + playerId))
             .text
             .xl

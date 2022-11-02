@@ -36,28 +36,13 @@ class _HomeBody extends StatelessWidget {
         children: [
           const SizedBox(height: 32),
           const Text(
-            'Welcome to ChessBomb',
+            'ChessBomb',
             style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 50),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 8.0,
-                horizontal: 24.0,
-              ),
-              child: TextField(
-                controller: context.read<PlayerIdCubit>().playerId,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Masukkan username",
-                ),
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 24.0,
@@ -65,7 +50,7 @@ class _HomeBody extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => context.pushNamed('game_page'),
               child: const Text(
-                'Start',
+                'Mulai',
                 style: TextStyle(fontSize: 18),
               ),
             ),

@@ -201,7 +201,7 @@ class _GameLayout extends StatelessWidget {
                   }
                 }
               },
-              child: 'Start Turn'
+              child: 'Mulai'
                   .text
                   .xl2
                   .center
@@ -227,13 +227,13 @@ class _GameLayout extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      'Total Time Limit'.text.base.make(),
+                      'Sisa waktu permainan'.text.base.make(),
                       const GameTimer(),
                     ],
                   ).px12(),
                   Column(
                     children: [
-                      'Turn Time'.text.base.make(),
+                      'Sisa waktu giliran'.text.base.make(),
                       const TurnTimer(),
                     ],
                   ).px12(),
