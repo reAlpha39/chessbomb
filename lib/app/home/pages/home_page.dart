@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:bombernyaa/app/home/bloc/cubit/player_id_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -32,9 +35,10 @@ class _HomeBody extends StatelessWidget {
         vertical: 24.0,
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 32),
+          const SizedBox(height: 72),
           const Text(
             'ChessBomb',
             style: TextStyle(
@@ -51,10 +55,30 @@ class _HomeBody extends StatelessWidget {
               onPressed: () => context.pushNamed('game_page'),
               child: const Text(
                 'Mulai',
-                style: TextStyle(fontSize: 18),
-              ),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ).px12(),
             ),
           ),
+          Platform.isAndroid
+              ? Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 12,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () => SystemNavigator.pop(),
+                    child: const Text(
+                      'Keluar',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ).px8(),
+                  ),
+                )
+              : const SizedBox(),
           kDebugMode
               ? Column(
                   children: [
@@ -71,7 +95,10 @@ class _HomeBody extends StatelessWidget {
                       ),
                       child: const Text(
                         'Player pion +100',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                       ).px(38),
                     ),
                     const SizedBox(height: 12),
@@ -85,7 +112,10 @@ class _HomeBody extends StatelessWidget {
                       ),
                       child: const Text(
                         'Menang dengan kondisi\nBendera lawan diambil',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -100,7 +130,10 @@ class _HomeBody extends StatelessWidget {
                       ),
                       child: const Text(
                         'Menang dengan kondisi\nPion lawan habis',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -115,7 +148,10 @@ class _HomeBody extends StatelessWidget {
                       ),
                       child: const Text(
                         'Menang dengan kondisi\nTimeout',
-                        style: TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -123,7 +159,7 @@ class _HomeBody extends StatelessWidget {
                 )
               : const SizedBox(),
         ],
-      ).scrollVertical(),
+      ).centered(),
     );
   }
 }
