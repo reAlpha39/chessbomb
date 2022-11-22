@@ -140,7 +140,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   void selectSkillIndex(int index) {
     emit(const GameBoardState.loading());
     skillIndex = index;
-    tempPoint -= skillPrices[index];
     emit(const GameBoardState.selectedSkill());
   }
 
@@ -203,6 +202,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void activateSkill() {
+    tempPoint -= skillPrices[skillIndex];
     switch (skillIndex) {
       case 0:
         if (playerPion.contains(tempTile)) {
