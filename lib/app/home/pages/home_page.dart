@@ -159,7 +159,7 @@ class _HomeBody extends StatelessWidget {
                 )
               : const SizedBox(),
         ],
-      ).centered(),
+      ).scrollVertical().centered(),
     );
   }
 }

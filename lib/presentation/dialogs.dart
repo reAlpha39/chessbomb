@@ -2,7 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bombernyaa/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../app/game/bloc/game_board/game_board_cubit.dart';
@@ -19,9 +18,9 @@ class Dialogs {
   static bool showGameSessionForceEndDialog(BuildContext context) {
     AwesomeDialog(
       context: context,
-      dialogType: DialogType.NO_HEADER,
+      dialogType: DialogType.noHeader,
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      animType: AnimType.SCALE,
+      animType: AnimType.scale,
       title: 'Apakah ingin mengakhiri permainan?',
       btnOk: TextButton(
         onPressed: () => Navigator.popUntil(context, (route) => route.isFirst),
@@ -48,8 +47,8 @@ class Dialogs {
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      dialogType: DialogType.INFO,
-      animType: AnimType.SCALE,
+      dialogType: DialogType.info,
+      animType: AnimType.scale,
       customHeader: middleText.text.size(100).makeCentered(),
       btnOk: TextButton(
         onPressed: () {
@@ -75,8 +74,8 @@ class Dialogs {
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.QUESTION,
+      animType: AnimType.scale,
+      dialogType: DialogType.question,
       title: 'Pilih Aksi',
       body: BlocProvider(
         create: (context) => getIt<RollDiceCubit>(),
@@ -110,8 +109,8 @@ class Dialogs {
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.QUESTION,
+      animType: AnimType.scale,
+      dialogType: DialogType.question,
       title: 'Pilih Skill',
       body: BlocProvider(
         create: (context) => getIt<GameBoardCubit>(),
@@ -151,8 +150,8 @@ class Dialogs {
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.QUESTION,
+      animType: AnimType.scale,
+      dialogType: DialogType.question,
       title: 'Pilih Strategi',
       body: VStack([
         Center(
@@ -194,8 +193,8 @@ class Dialogs {
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      animType: AnimType.SCALE,
-      dialogType: DialogType.NO_HEADER,
+      animType: AnimType.scale,
+      dialogType: DialogType.noHeader,
       title: playerAScore != null
           ? playerAScore == playerBScore!
               ? 'Seri'
