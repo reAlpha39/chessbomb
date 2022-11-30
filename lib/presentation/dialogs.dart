@@ -137,6 +137,15 @@ class Dialogs {
               ).pOnly(bottom: index == 4 ? 0 : 10),
             ),
             const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: 'Kembali'.text.xl.makeCentered().py8(),
+            ),
+            const SizedBox(
               height: 16,
             ),
           ],
@@ -174,6 +183,15 @@ class Dialogs {
             Navigator.of(context).pop();
           },
           child: 'Bom'.text.xl.makeCentered().py8(),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: 'Kembali'.text.xl.makeCentered().py8(),
         ),
         const SizedBox(
           height: 16,
