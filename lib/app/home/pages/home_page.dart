@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' show Platform;
 
 import 'package:bombernyaa/app/home/bloc/cubit/player_id_cubit.dart';
 import 'package:flutter/foundation.dart';
@@ -62,23 +62,25 @@ class _HomeBody extends StatelessWidget {
               ).px12(),
             ),
           ),
-          Platform.isAndroid
-              ? Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 12,
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () => SystemNavigator.pop(),
-                    child: const Text(
-                      'Keluar',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
+          kIsWeb
+              ? const SizedBox()
+              : Platform.isAndroid
+                  ? Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 12,
                       ),
-                    ).px8(),
-                  ),
-                )
-              : const SizedBox(),
+                      child: ElevatedButton(
+                        onPressed: () => SystemNavigator.pop(),
+                        child: const Text(
+                          'Keluar',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ).px8(),
+                      ),
+                    )
+                  : const SizedBox(),
           kDebugMode
               ? Column(
                   children: [
