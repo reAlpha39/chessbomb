@@ -364,34 +364,33 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     int x = int.parse(xy[0]);
     String y = xy[1];
     List<int> wallIndex = [];
-    for (int i = 1; i <= 1; i++) {
-      yIndex = alphabets.indexOf(y);
+    int i = 1;
 
-      if (playerId == '2' && (x + i) <= 10) {
-        ab = (x + i).toString() + " " + y;
-        index = tilesIndex.indexOf(ab);
-        wallIndex.add(index);
-      }
-
-      if (playerId == '1' && (x - i) >= 1) {
-        ab = (x - i).toString() + " " + y;
-        index = tilesIndex.indexOf(ab);
-        wallIndex.add(index);
-      }
-
-      xy = ab.split(' ');
-      x = int.parse(xy[0]);
-      if ((x - i) >= 1) {
-        ab = x.toString() + " " + alphabets[(yIndex + i)];
-        index = tilesIndex.indexOf(ab);
-        wallIndex.add(index);
-      }
-      if ((x + i) <= 10) {
-        ab = x.toString() + " " + alphabets[(yIndex - i)];
-        index = tilesIndex.indexOf(ab);
-        wallIndex.add(index);
-      }
+    yIndex = alphabets.indexOf(y);
+    if (playerId == '2' && (x + i) <= 10) {
+      ab = (x + i).toString() + " " + y;
+      index = tilesIndex.indexOf(ab);
+      wallIndex.add(index);
     }
+    if (playerId == '1' && (x - i) >= 1) {
+      ab = (x - i).toString() + " " + y;
+      index = tilesIndex.indexOf(ab);
+      wallIndex.add(index);
+    }
+
+    xy = ab.split(' ');
+    x = int.parse(xy[0]);
+    if ((x - i) >= 1) {
+      ab = x.toString() + " " + alphabets[(yIndex + i)];
+      index = tilesIndex.indexOf(ab);
+      wallIndex.add(index);
+    }
+    if ((x + i) <= 10) {
+      ab = x.toString() + " " + alphabets[(yIndex - i)];
+      index = tilesIndex.indexOf(ab);
+      wallIndex.add(index);
+    }
+
     wallIndex.removeWhere((element) =>
         playerPion.contains(element) ||
         enemyPion.contains(element) ||
