@@ -84,7 +84,7 @@ class Dialogs {
           const SizedBox(height: 10),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: 'Acak Arah'.text.xl.makeCentered().py8(),
+            child: 'Strategi'.text.xl.makeCentered().py8(),
           ),
           const SizedBox(
             height: 10,
