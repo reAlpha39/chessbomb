@@ -178,27 +178,9 @@ class _GameLayout extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 if (context.read<GameBoardCubit>().rolledNumber == 0) {
-                  bool? result = await Dialogs.chooseStrategyDialog(context);
-                  if (result != null && result) {
-                    result = null;
-                    context.read<RollDiceCubit>()
-                      ..reset()
-                      ..rollDice(customRoll: setCustomRoll ? 2 : -1);
-                  } else if (result != null && !result) {
-                    result = null;
-                    int? skillIndex = await Dialogs.chooseSkillDialog(
-                      context: context,
-                      skillPrice: context.read<GameBoardCubit>().skillPrices,
-                      point: context.read<GameBoardCubit>().playerId == '1'
-                          ? context.read<PoinCounterCubit>().playerAPoint
-                          : context.read<PoinCounterCubit>().playerBPoint,
-                    );
-                    if (skillIndex != null) {
-                      context.read<GameBoardCubit>()
-                        ..selectSkillIndex(skillIndex)
-                        ..definePlayerIndex();
-                    }
-                  }
+                  context.read<RollDiceCubit>()
+                    ..reset()
+                    ..rollDice(customRoll: setCustomRoll ? 2 : -1);
                 }
               },
               child: 'Mulai'

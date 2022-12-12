@@ -12,35 +12,7 @@ part of 'game_timer_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GameTimerStateTearOff {
-  const _$GameTimerStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _Update update() {
-    return const _Update();
-  }
-
-  _Stopped stopped() {
-    return const _Stopped();
-  }
-
-  _TimeOut timeOut() {
-    return const _TimeOut();
-  }
-}
-
-/// @nodoc
-const $GameTimerState = _$GameTimerStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GameTimerState {
@@ -55,11 +27,11 @@ mixin _$GameTimerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? update,
-    TResult Function()? stopped,
-    TResult Function()? timeOut,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? update,
+    TResult? Function()? stopped,
+    TResult? Function()? timeOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -83,11 +55,11 @@ mixin _$GameTimerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Update value)? update,
-    TResult Function(_Stopped value)? stopped,
-    TResult Function(_TimeOut value)? timeOut,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_Stopped value)? stopped,
+    TResult? Function(_TimeOut value)? timeOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -106,33 +78,33 @@ mixin _$GameTimerState {
 abstract class $GameTimerStateCopyWith<$Res> {
   factory $GameTimerStateCopyWith(
           GameTimerState value, $Res Function(GameTimerState) then) =
-      _$GameTimerStateCopyWithImpl<$Res>;
+      _$GameTimerStateCopyWithImpl<$Res, GameTimerState>;
 }
 
 /// @nodoc
-class _$GameTimerStateCopyWithImpl<$Res>
+class _$GameTimerStateCopyWithImpl<$Res, $Val extends GameTimerState>
     implements $GameTimerStateCopyWith<$Res> {
   _$GameTimerStateCopyWithImpl(this._value, this._then);
 
-  final GameTimerState _value;
   // ignore: unused_field
-  final $Res Function(GameTimerState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$GameTimerStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$GameTimerStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -148,7 +120,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -169,11 +141,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? update,
-    TResult Function()? stopped,
-    TResult Function()? timeOut,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? update,
+    TResult? Function()? stopped,
+    TResult? Function()? timeOut,
   }) {
     return initial?.call();
   }
@@ -209,11 +181,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Update value)? update,
-    TResult Function(_Stopped value)? stopped,
-    TResult Function(_TimeOut value)? timeOut,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_Stopped value)? stopped,
+    TResult? Function(_TimeOut value)? timeOut,
   }) {
     return initial?.call(this);
   }
@@ -240,19 +212,18 @@ abstract class _Initial implements GameTimerState {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$GameTimerStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
-
-  @override
-  _Loading get _value => super._value as _Loading;
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$GameTimerStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -268,7 +239,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -289,11 +260,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? update,
-    TResult Function()? stopped,
-    TResult Function()? timeOut,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? update,
+    TResult? Function()? stopped,
+    TResult? Function()? timeOut,
   }) {
     return loading?.call();
   }
@@ -329,11 +300,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Update value)? update,
-    TResult Function(_Stopped value)? stopped,
-    TResult Function(_TimeOut value)? timeOut,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_Stopped value)? stopped,
+    TResult? Function(_TimeOut value)? timeOut,
   }) {
     return loading?.call(this);
   }
@@ -360,19 +331,17 @@ abstract class _Loading implements GameTimerState {
 }
 
 /// @nodoc
-abstract class _$UpdateCopyWith<$Res> {
-  factory _$UpdateCopyWith(_Update value, $Res Function(_Update) then) =
-      __$UpdateCopyWithImpl<$Res>;
+abstract class _$$_UpdateCopyWith<$Res> {
+  factory _$$_UpdateCopyWith(_$_Update value, $Res Function(_$_Update) then) =
+      __$$_UpdateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UpdateCopyWithImpl<$Res> extends _$GameTimerStateCopyWithImpl<$Res>
-    implements _$UpdateCopyWith<$Res> {
-  __$UpdateCopyWithImpl(_Update _value, $Res Function(_Update) _then)
-      : super(_value, (v) => _then(v as _Update));
-
-  @override
-  _Update get _value => super._value as _Update;
+class __$$_UpdateCopyWithImpl<$Res>
+    extends _$GameTimerStateCopyWithImpl<$Res, _$_Update>
+    implements _$$_UpdateCopyWith<$Res> {
+  __$$_UpdateCopyWithImpl(_$_Update _value, $Res Function(_$_Update) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -388,7 +357,7 @@ class _$_Update implements _Update {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Update);
+        (other.runtimeType == runtimeType && other is _$_Update);
   }
 
   @override
@@ -409,11 +378,11 @@ class _$_Update implements _Update {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? update,
-    TResult Function()? stopped,
-    TResult Function()? timeOut,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? update,
+    TResult? Function()? stopped,
+    TResult? Function()? timeOut,
   }) {
     return update?.call();
   }
@@ -449,11 +418,11 @@ class _$_Update implements _Update {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Update value)? update,
-    TResult Function(_Stopped value)? stopped,
-    TResult Function(_TimeOut value)? timeOut,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_Stopped value)? stopped,
+    TResult? Function(_TimeOut value)? timeOut,
   }) {
     return update?.call(this);
   }
@@ -480,19 +449,18 @@ abstract class _Update implements GameTimerState {
 }
 
 /// @nodoc
-abstract class _$StoppedCopyWith<$Res> {
-  factory _$StoppedCopyWith(_Stopped value, $Res Function(_Stopped) then) =
-      __$StoppedCopyWithImpl<$Res>;
+abstract class _$$_StoppedCopyWith<$Res> {
+  factory _$$_StoppedCopyWith(
+          _$_Stopped value, $Res Function(_$_Stopped) then) =
+      __$$_StoppedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StoppedCopyWithImpl<$Res> extends _$GameTimerStateCopyWithImpl<$Res>
-    implements _$StoppedCopyWith<$Res> {
-  __$StoppedCopyWithImpl(_Stopped _value, $Res Function(_Stopped) _then)
-      : super(_value, (v) => _then(v as _Stopped));
-
-  @override
-  _Stopped get _value => super._value as _Stopped;
+class __$$_StoppedCopyWithImpl<$Res>
+    extends _$GameTimerStateCopyWithImpl<$Res, _$_Stopped>
+    implements _$$_StoppedCopyWith<$Res> {
+  __$$_StoppedCopyWithImpl(_$_Stopped _value, $Res Function(_$_Stopped) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -508,7 +476,7 @@ class _$_Stopped implements _Stopped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Stopped);
+        (other.runtimeType == runtimeType && other is _$_Stopped);
   }
 
   @override
@@ -529,11 +497,11 @@ class _$_Stopped implements _Stopped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? update,
-    TResult Function()? stopped,
-    TResult Function()? timeOut,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? update,
+    TResult? Function()? stopped,
+    TResult? Function()? timeOut,
   }) {
     return stopped?.call();
   }
@@ -569,11 +537,11 @@ class _$_Stopped implements _Stopped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Update value)? update,
-    TResult Function(_Stopped value)? stopped,
-    TResult Function(_TimeOut value)? timeOut,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_Stopped value)? stopped,
+    TResult? Function(_TimeOut value)? timeOut,
   }) {
     return stopped?.call(this);
   }
@@ -600,19 +568,18 @@ abstract class _Stopped implements GameTimerState {
 }
 
 /// @nodoc
-abstract class _$TimeOutCopyWith<$Res> {
-  factory _$TimeOutCopyWith(_TimeOut value, $Res Function(_TimeOut) then) =
-      __$TimeOutCopyWithImpl<$Res>;
+abstract class _$$_TimeOutCopyWith<$Res> {
+  factory _$$_TimeOutCopyWith(
+          _$_TimeOut value, $Res Function(_$_TimeOut) then) =
+      __$$_TimeOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$TimeOutCopyWithImpl<$Res> extends _$GameTimerStateCopyWithImpl<$Res>
-    implements _$TimeOutCopyWith<$Res> {
-  __$TimeOutCopyWithImpl(_TimeOut _value, $Res Function(_TimeOut) _then)
-      : super(_value, (v) => _then(v as _TimeOut));
-
-  @override
-  _TimeOut get _value => super._value as _TimeOut;
+class __$$_TimeOutCopyWithImpl<$Res>
+    extends _$GameTimerStateCopyWithImpl<$Res, _$_TimeOut>
+    implements _$$_TimeOutCopyWith<$Res> {
+  __$$_TimeOutCopyWithImpl(_$_TimeOut _value, $Res Function(_$_TimeOut) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -628,7 +595,7 @@ class _$_TimeOut implements _TimeOut {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _TimeOut);
+        (other.runtimeType == runtimeType && other is _$_TimeOut);
   }
 
   @override
@@ -649,11 +616,11 @@ class _$_TimeOut implements _TimeOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? update,
-    TResult Function()? stopped,
-    TResult Function()? timeOut,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? update,
+    TResult? Function()? stopped,
+    TResult? Function()? timeOut,
   }) {
     return timeOut?.call();
   }
@@ -689,11 +656,11 @@ class _$_TimeOut implements _TimeOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Update value)? update,
-    TResult Function(_Stopped value)? stopped,
-    TResult Function(_TimeOut value)? timeOut,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Update value)? update,
+    TResult? Function(_Stopped value)? stopped,
+    TResult? Function(_TimeOut value)? timeOut,
   }) {
     return timeOut?.call(this);
   }
