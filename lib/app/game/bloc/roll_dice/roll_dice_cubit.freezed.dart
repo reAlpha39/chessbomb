@@ -12,29 +12,7 @@ part of 'roll_dice_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$RollDiceStateTearOff {
-  const _$RollDiceStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _Rolled rolled(int index) {
-    return _Rolled(
-      index,
-    );
-  }
-}
-
-/// @nodoc
-const $RollDiceState = _$RollDiceStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$RollDiceState {
@@ -47,9 +25,9 @@ mixin _$RollDiceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(int index)? rolled,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(int index)? rolled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,9 +47,9 @@ mixin _$RollDiceState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Rolled value)? rolled,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Rolled value)? rolled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,33 +66,33 @@ mixin _$RollDiceState {
 abstract class $RollDiceStateCopyWith<$Res> {
   factory $RollDiceStateCopyWith(
           RollDiceState value, $Res Function(RollDiceState) then) =
-      _$RollDiceStateCopyWithImpl<$Res>;
+      _$RollDiceStateCopyWithImpl<$Res, RollDiceState>;
 }
 
 /// @nodoc
-class _$RollDiceStateCopyWithImpl<$Res>
+class _$RollDiceStateCopyWithImpl<$Res, $Val extends RollDiceState>
     implements $RollDiceStateCopyWith<$Res> {
   _$RollDiceStateCopyWithImpl(this._value, this._then);
 
-  final RollDiceState _value;
   // ignore: unused_field
-  final $Res Function(RollDiceState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$RollDiceStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$RollDiceStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -130,7 +108,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -149,9 +127,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(int index)? rolled,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(int index)? rolled,
   }) {
     return initial?.call();
   }
@@ -183,9 +161,9 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Rolled value)? rolled,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Rolled value)? rolled,
   }) {
     return initial?.call(this);
   }
@@ -210,19 +188,18 @@ abstract class _Initial implements RollDiceState {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$RollDiceStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
-
-  @override
-  _Loading get _value => super._value as _Loading;
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$RollDiceStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -238,7 +215,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -257,9 +234,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(int index)? rolled,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(int index)? rolled,
   }) {
     return loading?.call();
   }
@@ -291,9 +268,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Rolled value)? rolled,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Rolled value)? rolled,
   }) {
     return loading?.call(this);
   }
@@ -318,27 +295,27 @@ abstract class _Loading implements RollDiceState {
 }
 
 /// @nodoc
-abstract class _$RolledCopyWith<$Res> {
-  factory _$RolledCopyWith(_Rolled value, $Res Function(_Rolled) then) =
-      __$RolledCopyWithImpl<$Res>;
+abstract class _$$_RolledCopyWith<$Res> {
+  factory _$$_RolledCopyWith(_$_Rolled value, $Res Function(_$_Rolled) then) =
+      __$$_RolledCopyWithImpl<$Res>;
+  @useResult
   $Res call({int index});
 }
 
 /// @nodoc
-class __$RolledCopyWithImpl<$Res> extends _$RollDiceStateCopyWithImpl<$Res>
-    implements _$RolledCopyWith<$Res> {
-  __$RolledCopyWithImpl(_Rolled _value, $Res Function(_Rolled) _then)
-      : super(_value, (v) => _then(v as _Rolled));
+class __$$_RolledCopyWithImpl<$Res>
+    extends _$RollDiceStateCopyWithImpl<$Res, _$_Rolled>
+    implements _$$_RolledCopyWith<$Res> {
+  __$$_RolledCopyWithImpl(_$_Rolled _value, $Res Function(_$_Rolled) _then)
+      : super(_value, _then);
 
-  @override
-  _Rolled get _value => super._value as _Rolled;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = freezed,
+    Object? index = null,
   }) {
-    return _then(_Rolled(
-      index == freezed
+    return _then(_$_Rolled(
+      null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
@@ -363,18 +340,18 @@ class _$_Rolled implements _Rolled {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Rolled &&
-            const DeepCollectionEquality().equals(other.index, index));
+            other is _$_Rolled &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
+  int get hashCode => Object.hash(runtimeType, index);
 
   @JsonKey(ignore: true)
   @override
-  _$RolledCopyWith<_Rolled> get copyWith =>
-      __$RolledCopyWithImpl<_Rolled>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_RolledCopyWith<_$_Rolled> get copyWith =>
+      __$$_RolledCopyWithImpl<_$_Rolled>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -389,9 +366,9 @@ class _$_Rolled implements _Rolled {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(int index)? rolled,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(int index)? rolled,
   }) {
     return rolled?.call(index);
   }
@@ -423,9 +400,9 @@ class _$_Rolled implements _Rolled {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Rolled value)? rolled,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Rolled value)? rolled,
   }) {
     return rolled?.call(this);
   }
@@ -446,9 +423,10 @@ class _$_Rolled implements _Rolled {
 }
 
 abstract class _Rolled implements RollDiceState {
-  const factory _Rolled(int index) = _$_Rolled;
+  const factory _Rolled(final int index) = _$_Rolled;
 
   int get index;
   @JsonKey(ignore: true)
-  _$RolledCopyWith<_Rolled> get copyWith => throw _privateConstructorUsedError;
+  _$$_RolledCopyWith<_$_Rolled> get copyWith =>
+      throw _privateConstructorUsedError;
 }

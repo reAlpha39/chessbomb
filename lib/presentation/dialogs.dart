@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../app/game/bloc/game_board/game_board_cubit.dart';
-import '../app/game/bloc/roll_dice/roll_dice_cubit.dart';
+import '../app/game/bloc/poin_counter/poin_counter_cubit.dart';
 
 class Dialogs {
   static final List<String> _titleButton = [
@@ -79,38 +79,6 @@ class Dialogs {
           const SizedBox(height: 10),
         ],
       ),
-    ).show();
-  }
-
-  static chooseStrategyDialog(BuildContext context) {
-    return AwesomeDialog(
-      context: context,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      animType: AnimType.scale,
-      dialogType: DialogType.question,
-      title: 'Pilih Aksi',
-      body: BlocProvider(
-        create: (context) => getIt<RollDiceCubit>(),
-        child: VStack([
-          'Pilih Aksi'.text.xl.makeCentered(),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: 'Strategi'.text.xl.makeCentered().py8(),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: 'Skill'.text.xl.makeCentered().py8(),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-        ]),
-      ).centered().px8(),
     ).show();
   }
 
@@ -196,6 +164,26 @@ class Dialogs {
             Navigator.of(context).pop();
           },
           child: 'Bom'.text.xl.makeCentered().py8(),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            Navigator.of(context).pop();
+            int? skillIndex = await Dialogs.chooseSkillDialog(
+              context: context,
+              skillPrice: context.read<GameBoardCubit>().skillPrices,
+              point: context.read<GameBoardCubit>().playerId == '1'
+                  ? context.read<PoinCounterCubit>().playerAPoint
+                  : context.read<PoinCounterCubit>().playerBPoint,
+            );
+            if (skillIndex != null) {
+              context.read<GameBoardCubit>()
+                .activateSkill(skillIndex);
+            }
+          },
+          child: 'Skill'.text.xl.makeCentered().py8(),
         ),
         const SizedBox(
           height: 10,

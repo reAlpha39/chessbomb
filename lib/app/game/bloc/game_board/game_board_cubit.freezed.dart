@@ -12,53 +12,7 @@ part of 'game_board_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GameBoardStateTearOff {
-  const _$GameBoardStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _Error error() {
-    return const _Error();
-  }
-
-  _SelectedTiles selectedTiles() {
-    return const _SelectedTiles();
-  }
-
-  _SelectedStrategy selectedStrategy() {
-    return const _SelectedStrategy();
-  }
-
-  _SelectedSkill selectedSkill() {
-    return const _SelectedSkill();
-  }
-
-  _UpdateBoard updateBoard() {
-    return const _UpdateBoard();
-  }
-
-  _PlayerTurn playerTurn(String playerId) {
-    return _PlayerTurn(
-      playerId,
-    );
-  }
-
-  _GameFinished gameFinished() {
-    return const _GameFinished();
-  }
-}
-
-/// @nodoc
-const $GameBoardState = _$GameBoardStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GameBoardState {
@@ -69,7 +23,6 @@ mixin _$GameBoardState {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -77,15 +30,14 @@ mixin _$GameBoardState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,7 +47,6 @@ mixin _$GameBoardState {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -109,7 +60,6 @@ mixin _$GameBoardState {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -117,15 +67,14 @@ mixin _$GameBoardState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -135,7 +84,6 @@ mixin _$GameBoardState {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -148,33 +96,33 @@ mixin _$GameBoardState {
 abstract class $GameBoardStateCopyWith<$Res> {
   factory $GameBoardStateCopyWith(
           GameBoardState value, $Res Function(GameBoardState) then) =
-      _$GameBoardStateCopyWithImpl<$Res>;
+      _$GameBoardStateCopyWithImpl<$Res, GameBoardState>;
 }
 
 /// @nodoc
-class _$GameBoardStateCopyWithImpl<$Res>
+class _$GameBoardStateCopyWithImpl<$Res, $Val extends GameBoardState>
     implements $GameBoardStateCopyWith<$Res> {
   _$GameBoardStateCopyWithImpl(this._value, this._then);
 
-  final GameBoardState _value;
   // ignore: unused_field
-  final $Res Function(GameBoardState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -190,7 +138,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -204,7 +152,6 @@ class _$_Initial implements _Initial {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -215,15 +162,14 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return initial?.call();
   }
@@ -236,7 +182,6 @@ class _$_Initial implements _Initial {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -256,7 +201,6 @@ class _$_Initial implements _Initial {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -267,15 +211,14 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return initial?.call(this);
   }
@@ -288,7 +231,6 @@ class _$_Initial implements _Initial {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -306,19 +248,18 @@ abstract class _Initial implements GameBoardState {
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
-
-  @override
-  _Loading get _value => super._value as _Loading;
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -334,7 +275,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -348,7 +289,6 @@ class _$_Loading implements _Loading {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -359,15 +299,14 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return loading?.call();
   }
@@ -380,7 +319,6 @@ class _$_Loading implements _Loading {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -400,7 +338,6 @@ class _$_Loading implements _Loading {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -411,15 +348,14 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return loading?.call(this);
   }
@@ -432,7 +368,6 @@ class _$_Loading implements _Loading {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -450,19 +385,17 @@ abstract class _Loading implements GameBoardState {
 }
 
 /// @nodoc
-abstract class _$ErrorCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
-      __$ErrorCopyWithImpl<$Res>;
+abstract class _$$_ErrorCopyWith<$Res> {
+  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
+      __$$_ErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
-      : super(_value, (v) => _then(v as _Error));
-
-  @override
-  _Error get _value => super._value as _Error;
+class __$$_ErrorCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_Error>
+    implements _$$_ErrorCopyWith<$Res> {
+  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -478,7 +411,7 @@ class _$_Error implements _Error {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Error);
+        (other.runtimeType == runtimeType && other is _$_Error);
   }
 
   @override
@@ -492,7 +425,6 @@ class _$_Error implements _Error {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -503,15 +435,14 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return error?.call();
   }
@@ -524,7 +455,6 @@ class _$_Error implements _Error {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -544,7 +474,6 @@ class _$_Error implements _Error {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -555,15 +484,14 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return error?.call(this);
   }
@@ -576,7 +504,6 @@ class _$_Error implements _Error {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -594,22 +521,19 @@ abstract class _Error implements GameBoardState {
 }
 
 /// @nodoc
-abstract class _$SelectedTilesCopyWith<$Res> {
-  factory _$SelectedTilesCopyWith(
-          _SelectedTiles value, $Res Function(_SelectedTiles) then) =
-      __$SelectedTilesCopyWithImpl<$Res>;
+abstract class _$$_SelectedTilesCopyWith<$Res> {
+  factory _$$_SelectedTilesCopyWith(
+          _$_SelectedTiles value, $Res Function(_$_SelectedTiles) then) =
+      __$$_SelectedTilesCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SelectedTilesCopyWithImpl<$Res>
-    extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$SelectedTilesCopyWith<$Res> {
-  __$SelectedTilesCopyWithImpl(
-      _SelectedTiles _value, $Res Function(_SelectedTiles) _then)
-      : super(_value, (v) => _then(v as _SelectedTiles));
-
-  @override
-  _SelectedTiles get _value => super._value as _SelectedTiles;
+class __$$_SelectedTilesCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_SelectedTiles>
+    implements _$$_SelectedTilesCopyWith<$Res> {
+  __$$_SelectedTilesCopyWithImpl(
+      _$_SelectedTiles _value, $Res Function(_$_SelectedTiles) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -625,7 +549,7 @@ class _$_SelectedTiles implements _SelectedTiles {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _SelectedTiles);
+        (other.runtimeType == runtimeType && other is _$_SelectedTiles);
   }
 
   @override
@@ -639,7 +563,6 @@ class _$_SelectedTiles implements _SelectedTiles {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -650,15 +573,14 @@ class _$_SelectedTiles implements _SelectedTiles {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return selectedTiles?.call();
   }
@@ -671,7 +593,6 @@ class _$_SelectedTiles implements _SelectedTiles {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -691,7 +612,6 @@ class _$_SelectedTiles implements _SelectedTiles {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -702,15 +622,14 @@ class _$_SelectedTiles implements _SelectedTiles {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return selectedTiles?.call(this);
   }
@@ -723,7 +642,6 @@ class _$_SelectedTiles implements _SelectedTiles {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -741,22 +659,19 @@ abstract class _SelectedTiles implements GameBoardState {
 }
 
 /// @nodoc
-abstract class _$SelectedStrategyCopyWith<$Res> {
-  factory _$SelectedStrategyCopyWith(
-          _SelectedStrategy value, $Res Function(_SelectedStrategy) then) =
-      __$SelectedStrategyCopyWithImpl<$Res>;
+abstract class _$$_SelectedStrategyCopyWith<$Res> {
+  factory _$$_SelectedStrategyCopyWith(
+          _$_SelectedStrategy value, $Res Function(_$_SelectedStrategy) then) =
+      __$$_SelectedStrategyCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SelectedStrategyCopyWithImpl<$Res>
-    extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$SelectedStrategyCopyWith<$Res> {
-  __$SelectedStrategyCopyWithImpl(
-      _SelectedStrategy _value, $Res Function(_SelectedStrategy) _then)
-      : super(_value, (v) => _then(v as _SelectedStrategy));
-
-  @override
-  _SelectedStrategy get _value => super._value as _SelectedStrategy;
+class __$$_SelectedStrategyCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_SelectedStrategy>
+    implements _$$_SelectedStrategyCopyWith<$Res> {
+  __$$_SelectedStrategyCopyWithImpl(
+      _$_SelectedStrategy _value, $Res Function(_$_SelectedStrategy) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -772,7 +687,7 @@ class _$_SelectedStrategy implements _SelectedStrategy {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _SelectedStrategy);
+        (other.runtimeType == runtimeType && other is _$_SelectedStrategy);
   }
 
   @override
@@ -786,7 +701,6 @@ class _$_SelectedStrategy implements _SelectedStrategy {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -797,15 +711,14 @@ class _$_SelectedStrategy implements _SelectedStrategy {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return selectedStrategy?.call();
   }
@@ -818,7 +731,6 @@ class _$_SelectedStrategy implements _SelectedStrategy {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -838,7 +750,6 @@ class _$_SelectedStrategy implements _SelectedStrategy {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -849,15 +760,14 @@ class _$_SelectedStrategy implements _SelectedStrategy {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return selectedStrategy?.call(this);
   }
@@ -870,7 +780,6 @@ class _$_SelectedStrategy implements _SelectedStrategy {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -888,169 +797,19 @@ abstract class _SelectedStrategy implements GameBoardState {
 }
 
 /// @nodoc
-abstract class _$SelectedSkillCopyWith<$Res> {
-  factory _$SelectedSkillCopyWith(
-          _SelectedSkill value, $Res Function(_SelectedSkill) then) =
-      __$SelectedSkillCopyWithImpl<$Res>;
+abstract class _$$_UpdateBoardCopyWith<$Res> {
+  factory _$$_UpdateBoardCopyWith(
+          _$_UpdateBoard value, $Res Function(_$_UpdateBoard) then) =
+      __$$_UpdateBoardCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SelectedSkillCopyWithImpl<$Res>
-    extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$SelectedSkillCopyWith<$Res> {
-  __$SelectedSkillCopyWithImpl(
-      _SelectedSkill _value, $Res Function(_SelectedSkill) _then)
-      : super(_value, (v) => _then(v as _SelectedSkill));
-
-  @override
-  _SelectedSkill get _value => super._value as _SelectedSkill;
-}
-
-/// @nodoc
-
-class _$_SelectedSkill implements _SelectedSkill {
-  const _$_SelectedSkill();
-
-  @override
-  String toString() {
-    return 'GameBoardState.selectedSkill()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _SelectedSkill);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function() selectedTiles,
-    required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
-    required TResult Function() updateBoard,
-    required TResult Function(String playerId) playerTurn,
-    required TResult Function() gameFinished,
-  }) {
-    return selectedSkill();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
-  }) {
-    return selectedSkill?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
-    required TResult orElse(),
-  }) {
-    if (selectedSkill != null) {
-      return selectedSkill();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_SelectedTiles value) selectedTiles,
-    required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
-    required TResult Function(_UpdateBoard value) updateBoard,
-    required TResult Function(_PlayerTurn value) playerTurn,
-    required TResult Function(_GameFinished value) gameFinished,
-  }) {
-    return selectedSkill(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
-  }) {
-    return selectedSkill?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
-    required TResult orElse(),
-  }) {
-    if (selectedSkill != null) {
-      return selectedSkill(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SelectedSkill implements GameBoardState {
-  const factory _SelectedSkill() = _$_SelectedSkill;
-}
-
-/// @nodoc
-abstract class _$UpdateBoardCopyWith<$Res> {
-  factory _$UpdateBoardCopyWith(
-          _UpdateBoard value, $Res Function(_UpdateBoard) then) =
-      __$UpdateBoardCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$UpdateBoardCopyWithImpl<$Res>
-    extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$UpdateBoardCopyWith<$Res> {
-  __$UpdateBoardCopyWithImpl(
-      _UpdateBoard _value, $Res Function(_UpdateBoard) _then)
-      : super(_value, (v) => _then(v as _UpdateBoard));
-
-  @override
-  _UpdateBoard get _value => super._value as _UpdateBoard;
+class __$$_UpdateBoardCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_UpdateBoard>
+    implements _$$_UpdateBoardCopyWith<$Res> {
+  __$$_UpdateBoardCopyWithImpl(
+      _$_UpdateBoard _value, $Res Function(_$_UpdateBoard) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1066,7 +825,7 @@ class _$_UpdateBoard implements _UpdateBoard {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _UpdateBoard);
+        (other.runtimeType == runtimeType && other is _$_UpdateBoard);
   }
 
   @override
@@ -1080,7 +839,6 @@ class _$_UpdateBoard implements _UpdateBoard {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -1091,15 +849,14 @@ class _$_UpdateBoard implements _UpdateBoard {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return updateBoard?.call();
   }
@@ -1112,7 +869,6 @@ class _$_UpdateBoard implements _UpdateBoard {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -1132,7 +888,6 @@ class _$_UpdateBoard implements _UpdateBoard {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -1143,15 +898,14 @@ class _$_UpdateBoard implements _UpdateBoard {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return updateBoard?.call(this);
   }
@@ -1164,7 +918,6 @@ class _$_UpdateBoard implements _UpdateBoard {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -1182,29 +935,29 @@ abstract class _UpdateBoard implements GameBoardState {
 }
 
 /// @nodoc
-abstract class _$PlayerTurnCopyWith<$Res> {
-  factory _$PlayerTurnCopyWith(
-          _PlayerTurn value, $Res Function(_PlayerTurn) then) =
-      __$PlayerTurnCopyWithImpl<$Res>;
+abstract class _$$_PlayerTurnCopyWith<$Res> {
+  factory _$$_PlayerTurnCopyWith(
+          _$_PlayerTurn value, $Res Function(_$_PlayerTurn) then) =
+      __$$_PlayerTurnCopyWithImpl<$Res>;
+  @useResult
   $Res call({String playerId});
 }
 
 /// @nodoc
-class __$PlayerTurnCopyWithImpl<$Res> extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$PlayerTurnCopyWith<$Res> {
-  __$PlayerTurnCopyWithImpl(
-      _PlayerTurn _value, $Res Function(_PlayerTurn) _then)
-      : super(_value, (v) => _then(v as _PlayerTurn));
+class __$$_PlayerTurnCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_PlayerTurn>
+    implements _$$_PlayerTurnCopyWith<$Res> {
+  __$$_PlayerTurnCopyWithImpl(
+      _$_PlayerTurn _value, $Res Function(_$_PlayerTurn) _then)
+      : super(_value, _then);
 
-  @override
-  _PlayerTurn get _value => super._value as _PlayerTurn;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerId = freezed,
+    Object? playerId = null,
   }) {
-    return _then(_PlayerTurn(
-      playerId == freezed
+    return _then(_$_PlayerTurn(
+      null == playerId
           ? _value.playerId
           : playerId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -1229,18 +982,19 @@ class _$_PlayerTurn implements _PlayerTurn {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PlayerTurn &&
-            const DeepCollectionEquality().equals(other.playerId, playerId));
+            other is _$_PlayerTurn &&
+            (identical(other.playerId, playerId) ||
+                other.playerId == playerId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(playerId));
+  int get hashCode => Object.hash(runtimeType, playerId);
 
   @JsonKey(ignore: true)
   @override
-  _$PlayerTurnCopyWith<_PlayerTurn> get copyWith =>
-      __$PlayerTurnCopyWithImpl<_PlayerTurn>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_PlayerTurnCopyWith<_$_PlayerTurn> get copyWith =>
+      __$$_PlayerTurnCopyWithImpl<_$_PlayerTurn>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1250,7 +1004,6 @@ class _$_PlayerTurn implements _PlayerTurn {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -1261,15 +1014,14 @@ class _$_PlayerTurn implements _PlayerTurn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return playerTurn?.call(playerId);
   }
@@ -1282,7 +1034,6 @@ class _$_PlayerTurn implements _PlayerTurn {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -1302,7 +1053,6 @@ class _$_PlayerTurn implements _PlayerTurn {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -1313,15 +1063,14 @@ class _$_PlayerTurn implements _PlayerTurn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return playerTurn?.call(this);
   }
@@ -1334,7 +1083,6 @@ class _$_PlayerTurn implements _PlayerTurn {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,
@@ -1348,31 +1096,28 @@ class _$_PlayerTurn implements _PlayerTurn {
 }
 
 abstract class _PlayerTurn implements GameBoardState {
-  const factory _PlayerTurn(String playerId) = _$_PlayerTurn;
+  const factory _PlayerTurn(final String playerId) = _$_PlayerTurn;
 
   String get playerId;
   @JsonKey(ignore: true)
-  _$PlayerTurnCopyWith<_PlayerTurn> get copyWith =>
+  _$$_PlayerTurnCopyWith<_$_PlayerTurn> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GameFinishedCopyWith<$Res> {
-  factory _$GameFinishedCopyWith(
-          _GameFinished value, $Res Function(_GameFinished) then) =
-      __$GameFinishedCopyWithImpl<$Res>;
+abstract class _$$_GameFinishedCopyWith<$Res> {
+  factory _$$_GameFinishedCopyWith(
+          _$_GameFinished value, $Res Function(_$_GameFinished) then) =
+      __$$_GameFinishedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GameFinishedCopyWithImpl<$Res>
-    extends _$GameBoardStateCopyWithImpl<$Res>
-    implements _$GameFinishedCopyWith<$Res> {
-  __$GameFinishedCopyWithImpl(
-      _GameFinished _value, $Res Function(_GameFinished) _then)
-      : super(_value, (v) => _then(v as _GameFinished));
-
-  @override
-  _GameFinished get _value => super._value as _GameFinished;
+class __$$_GameFinishedCopyWithImpl<$Res>
+    extends _$GameBoardStateCopyWithImpl<$Res, _$_GameFinished>
+    implements _$$_GameFinishedCopyWith<$Res> {
+  __$$_GameFinishedCopyWithImpl(
+      _$_GameFinished _value, $Res Function(_$_GameFinished) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1388,7 +1133,7 @@ class _$_GameFinished implements _GameFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _GameFinished);
+        (other.runtimeType == runtimeType && other is _$_GameFinished);
   }
 
   @override
@@ -1402,7 +1147,6 @@ class _$_GameFinished implements _GameFinished {
     required TResult Function() error,
     required TResult Function() selectedTiles,
     required TResult Function() selectedStrategy,
-    required TResult Function() selectedSkill,
     required TResult Function() updateBoard,
     required TResult Function(String playerId) playerTurn,
     required TResult Function() gameFinished,
@@ -1413,15 +1157,14 @@ class _$_GameFinished implements _GameFinished {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function()? selectedTiles,
-    TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
-    TResult Function()? updateBoard,
-    TResult Function(String playerId)? playerTurn,
-    TResult Function()? gameFinished,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function()? selectedTiles,
+    TResult? Function()? selectedStrategy,
+    TResult? Function()? updateBoard,
+    TResult? Function(String playerId)? playerTurn,
+    TResult? Function()? gameFinished,
   }) {
     return gameFinished?.call();
   }
@@ -1434,7 +1177,6 @@ class _$_GameFinished implements _GameFinished {
     TResult Function()? error,
     TResult Function()? selectedTiles,
     TResult Function()? selectedStrategy,
-    TResult Function()? selectedSkill,
     TResult Function()? updateBoard,
     TResult Function(String playerId)? playerTurn,
     TResult Function()? gameFinished,
@@ -1454,7 +1196,6 @@ class _$_GameFinished implements _GameFinished {
     required TResult Function(_Error value) error,
     required TResult Function(_SelectedTiles value) selectedTiles,
     required TResult Function(_SelectedStrategy value) selectedStrategy,
-    required TResult Function(_SelectedSkill value) selectedSkill,
     required TResult Function(_UpdateBoard value) updateBoard,
     required TResult Function(_PlayerTurn value) playerTurn,
     required TResult Function(_GameFinished value) gameFinished,
@@ -1465,15 +1206,14 @@ class _$_GameFinished implements _GameFinished {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_SelectedTiles value)? selectedTiles,
-    TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
-    TResult Function(_UpdateBoard value)? updateBoard,
-    TResult Function(_PlayerTurn value)? playerTurn,
-    TResult Function(_GameFinished value)? gameFinished,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_SelectedTiles value)? selectedTiles,
+    TResult? Function(_SelectedStrategy value)? selectedStrategy,
+    TResult? Function(_UpdateBoard value)? updateBoard,
+    TResult? Function(_PlayerTurn value)? playerTurn,
+    TResult? Function(_GameFinished value)? gameFinished,
   }) {
     return gameFinished?.call(this);
   }
@@ -1486,7 +1226,6 @@ class _$_GameFinished implements _GameFinished {
     TResult Function(_Error value)? error,
     TResult Function(_SelectedTiles value)? selectedTiles,
     TResult Function(_SelectedStrategy value)? selectedStrategy,
-    TResult Function(_SelectedSkill value)? selectedSkill,
     TResult Function(_UpdateBoard value)? updateBoard,
     TResult Function(_PlayerTurn value)? playerTurn,
     TResult Function(_GameFinished value)? gameFinished,

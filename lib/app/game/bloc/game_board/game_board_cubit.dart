@@ -137,12 +137,6 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     tempTile = index;
   }
 
-  void selectSkillIndex(int index) {
-    emit(const GameBoardState.loading());
-    skillIndex = index;
-    emit(const GameBoardState.selectedSkill());
-  }
-
   void chooseStrategy({bool isMovePlayer = false}) {
     emit(const GameBoardState.loading());
     haveChooseStrategy = true;
@@ -201,7 +195,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     }
   }
 
-  void activateSkill() {
+  void activateSkill(int index) {
+    skillIndex = index;
     tempPoint -= skillPrices[skillIndex];
     switch (skillIndex) {
       case 0:

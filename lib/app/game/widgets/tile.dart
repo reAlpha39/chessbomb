@@ -67,9 +67,6 @@ class _TileState extends State<Tile> with SingleTickerProviderStateMixin {
                 selectedStrategy: () => context.read<GameBoardCubit>()
                   ..selectTile(widget.index)
                   ..pickTileDest(),
-                selectedSkill: () => context.read<GameBoardCubit>()
-                  ..selectTile(widget.index)
-                  ..activateSkill(),
                 orElse: () => context.read<GameBoardCubit>()
                   ..selectTile(widget.index)
                   ..pickPion(),

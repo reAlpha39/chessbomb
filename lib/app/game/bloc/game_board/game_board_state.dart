@@ -7,7 +7,6 @@ class GameBoardState with _$GameBoardState {
   const factory GameBoardState.error() = _Error;
   const factory GameBoardState.selectedTiles() = _SelectedTiles;
   const factory GameBoardState.selectedStrategy() = _SelectedStrategy;
-  const factory GameBoardState.selectedSkill() = _SelectedSkill;
   const factory GameBoardState.updateBoard() = _UpdateBoard;
   const factory GameBoardState.playerTurn(String playerId) = _PlayerTurn;
   const factory GameBoardState.gameFinished() = _GameFinished;
