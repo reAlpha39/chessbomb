@@ -15,6 +15,25 @@ class Dialogs {
     'Dinding',
   ];
 
+  static String _diceAsset(String diceNumber) {
+    switch (diceNumber) {
+      case '1':
+        return 'assets/images/straight_1.png';
+      case '2':
+        return 'assets/images/straight_2.png';
+      case '3':
+        return 'assets/images/straight_3.png';
+      case '4':
+        return 'assets/images/diagonal_1.png';
+      case '5':
+        return 'assets/images/diagonal_2.png';
+      case '6':
+        return 'assets/images/diagonal_3.png';
+      default:
+        return 'assets/images/L.png';
+    }
+  }
+
   static bool showGameSessionForceEndDialog(BuildContext context) {
     AwesomeDialog(
       context: context,
@@ -47,24 +66,18 @@ class Dialogs {
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      dialogType: DialogType.info,
+      dialogType: DialogType.noHeader,
       animType: AnimType.scale,
-      customHeader: middleText.text.size(100).makeCentered(),
-      btnOk: TextButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        child: 'OK'
-            .text
-            .xl
-            .bold
-            .make()
-            .px16()
-            .py8()
-            .box
-            .rounded
-            .color(Colors.blue.shade100)
-            .make(),
+      body: Column(
+        children: [
+          Image.asset(_diceAsset(middleText)),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(context),
+            child: 'OK'.text.xl.bold.make(),
+          ),
+          const SizedBox(height: 10),
+        ],
       ),
     ).show();
   }
