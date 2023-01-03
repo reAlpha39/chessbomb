@@ -828,70 +828,70 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     return isLineBlocked;
   }
 
-  Color boardState(int index) {
-    Color colorTile;
+  String boardState(int index) {
+    String imagePath = '';
     String state = initialBoardState[index];
     switch (state) {
       case '1.0':
-        colorTile = Colors.blue.shade800;
+        imagePath = 'assets/images/pion/king_player_1.png';
         break;
       case '1.1':
-        colorTile = Colors.blue.shade400;
+        imagePath = 'assets/images/pion/pion_player_1.png';
         break;
       case '1.2':
-        colorTile = Colors.blue.shade400;
+        imagePath = 'assets/images/pion/pion_player_1.png';
         break;
       case '1.3':
-        colorTile = Colors.blue.shade400;
+        imagePath = 'assets/images/pion/pion_player_1.png';
         break;
       case '1.4':
-        colorTile = Colors.blue.shade400;
+        imagePath = 'assets/images/pion/pion_player_1.png';
         break;
       case '1.5':
-        colorTile = Colors.blue.shade400;
+        imagePath = 'assets/images/pion/pion_player_1.png';
         break;
       case '2.0':
-        colorTile = Colors.deepOrange.shade800;
+        imagePath = 'assets/images/pion/king_player_2.png';
         break;
       case '2.1':
-        colorTile = Colors.deepOrange.shade400;
+        imagePath = 'assets/images/pion/pion_player_2.png';
         break;
       case '2.2':
-        colorTile = Colors.deepOrange.shade400;
+        imagePath = 'assets/images/pion/pion_player_2.png';
         break;
       case '2.3':
-        colorTile = Colors.deepOrange.shade400;
+        imagePath = 'assets/images/pion/pion_player_2.png';
         break;
       case '2.4':
-        colorTile = Colors.deepOrange.shade400;
+        imagePath = 'assets/images/pion/pion_player_2.png';
         break;
       case '2.5':
-        colorTile = Colors.deepOrange.shade400;
+        imagePath = 'assets/images/pion/pion_player_2.png';
         break;
       case '3.0':
-        colorTile = Colors.white;
+        imagePath = '';
         break;
       case '4.0':
-        colorTile = Colors.white;
+        imagePath = '';
         break;
       case '5.0':
-        colorTile = Colors.white;
+        imagePath = '';
         break;
       case '6.0':
-        colorTile = Colors.white;
+        imagePath = '';
         break;
       case '7.0':
-        colorTile = Colors.brown;
+        imagePath = 'assets/images/pion/wall_tipis.png';
         break;
       case '7.1':
-        colorTile = Colors.brown.shade700;
+        imagePath = 'assets/images/pion/wall_tebal.png';
         break;
       case '8.0':
-        colorTile = Colors.white;
+        imagePath = '';
         break;
       default:
-        colorTile = Colors.white;
+        imagePath = '';
     }
-    return colorTile;
+    return imagePath;
   }
 }

@@ -104,11 +104,21 @@ class _TileLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VxBox(
-            child:
-                kDebugMode ? index.text.lg.make().centered() : const SizedBox())
+      child: kDebugMode
+          ? context.read<GameBoardCubit>().boardState(index) == ''
+              ? const SizedBox()
+              : Image.asset(
+                  context.read<GameBoardCubit>().boardState(index),
+                )
+          : context.read<GameBoardCubit>().boardState(index) == ''
+              ? const SizedBox()
+              : Image.asset(
+                  context.read<GameBoardCubit>().boardState(index),
+                ),
+    )
         .height(5)
         .width(5)
-        .color(context.read<GameBoardCubit>().boardState(index))
+        .color(Colors.white)
         .border(
           color: context.read<GameBoardCubit>().selectedTiles == index
               ? Colors.white
