@@ -210,13 +210,13 @@ class _GameLayout extends StatelessWidget {
                   Column(
                     children: [
                       'Sisa waktu permainan'.text.base.make(),
-                      const GameTimer(),
+                      const RepaintBoundary(child: GameTimer()),
                     ],
                   ).px12(),
                   Column(
                     children: [
                       'Sisa waktu giliran'.text.base.make(),
-                      const TurnTimer(),
+                      const RepaintBoundary(child: TurnTimer()),
                     ],
                   ).px12(),
                 ],
