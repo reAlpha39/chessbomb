@@ -179,8 +179,7 @@ class Dialogs {
                   : context.read<PoinCounterCubit>().playerBPoint,
             );
             if (skillIndex != null) {
-              context.read<GameBoardCubit>()
-                .activateSkill(skillIndex);
+              context.read<GameBoardCubit>().activateSkill(skillIndex);
             }
           },
           child: 'Skill'.text.xl.makeCentered().py8(),
@@ -204,6 +203,7 @@ class Dialogs {
   static gameFinishedDialog({
     required BuildContext context,
     required String playerId,
+    bool isTimeOut = false,
     int? playerAScore,
     int? playerBScore,
   }) {
@@ -227,12 +227,16 @@ class Dialogs {
             : 'Permainan Selesai'.text.medium.makeCentered(),
         (playerAScore != null
                 ? playerAScore == playerBScore!
-                    ? 'Seri'
-                    : ('Player ' +
-                        (playerAScore > playerBScore ? '1' : '2') +
-                        ' Menang')
+                    ? 'Seri\n$playerAScore :  $playerBScore'
+                    : (('Player ' +
+                            (playerAScore > playerBScore ? '1' : '2') +
+                            ' Menang') +
+                        (isTimeOut
+                            ? '\ndengan score\n$playerAScore :  $playerBScore'
+                            : ''))
                 : ('Player ' + playerId))
             .text
+            .center
             .xl
             .bold
             .makeCentered()

@@ -156,6 +156,7 @@ class _GameLayout extends StatelessWidget {
               context.read<GameTimerCubit>().stopTimer();
               context.read<TurnTimerCubit>().stopTimer();
               return Dialogs.gameFinishedDialog(
+                isTimeOut: context.read<GameTimerCubit>().isTimeOut,
                 context: context,
                 playerId: context.read<GameBoardCubit>().playerId,
                 playerAScore: context.read<GameTimerCubit>().isTimeOut
