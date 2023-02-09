@@ -11,7 +11,7 @@ ThemeData theme() {
     ),
   ).copyWith(
     primaryColor: ColorStyle.primaryColor,
-    textTheme: GoogleFonts.poppinsTextTheme(),
+    textTheme: GoogleFonts.lexendTextTheme(),
     scaffoldBackgroundColor: ColorStyle.backgroundColor,
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: ColorStyle.primaryColor,

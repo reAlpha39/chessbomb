@@ -1,8 +1,12 @@
+import 'package:bombernyaa/app/game/widgets/player_one_point.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../bloc/poin_counter/poin_counter_cubit.dart';
 import 'game_timer.dart';
 import 'player_point.dart';
+import 'player_two_point.dart';
 import 'turn_timer.dart';
 
 class GameDashboard extends StatelessWidget {
@@ -33,23 +37,54 @@ class GameDashboard extends StatelessWidget {
           ),
           child: Column(
             children: [
-              const PlayerPoint(),
+              // const PlayerPoint(),
+              const SizedBox(width: double.infinity),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const PlayerOnePoint(),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      'Sisa waktu permainan'.text.base.make(),
-                      const RepaintBoundary(child: GameTimer()),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF224E65),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          children: [
+                            'SISA WAKTU PERMAINAN'
+                                .text
+                                .size(10)
+                                .color(const Color(0xFFE5EA12))
+                                .make(),
+                            const RepaintBoundary(child: GameTimer()),
+                          ],
+                        ).p8(),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF224E65),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          children: [
+                            'SISA WAKTU GILIRAN'
+                                .text
+                                .size(10)
+                                .color(const Color(0xFFE5EA12))
+                                .make(),
+                            const RepaintBoundary(child: TurnTimer()),
+                          ],
+                        ).p8(),
+                      ),
+                      const SizedBox(height: 8),
                     ],
-                  ).px12(),
-                  Column(
-                    children: [
-                      'Sisa waktu giliran'.text.base.make(),
-                      const RepaintBoundary(child: TurnTimer()),
-                    ],
-                  ).px12(),
+                  ),
+                  const PlayerTwoPoint(),
                 ],
               ),
             ],
