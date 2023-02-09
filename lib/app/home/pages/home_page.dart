@@ -40,6 +40,11 @@ class _HomeBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 72),
+          Image.asset(
+            "assets/images/logo.png",
+            height: 140,
+            width: 140,
+          ),
           Text(
             'CHESS',
             style: TextStyle(
@@ -63,11 +68,15 @@ class _HomeBody extends StatelessWidget {
             ),
             child: ElevatedButton(
               onPressed: () => context.pushNamed('game_page'),
-              child: const Text(
-                'Mulai',
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(const Color(0xFFD3B14E))),
+              child: Text(
+                'MULAI',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
+                  fontFamily: GoogleFonts.secularOne().fontFamily,
                 ),
               ).px12(),
             ),
@@ -81,11 +90,15 @@ class _HomeBody extends StatelessWidget {
                       ),
                       child: ElevatedButton(
                         onPressed: () => SystemNavigator.pop(),
-                        child: const Text(
-                          'Keluar',
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color(0xFFD3B14E))),
+                        child: Text(
+                          'KELUAR',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.white,
+                            fontFamily: GoogleFonts.secularOne().fontFamily,
                           ),
                         ).px8(),
                       ),
