@@ -4,15 +4,14 @@ import 'package:bombernyaa/app/game/bloc/poin_counter/poin_counter_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/roll_dice/roll_dice_cubit.dart';
 import 'package:bombernyaa/app/game/bloc/turn_timer/turn_timer_cubit.dart';
 import 'package:bombernyaa/app/game/widgets/game_board.dart';
-import 'package:bombernyaa/app/game/widgets/game_timer.dart';
-import 'package:bombernyaa/app/game/widgets/player_point.dart';
-import 'package:bombernyaa/app/game/widgets/turn_timer.dart';
 import 'package:bombernyaa/injection.dart';
 import 'package:bombernyaa/presentation/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../widgets/game_dashboard.dart';
 
 class GamePage extends StatelessWidget {
   const GamePage({
@@ -204,28 +203,11 @@ class _GameLayout extends StatelessWidget {
             maxWidth: 500,
           ),
           child: Column(
-            children: [
-              const SizedBox(height: 12),
-              const PlayerPoint(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      'Sisa waktu permainan'.text.base.make(),
-                      const RepaintBoundary(child: GameTimer()),
-                    ],
-                  ).px12(),
-                  Column(
-                    children: [
-                      'Sisa waktu giliran'.text.base.make(),
-                      const RepaintBoundary(child: TurnTimer()),
-                    ],
-                  ).px12(),
-                ],
-              ),
-              const GameBoard(),
+            children: const [
+              SizedBox(height: 12),
+              GameDashboard(),
+              SizedBox(height: 12),
+              GameBoard(),
             ],
           ).safeArea().px16(),
         ).centered(),
@@ -233,3 +215,5 @@ class _GameLayout extends StatelessWidget {
     );
   }
 }
+
+
