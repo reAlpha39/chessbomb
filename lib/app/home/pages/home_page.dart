@@ -118,6 +118,9 @@ class _HomeBody extends StatelessWidget {
                               const GamePage(debugModeAddPoint: true),
                         ),
                       ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xFFD3B14E))),
                       child: const Text(
                         'Player pion +100',
                         style: TextStyle(
@@ -135,6 +138,9 @@ class _HomeBody extends StatelessWidget {
                               const GamePage(debugModeWinConditionA: true),
                         ),
                       ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xFFD3B14E))),
                       child: const Text(
                         'Menang dengan kondisi\nBendera lawan diambil',
                         style: TextStyle(
@@ -153,6 +159,9 @@ class _HomeBody extends StatelessWidget {
                               const GamePage(debugModeWinConditionB: true),
                         ),
                       ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color(0xFFD3B14E))),
                       child: const Text(
                         'Menang dengan kondisi\nPion lawan habis',
                         style: TextStyle(
