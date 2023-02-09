@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../game/pages/game_page.dart';
@@ -39,12 +40,21 @@ class _HomeBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 72),
-          const Text(
-            'ChessBomb',
+          Text(
+            'CHESS',
             style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: 52,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontFamily: GoogleFonts.lilitaOne().fontFamily),
+          ),
+          Text(
+            'BOMB',
+            style: TextStyle(
+                fontSize: 32,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontFamily: GoogleFonts.lilitaOne().fontFamily),
           ),
           const SizedBox(height: 50),
           Padding(
