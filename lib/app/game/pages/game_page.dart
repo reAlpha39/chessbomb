@@ -11,6 +11,7 @@ import 'package:bombernyaa/injection.dart';
 import 'package:bombernyaa/presentation/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class GamePage extends StatelessWidget {
@@ -186,6 +187,8 @@ class _GameLayout extends StatelessWidget {
               },
               child: 'Mulai'
                   .text
+                  .fontFamily(GoogleFonts.secularOne().fontFamily!)
+                  .white
                   .xl2
                   .center
                   .make()

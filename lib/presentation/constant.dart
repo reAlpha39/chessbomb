@@ -7,4 +7,5 @@ class ColorStyle {
   static const Color textGreyColor = Color(0xFF999999);
   static const Color warningRedColor = Color(0xFFF74942);
   static const Color warningRedBgColor = Color(0x17F74842);
+  static const Color buttonColor = Color(0xFFD3B14E);
 }
