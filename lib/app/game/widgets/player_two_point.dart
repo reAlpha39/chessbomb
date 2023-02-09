@@ -29,12 +29,16 @@ class PlayerTwoPoint extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ).p8(),
-              Container(
-                height: 5,
-                width: 30,
-                color: context.read<GameBoardCubit>().playerId == '2'
-                    ? Colors.green
-                    : Colors.red,
+              BlocBuilder<GameBoardCubit, GameBoardState>(
+                builder: (context, state) {
+                  return Container(
+                    height: 5,
+                    width: 30,
+                    color: context.read<GameBoardCubit>().playerId == '2'
+                        ? Colors.green
+                        : Colors.red,
+                  );
+                },
               )
             ],
           ),
@@ -48,24 +52,28 @@ class PlayerTwoPoint extends StatelessWidget {
               width: 30,
               padding: const EdgeInsets.all(4),
               decoration: const BoxDecoration(color: Color(0xFF193D4F)),
-              child: Text(
-                context
+              child: BlocBuilder<PoinCounterCubit, PoinCounterState>(
+                builder: (context, state) {
+                  return Text(
+                    context
+                                .read<PoinCounterCubit>()
+                                .playerBPoint
+                                .toString()
+                                .length ==
+                            1
+                        ? '0'
+                        : context
                             .read<PoinCounterCubit>()
                             .playerBPoint
-                            .toString()
-                            .length ==
-                        1
-                    ? '0'
-                    : context
-                        .read<PoinCounterCubit>()
-                        .playerBPoint
-                        .toString()[0],
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w600,
-                ),
+                            .toString()[0],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(width: 4),
@@ -73,27 +81,31 @@ class PlayerTwoPoint extends StatelessWidget {
               width: 30,
               padding: const EdgeInsets.all(4),
               decoration: const BoxDecoration(color: Color(0xFF193D4F)),
-              child: Text(
-                context
+              child: BlocBuilder<PoinCounterCubit, PoinCounterState>(
+                builder: (context, state) {
+                  return Text(
+                    context
+                                .read<PoinCounterCubit>()
+                                .playerBPoint
+                                .toString()
+                                .length ==
+                            1
+                        ? context
                             .read<PoinCounterCubit>()
                             .playerBPoint
-                            .toString()
-                            .length ==
-                        1
-                    ? context
-                        .read<PoinCounterCubit>()
-                        .playerBPoint
-                        .toString()[0]
-                    : context
-                        .read<PoinCounterCubit>()
-                        .playerBPoint
-                        .toString()[1],
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w600,
-                ),
+                            .toString()[0]
+                        : context
+                            .read<PoinCounterCubit>()
+                            .playerBPoint
+                            .toString()[1],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  );
+                },
               ),
             ),
           ],
