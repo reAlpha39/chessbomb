@@ -184,11 +184,11 @@ class _GameLayout extends StatelessWidget {
                     ..rollDice(customRoll: setCustomRoll ? 2 : -1);
                 }
               },
-              child: 'Mulai'
+              child: 'MULAI'
                   .text
                   .fontFamily(GoogleFonts.secularOne().fontFamily!)
                   .white
-                  .xl2
+                  .size(16)
                   .center
                   .make()
                   .box
