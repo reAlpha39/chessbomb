@@ -104,18 +104,37 @@ class Dialogs {
               itemCount: _titleButton.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => ElevatedButton(
-                onPressed: point >= skillPrice[index]
+              itemBuilder: (context, index) => InkWell(
+                onTap: point >= skillPrice[index]
                     ? () => Navigator.of(context).pop(index)
                     : null,
-                child: (_titleButton[index] +
-                        ' (' +
-                        skillPrice[index].toString() +
-                        'P)')
-                    .text
-                    .xl
-                    .makeCentered()
-                    .py8(),
+                child: ClipPath(
+                  clipper: const ShapeBorderClipper(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                  ),
+                  child: Container(
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFD9D9D9),
+                      border: BorderDirectional(
+                        bottom: BorderSide(
+                          width: 5,
+                          color: Color(0xFFD3B14D),
+                        ),
+                      ),
+                    ),
+                    child: (_titleButton[index] +
+                            ' (' +
+                            skillPrice[index].toString() +
+                            'P)')
+                        .text
+                        .xl
+                        .makeCentered()
+                        .py8(),
+                  ),
+                ),
               ).pOnly(bottom: index == 4 ? 0 : 10),
             ),
             const SizedBox(
