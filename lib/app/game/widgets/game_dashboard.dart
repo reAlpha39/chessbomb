@@ -1,6 +1,7 @@
 import 'package:bombernyaa/app/game/widgets/player_one_point.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../bloc/poin_counter/poin_counter_cubit.dart';
@@ -55,8 +56,9 @@ class GameDashboard extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            'SISA WAKTU PERMAINAN'
+                            'WAKTU PERMAINAN'
                                 .text
+                                .bold
                                 .size(10)
                                 .color(const Color(0xFFE5EA12))
                                 .make(),
@@ -72,8 +74,9 @@ class GameDashboard extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            'SISA WAKTU GILIRAN'
+                            'WAKTU GILIRAN'
                                 .text
+                                .bold
                                 .size(10)
                                 .color(const Color(0xFFE5EA12))
                                 .make(),
