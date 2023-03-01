@@ -16,6 +16,13 @@ class Dialogs {
     'DINDING',
   ];
 
+  static final List<String> _iconButton = [
+    'assets/icon/bom_vertikal.png',
+    'assets/icon/bom_horizontal.png',
+    'assets/icon/gerak_bebas.png',
+    'assets/icon/dinding.png',
+  ];
+
   static String _diceAsset(String diceNumber) {
     switch (diceNumber) {
       case '1':
@@ -134,14 +141,25 @@ class Dialogs {
                         ),
                       ),
                     ),
-                    child: (_titleButton[index])
-                        .text
-                        .color(Color(0xFF706F6F))
-                        .fontFamily(GoogleFonts.alatsi().fontFamily!)
-                        .size(8)
-                        .xl
-                        .makeCentered()
-                        .py8(),
+                    child: Row(
+                      children: [
+                        Image.asset(_iconButton[index]),
+                        _titleButton[index]
+                            .text
+                            .color(const Color(0xFF706F6F))
+                            .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                            .size(8)
+                            .xl
+                            .make()
+                            .expand(),
+                        Row(
+                          children: [
+                            skillPrice[index].toString().text.xl.make(),
+                            Image.asset('assets/icon/coin.png'),
+                          ],
+                        ),
+                      ],
+                    ).p8(),
                   ),
                 ),
               ).pOnly(bottom: index == 4 ? 0 : 10),
