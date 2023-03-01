@@ -97,11 +97,12 @@ class Dialogs {
     return AwesomeDialog(
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
-      animType: AnimType.scale,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 10,
+      animType: AnimType.bottomSlide,
       dialogType: DialogType.question,
       dialogBackgroundColor: Color(0xFF9F6421),
       title: 'Pilih Skill',
+      borderSide: BorderSide(color: Color(0xFFD3B14D), width: 10),
       body: BlocProvider(
         create: (context) => getIt<GameBoardCubit>(),
         child: Column(
@@ -223,10 +224,11 @@ class Dialogs {
     return AwesomeDialog(
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 10,
       animType: AnimType.scale,
       dialogType: DialogType.question,
       title: 'Pilih Strategi',
+      borderSide: BorderSide(color: Color(0xFFD3B14D), width: 10),
       dialogBackgroundColor: Color(0xFF9F6421),
       body: VStack([
         Center(
@@ -403,7 +405,7 @@ class Dialogs {
       dismissOnTouchOutside: false,
       context: context,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
+      width: context.screenWidth > 500 ? 500 : context.screenWidth - 10,
       animType: AnimType.scale,
       dialogType: DialogType.noHeader,
       title: playerAScore != null
