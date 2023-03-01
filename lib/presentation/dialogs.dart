@@ -143,6 +143,7 @@ class Dialogs {
       animType: AnimType.scale,
       dialogType: DialogType.question,
       title: 'Pilih Strategi',
+      dialogBackgroundColor: Color(0xFF9F6421),
       body: VStack([
         Center(
           child: 'Pilih Strategi'.text.xl.makeCentered(),
@@ -270,7 +271,7 @@ class Dialogs {
           ),
         ),
         const SizedBox(
-          height: 16,
+          height: 50,
         ),
       ]).centered().px8(),
     ).show();
