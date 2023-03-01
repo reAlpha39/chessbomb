@@ -10,10 +10,10 @@ import '../app/game/bloc/poin_counter/poin_counter_cubit.dart';
 
 class Dialogs {
   static final List<String> _titleButton = [
-    'Bom Vertikal',
-    'Bom Horizontal',
-    'Gerak Segala Arah',
-    'Dinding',
+    'BOM VERTI',
+    'BOM HORI',
+    'GERAK BEBAS',
+    'DINDING',
   ];
 
   static String _diceAsset(String diceNumber) {
@@ -93,12 +93,19 @@ class Dialogs {
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 50,
       animType: AnimType.scale,
       dialogType: DialogType.question,
+      dialogBackgroundColor: Color(0xFF9F6421),
       title: 'Pilih Skill',
       body: BlocProvider(
         create: (context) => getIt<GameBoardCubit>(),
         child: Column(
           children: [
-            'Pilih Skill'.text.xl.makeCentered(),
+            'PILIH SKILL'
+                .text
+                .white
+                .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                .size(20)
+                .xl
+                .makeCentered(),
             const SizedBox(height: 10),
             ListView.builder(
               itemCount: _titleButton.length,
@@ -116,20 +123,22 @@ class Dialogs {
                   ),
                   child: Container(
                     height: 50,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFD9D9D9),
-                      border: BorderDirectional(
+                    decoration: BoxDecoration(
+                      color: (point >= skillPrice[index]
+                          ? const Color(0xFFD9D9D9)
+                          : const Color(0xFF979797)),
+                      border: const BorderDirectional(
                         bottom: BorderSide(
                           width: 5,
                           color: Color(0xFFD3B14D),
                         ),
                       ),
                     ),
-                    child: (_titleButton[index] +
-                            ' (' +
-                            skillPrice[index].toString() +
-                            'P)')
+                    child: (_titleButton[index])
                         .text
+                        .color(Color(0xFF706F6F))
+                        .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                        .size(8)
                         .xl
                         .makeCentered()
                         .py8(),
@@ -140,14 +149,39 @@ class Dialogs {
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(
-              onPressed: () {
+            InkWell(
+              onTap: () {
                 Navigator.of(context).pop();
               },
-              child: 'Kembali'.text.xl.makeCentered().py8(),
+              child: ClipPath(
+                clipper: const ShapeBorderClipper(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                ),
+                child: Container(
+                  height: 50,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFD9D9D9),
+                    border: BorderDirectional(
+                      bottom: BorderSide(
+                        width: 5,
+                        color: Color(0xFFD3B14D),
+                      ),
+                    ),
+                  ),
+                  child: 'KEMBALI'
+                      .text
+                      .color(Color(0xFF706F6F))
+                      .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                      .xl
+                      .makeCentered()
+                      .py8(),
+                ),
+              ),
             ),
             const SizedBox(
-              height: 16,
+              height: 50,
             ),
           ],
         ),
