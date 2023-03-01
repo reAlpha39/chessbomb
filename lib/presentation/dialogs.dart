@@ -10,8 +10,8 @@ import '../app/game/bloc/poin_counter/poin_counter_cubit.dart';
 
 class Dialogs {
   static final List<String> _titleButton = [
-    'BOM VERTI',
-    'BOM HORI',
+    'BOM VERTIKAL',
+    'BOM HORIZONTAL',
     'GERAK BEBAS',
     'DINDING',
   ];
@@ -150,12 +150,24 @@ class Dialogs {
                             .fontFamily(GoogleFonts.alatsi().fontFamily!)
                             .size(8)
                             .xl
-                            .make()
+                            .makeCentered()
                             .expand(),
                         Row(
                           children: [
-                            skillPrice[index].toString().text.xl.make(),
-                            Image.asset('assets/icon/coin.png'),
+                            skillPrice[index]
+                                .toString()
+                                .text
+                                .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                                .color(const Color(0xFF706F6F))
+                                .xl
+                                .make(),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Image.asset(
+                              'assets/icon/coin.png',
+                              height: 18,
+                            ),
                           ],
                         ),
                       ],
