@@ -148,28 +148,66 @@ class Dialogs {
           child: 'Pilih Strategi'.text.xl.makeCentered(),
         ),
         const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: () {
+        InkWell(
+          onTap: () {
             context.read<GameBoardCubit>().chooseStrategy(isMovePlayer: true);
             Navigator.of(context).pop();
           },
-          child: 'Pindah Pion'.text.xl.makeCentered().py8(),
+          child: ClipPath(
+            clipper: const ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+            ),
+            child: Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Color(0xFFD9D9D9),
+                border: BorderDirectional(
+                  bottom: BorderSide(
+                    width: 5,
+                    color: Color(0xFFD3B14D),
+                  ),
+                ),
+              ),
+              child: 'Pindah Pion'.text.xl.makeCentered().py8(),
+            ),
+          ),
         ),
         const SizedBox(
           height: 10,
         ),
-        ElevatedButton(
-          onPressed: () {
+        InkWell(
+          onTap: () {
             context.read<GameBoardCubit>().chooseStrategy(isMovePlayer: false);
             Navigator.of(context).pop();
           },
-          child: 'Bom'.text.xl.makeCentered().py8(),
+          child: ClipPath(
+            clipper: const ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+            ),
+            child: Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Color(0xFFD9D9D9),
+                border: BorderDirectional(
+                  bottom: BorderSide(
+                    width: 5,
+                    color: Color(0xFFD3B14D),
+                  ),
+                ),
+              ),
+              child: 'Bom'.text.xl.makeCentered().py8(),
+            ),
+          ),
         ),
         const SizedBox(
           height: 10,
         ),
-        ElevatedButton(
-          onPressed: () async {
+        InkWell(
+          onTap: () async {
             Navigator.of(context).pop();
             int? skillIndex = await Dialogs.chooseSkillDialog(
               context: context,
@@ -182,16 +220,54 @@ class Dialogs {
               context.read<GameBoardCubit>().activateSkill(skillIndex);
             }
           },
-          child: 'Skill'.text.xl.makeCentered().py8(),
+          child: ClipPath(
+            clipper: const ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+            ),
+            child: Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Color(0xFFD9D9D9),
+                border: BorderDirectional(
+                  bottom: BorderSide(
+                    width: 5,
+                    color: Color(0xFFD3B14D),
+                  ),
+                ),
+              ),
+              child: 'Skill'.text.xl.makeCentered().py8(),
+            ),
+          ),
         ),
         const SizedBox(
           height: 10,
         ),
-        ElevatedButton(
-          onPressed: () {
+        InkWell(
+          onTap: () {
             Navigator.of(context).pop();
           },
-          child: 'Kembali'.text.xl.makeCentered().py8(),
+          child: ClipPath(
+            clipper: const ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+            ),
+            child: Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Color(0xFFD9D9D9),
+                border: BorderDirectional(
+                  bottom: BorderSide(
+                    width: 5,
+                    color: Color(0xFFD3B14D),
+                  ),
+                ),
+              ),
+              child: 'Kembali'.text.xl.makeCentered().py8(),
+            ),
+          ),
         ),
         const SizedBox(
           height: 16,
