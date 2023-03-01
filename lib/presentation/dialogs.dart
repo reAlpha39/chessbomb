@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bombernyaa/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../app/game/bloc/game_board/game_board_cubit.dart';
@@ -146,7 +147,14 @@ class Dialogs {
       dialogBackgroundColor: Color(0xFF9F6421),
       body: VStack([
         Center(
-          child: 'Pilih Strategi'.text.xl.makeCentered(),
+          child: 'PILIH STRATEGI'
+              .text
+              .color(Color(0xFF706F6F))
+              .white
+              .fontWeight(FontWeight.w900)
+              .fontFamily(GoogleFonts.alatsi().fontFamily!)
+              .size(20)
+              .makeCentered(),
         ),
         const SizedBox(height: 16),
         InkWell(
@@ -171,7 +179,13 @@ class Dialogs {
                   ),
                 ),
               ),
-              child: 'Pindah Pion'.text.xl.makeCentered().py8(),
+              child: 'PINDAH PION'
+                  .text
+                  .color(Color(0xFF706F6F))
+                  .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                  .xl
+                  .makeCentered()
+                  .py8(),
             ),
           ),
         ),
@@ -200,7 +214,13 @@ class Dialogs {
                   ),
                 ),
               ),
-              child: 'Bom'.text.xl.makeCentered().py8(),
+              child: 'BOM'
+                  .text
+                  .color(Color(0xFF706F6F))
+                  .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                  .xl
+                  .makeCentered()
+                  .py8(),
             ),
           ),
         ),
@@ -238,7 +258,13 @@ class Dialogs {
                   ),
                 ),
               ),
-              child: 'Skill'.text.xl.makeCentered().py8(),
+              child: 'SKILL'
+                  .text
+                  .color(Color(0xFF706F6F))
+                  .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                  .xl
+                  .makeCentered()
+                  .py8(),
             ),
           ),
         ),
@@ -266,7 +292,13 @@ class Dialogs {
                   ),
                 ),
               ),
-              child: 'Kembali'.text.xl.makeCentered().py8(),
+              child: 'KEMBALI'
+                  .text
+                  .color(Color(0xFF706F6F))
+                  .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                  .xl
+                  .makeCentered()
+                  .py8(),
             ),
           ),
         ),
