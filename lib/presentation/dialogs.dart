@@ -436,7 +436,10 @@ class Dialogs {
                               ? playerAScore == playerBScore!
                                   ? 'Waktu Permainan Habis'
                                   : ('Player ' +
-                                      (playerAScore > playerBScore ? '1' : '2'))
+                                      (playerAScore > playerBScore
+                                          ? '1'
+                                          : '2') +
+                                      ' Menang')
                               : ('Player ' + playerId))
                           .text
                           .center
@@ -475,5 +478,49 @@ class Dialogs {
         ),
       ),
     );
+    // return AwesomeDialog(
+    //   dismissOnTouchOutside: false,
+    //   context: context,
+    //   padding: const EdgeInsets.symmetric(horizontal: 16),
+    //   width: context.screenWidth > 500 ? 500 : context.screenWidth - 10,
+    //   animType: AnimType.scale,
+    //   dialogType: DialogType.noHeader,
+    //   title: playerAScore != null
+    //       ? playerAScore == playerBScore!
+    //           ? 'Seri'
+    //           : 'Permainan Selesai'
+    //       : 'Permainan Selesai',
+    //   body: VStack([
+    //     playerAScore != null
+    //         ? playerAScore == playerBScore!
+    //             ? const SizedBox()
+    //             : 'Permainan Selesai'.text.medium.makeCentered()
+    //         : 'Permainan Selesai'.text.medium.makeCentered(),
+    //     (playerAScore != null
+    //             ? playerAScore == playerBScore!
+    //                 ? 'Seri\n$playerAScore :  $playerBScore'
+    //                 : (('Player ' +
+    //                         (playerAScore > playerBScore ? '1' : '2') +
+    //                         ' Menang') +
+    //                     (isTimeOut
+    //                         ? '\ndengan score\n$playerAScore :  $playerBScore'
+    //                         : ''))
+    //             : ('Player ' + playerId))
+    //         .text
+    //         .center
+    //         .xl
+    //         .bold
+    //         .makeCentered()
+    //         .py16(),
+    //     ElevatedButton(
+    //       onPressed: () =>
+    //           Navigator.popUntil(context, (route) => route.isFirst),
+    //       child: 'Main Menu'.text.base.makeCentered(),
+    //     ).centered(),
+    //     const SizedBox(
+    //       height: 16,
+    //     ),
+    //   ]),
+    // ).show();
   }
 }
