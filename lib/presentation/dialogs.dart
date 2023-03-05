@@ -414,7 +414,7 @@ class Dialogs {
               child: Container(
                 padding: const EdgeInsets.all(16),
                 margin: const EdgeInsets.only(left: 32, right: 32, top: 64),
-                height: 170,
+                height: 180,
                 width:
                     context.screenWidth > 500 ? 500 : context.screenWidth - 10,
                 decoration: BoxDecoration(
@@ -434,20 +434,48 @@ class Dialogs {
                     children: [
                       (isTimeOut
                               ? 'Waktu Permainan Habis'
-                              : 'Player ' + playerId)
+                              : 'PLAYER ' + playerId)
                           .text
                           .center
+                          .color(const Color(0xFFE5EA12))
+                          .fontFamily(GoogleFonts.alatsi().fontFamily!)
                           .size(20)
                           .bold
                           .makeCentered()
                           .py16(),
-                      ElevatedButton(
-                        onPressed: () => Navigator.popUntil(
+                      InkWell(
+                        onTap: () => Navigator.popUntil(
                           context,
                           (route) => route.isFirst,
                         ),
-                        child: 'Main Menu'.text.base.makeCentered(),
-                      ).centered(),
+                        child: ClipPath(
+                          clipper: const ShapeBorderClipper(
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                          ),
+                          child: Container(
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFD9D9D9),
+                              border: BorderDirectional(
+                                bottom: BorderSide(
+                                  width: 5,
+                                  color: Color(0xFFD3B14D),
+                                ),
+                              ),
+                            ),
+                            child: 'MAIN MENU'
+                                .text
+                                .color(const Color(0xFF706F6F))
+                                .fontFamily(GoogleFonts.alatsi().fontFamily!)
+                                .xl
+                                .makeCentered()
+                                .py8(),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
