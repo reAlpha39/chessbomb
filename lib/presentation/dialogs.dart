@@ -401,49 +401,79 @@ class Dialogs {
     int? playerAScore,
     int? playerBScore,
   }) {
-    return AwesomeDialog(
-      dismissOnTouchOutside: false,
+    return showDialog(
       context: context,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: context.screenWidth > 500 ? 500 : context.screenWidth - 10,
-      animType: AnimType.scale,
-      dialogType: DialogType.noHeader,
-      title: playerAScore != null
-          ? playerAScore == playerBScore!
-              ? 'Seri'
-              : 'Permainan Selesai'
-          : 'Permainan Selesai',
-      body: VStack([
-        playerAScore != null
-            ? playerAScore == playerBScore!
-                ? const SizedBox()
-                : 'Permainan Selesai'.text.medium.makeCentered()
-            : 'Permainan Selesai'.text.medium.makeCentered(),
-        (playerAScore != null
-                ? playerAScore == playerBScore!
-                    ? 'Seri\n$playerAScore :  $playerBScore'
-                    : (('Player ' +
-                            (playerAScore > playerBScore ? '1' : '2') +
-                            ' Menang') +
-                        (isTimeOut
-                            ? '\ndengan score\n$playerAScore :  $playerBScore'
-                            : ''))
-                : ('Player ' + playerId))
-            .text
-            .center
-            .xl
-            .bold
-            .makeCentered()
-            .py16(),
-        ElevatedButton(
-          onPressed: () =>
-              Navigator.popUntil(context, (route) => route.isFirst),
-          child: 'Main Menu'.text.base.makeCentered(),
-        ).centered(),
-        const SizedBox(
-          height: 16,
+      barrierDismissible: false,
+      builder: (_) => WillPopScope(
+        onWillPop: () async => false,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Material(
+              type: MaterialType.transparency,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.only(left: 32, right: 32, top: 64),
+                height: 170,
+                width:
+                    context.screenWidth > 500 ? 500 : context.screenWidth - 10,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFD3B14D),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  width: context.screenWidth > 500
+                      ? 500
+                      : context.screenWidth - 10,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF9F6421),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      (playerAScore != null
+                              ? playerAScore == playerBScore!
+                                  ? 'Waktu Permainan Habis'
+                                  : ('Player ' +
+                                      (playerAScore > playerBScore ? '1' : '2'))
+                              : ('Player ' + playerId))
+                          .text
+                          .center
+                          .size(20)
+                          .bold
+                          .makeCentered()
+                          .py16(),
+                      ElevatedButton(
+                        onPressed: () => Navigator.popUntil(
+                          context,
+                          (route) => route.isFirst,
+                        ),
+                        child: 'Main Menu'.text.base.makeCentered(),
+                      ).centered(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            IntrinsicHeight(
+              child: Column(
+                children: [
+                  Image.asset(
+                    playerAScore == playerBScore!
+                        ? 'assets/images/banner_draw.png'
+                        : 'assets/images/banner_winner.png',
+                    height: 60,
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-      ]),
-    ).show();
+      ),
+    );
   }
 }
