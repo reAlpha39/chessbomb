@@ -100,9 +100,9 @@ class Dialogs {
       width: context.screenWidth > 500 ? 500 : context.screenWidth - 10,
       animType: AnimType.bottomSlide,
       dialogType: DialogType.question,
-      dialogBackgroundColor: Color(0xFF9F6421),
+      dialogBackgroundColor: const Color(0xFF9F6421),
       title: 'Pilih Skill',
-      borderSide: BorderSide(color: Color(0xFFD3B14D), width: 10),
+      borderSide: const BorderSide(color: Color(0xFFD3B14D), width: 10),
       body: BlocProvider(
         create: (context) => getIt<GameBoardCubit>(),
         child: Column(
@@ -203,7 +203,7 @@ class Dialogs {
                   ),
                   child: 'KEMBALI'
                       .text
-                      .color(Color(0xFF706F6F))
+                      .color(const Color(0xFF706F6F))
                       .fontFamily(GoogleFonts.alatsi().fontFamily!)
                       .xl
                       .makeCentered()
@@ -228,13 +228,13 @@ class Dialogs {
       animType: AnimType.scale,
       dialogType: DialogType.question,
       title: 'Pilih Strategi',
-      borderSide: BorderSide(color: Color(0xFFD3B14D), width: 10),
-      dialogBackgroundColor: Color(0xFF9F6421),
+      borderSide: const BorderSide(color: Color(0xFFD3B14D), width: 10),
+      dialogBackgroundColor: const Color(0xFF9F6421),
       body: VStack([
         Center(
           child: 'PILIH STRATEGI'
               .text
-              .color(Color(0xFF706F6F))
+              .color(const Color(0xFF706F6F))
               .white
               .fontWeight(FontWeight.w900)
               .fontFamily(GoogleFonts.alatsi().fontFamily!)
@@ -266,7 +266,7 @@ class Dialogs {
               ),
               child: 'PINDAH PION'
                   .text
-                  .color(Color(0xFF706F6F))
+                  .color(const Color(0xFF706F6F))
                   .fontFamily(GoogleFonts.alatsi().fontFamily!)
                   .xl
                   .makeCentered()
@@ -301,7 +301,7 @@ class Dialogs {
               ),
               child: 'BOM'
                   .text
-                  .color(Color(0xFF706F6F))
+                  .color(const Color(0xFF706F6F))
                   .fontFamily(GoogleFonts.alatsi().fontFamily!)
                   .xl
                   .makeCentered()
@@ -345,7 +345,7 @@ class Dialogs {
               ),
               child: 'SKILL'
                   .text
-                  .color(Color(0xFF706F6F))
+                  .color(const Color(0xFF706F6F))
                   .fontFamily(GoogleFonts.alatsi().fontFamily!)
                   .xl
                   .makeCentered()
@@ -379,7 +379,7 @@ class Dialogs {
               ),
               child: 'KEMBALI'
                   .text
-                  .color(Color(0xFF706F6F))
+                  .color(const Color(0xFF706F6F))
                   .fontFamily(GoogleFonts.alatsi().fontFamily!)
                   .xl
                   .makeCentered()
