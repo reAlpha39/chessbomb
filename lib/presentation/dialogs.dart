@@ -432,15 +432,9 @@ class Dialogs {
                   ),
                   child: Column(
                     children: [
-                      (playerAScore != null
-                              ? playerAScore == playerBScore!
-                                  ? 'Waktu Permainan Habis'
-                                  : ('Player ' +
-                                      (playerAScore > playerBScore
-                                          ? '1'
-                                          : '2') +
-                                      ' Menang')
-                              : ('Player ' + playerId))
+                      (isTimeOut
+                              ? 'Waktu Permainan Habis'
+                              : 'Player ' + playerId)
                           .text
                           .center
                           .size(20)
@@ -463,7 +457,7 @@ class Dialogs {
               child: Column(
                 children: [
                   Image.asset(
-                    playerAScore == playerBScore!
+                    isTimeOut
                         ? 'assets/images/banner_draw.png'
                         : 'assets/images/banner_winner.png',
                     height: 60,
